@@ -1,0 +1,120 @@
+﻿@using System.Security.Claims
+@model IEnumerable<Dr_Hesabi.DataLayers.Entity.SurveysQuestions>
+
+@if (ViewData["Command"] != null)
+{
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4">
+            <div class="alert alert-info text-center">
+                <span>@ViewData["Command"]</span>
+            </div>
+        </div>
+    </div>
+}
+@if (User.Identity.IsAuthenticated)
+{
+    @if (bool.Parse(ViewData["IsActive"].ToString()) == false)
+    {
+        <div class="row">
+            <div class="col-md-4 col-md-offset-4 col-sm-4 col-sm-offset-4">
+                @if (bool.Parse(ViewData["IsUser"].ToString()) == true)
+                {
+                    <div class="alert alert-info text-center">
+                        <span>کاربر عزیز شما در این نظرسنجی شرکت کرده بودید</span>
+                    </div>
+                }
+                else
+                {
+                    <div class="alert alert-warning text-center">
+                        <span>کاربر عزیز شما در این نظرسنجی شرکت نکرده بودید</span>
+                    </div>
+                }
+            </div>
+        </div>
+    }
+}
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+            <div class="Box">
+                <div class="Box_Img">
+                    <img src="~/Images/Surveys/Surveys_Items/@item.ImageName" alt="@item.Title" title="@item.Title" loading="lazy">
+                </div>
+                <div class="Box_Title">
+                    <a>@item.Title</a>
+                </div>
+                <div class="Box_Fooder">
+                    <span class="Box_Fooder_Right" title="میانگین آرا"><i class="mdi mdi-vote-outline"></i> @item.SumVote.ToString("N2")</span>
+                    <span class="Box_Fooder_Left" title="تعداد رأی دهندگان"><i class="mdi mdi-account"></i> @item.SurveysVotes.Count() </span>
+                    @if (bool.Parse(ViewData["IsActive"].ToString()) == true)
+                    {
+                        <div class="SaveVote">
+                            <div class="row">
+                                <input type="button" onclick="SaveVote('@item.QuestionID')" class="btn btn-success btn-block" value="ثبت رأی" />
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    }
+</div>
+<div class="row"></div>
+<div id="Chart">
+    <canvas id="myChart" width="400" height="200"></canvas>
+</div>
+<script src="~/Public/vendor/js/Chart.min.js"></script>
+<script defer>
+    var Labels= @Html.Raw(Json.Serialize(ViewData["Labels"]));
+        var Values= @Html.Raw(Json.Serialize(ViewData["Values"]));
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: Labels,
+                datasets: [{
+                    label: 'رأی',
+                    data: Values,
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)',
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)',
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+</script>

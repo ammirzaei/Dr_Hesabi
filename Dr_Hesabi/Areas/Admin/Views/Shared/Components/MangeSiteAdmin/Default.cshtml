@@ -1,0 +1,98 @@
+﻿@model Dr_Hesabi.Classes.ViewModel.AdminViewModel.ManageSiteViewModel
+
+<div class="box-item text-right">
+    <ul>
+        <a href="/Admin">
+            <li class="@((Context.Request.Path.Value=="Admin"||Context.Request.Path.Value=="/Admin"||Context.Request.Path.Value=="Admin/")?"active-Menu":"")">
+                داشبورد
+            </li>
+        </a>
+        <a href="@Url.Action("Index","Setting")">
+            <li class="@((Context.Request.Path.Value.Contains("Setting"))?"active-Menu":"")">
+                تنظیمات کلی سایت
+            </li>
+        </a>
+        <a href="@Url.Action("Index","Users")">
+            <li class="@((Context.Request.Path.Value.Contains("Users"))?"active-Menu":"")">
+                کاربران
+                <span>@Model.CountUser</span>
+            </li>
+        </a>
+        <a>
+            <li class="Menu  @((Context.Request.Path.Value.Contains("Sliders")||Context.Request.Path.Value.Contains("News"))?"active-Menu":"")">
+                صفحه اصلی  <i class="mdi mdi-chevron-down"></i>
+                <ul class="Menu-item">
+                    <a href="@Url.Action("Index","Sliders")">
+                        <li class="@((Context.Request.Path.Value.Contains("Sliders"))?"active-MenuItem":"")">
+                            اسلایدر
+                            <span>@Model.CountSlider</span>
+                        </li>
+                    </a>
+                    <a href="@Url.Action("Index","News")">
+                        <li class="@((Context.Request.Path.Value.Contains("News"))?"active-MenuItem":"")">
+                            اخبار
+                            <span>@Model.CountNews</span>
+                        </li>
+                    </a>
+                </ul>
+            </li>
+        </a>
+        <a>
+            <li class="Menu  @((Context.Request.Path.Value.Contains("Staffs")||Context.Request.Path.Value.Contains("Majors"))?"active-Menu":"")">
+                درباره هنرستان <i class="mdi mdi-chevron-down"></i>
+                <ul class="Menu-item">
+                    <a href="@Url.Action("Index", "Staffs")">
+                        <li class="@((Context.Request.Path.Value.Contains("Staffs")) ? "active-MenuItem" : "")">
+                            پرسنل هنرستان
+                            <span>@Model.CountStaffs</span>
+                        </li>
+                    </a>
+                    <a href="@Url.Action("Index", "Majors")">
+                        <li class="@((Context.Request.Path.Value.Contains("Majors")) ? "active-MenuItem" : "")">
+                            رشته های هنرستان
+                            <span>@Model.CountMajors</span>
+                        </li>
+                    </a>
+
+                </ul>
+            </li>
+        </a>
+        <a>
+            <li class="Menu  @((Context.Request.Path.Value.Contains("Blogs")||Context.Request.Path.Value.Contains("Bests")||Context.Request.Path.Value.Contains("Gallerys")||Context.Request.Path.Value.Contains("Surveys"))?"active-Menu":"")">
+                بخش های سایت <i class="mdi mdi-chevron-down"></i>
+                <ul class="Menu-item">
+                    <a href="@Url.Action("Index","Blogs")">
+                        <li class="@((Context.Request.Path.Value.Contains("Blogs"))?"active-MenuItem":"")">
+                            مقالات
+                            <span>@Model.CountBlogs</span>
+                        </li>
+                    </a>
+                    <a href="@Url.Action("Index","Bests")">
+                        <li class="@((Context.Request.Path.Value.Contains("Bests"))?"active-MenuItem":"")">
+                            برترین ها
+                            <span>@Model.CountBests</span>
+                        </li>
+                    </a>
+                    <a href="@Url.Action("Index","Gallerys")">
+                        <li class="@((Context.Request.Path.Value.Contains("Gallerys"))?"active-MenuItem":"")">
+                            گالری تصاویر
+                            <span>@Model.CountGallerys</span>
+                        </li>
+                    </a>
+                    <a href="@Url.Action("Index","Surveys")">
+                        <li class="@((Context.Request.Path.Value.Contains("Surveys"))?"active-MenuItem":"")">
+                            نظرسنجی
+                            <span>@Model.CountSurveys</span>
+                        </li>
+                    </a>
+                </ul>
+            </li>
+        </a>
+        <a href="@Url.Action("Index","Attachments")">
+            <li class="@((Context.Request.Path.Value.Contains("Attachments"))?"active-Menu":"")">
+                فایل های ضمیمه
+                <span>@Model.CountAttachments</span>
+            </li>
+        </a>
+    </ul>
+</div>

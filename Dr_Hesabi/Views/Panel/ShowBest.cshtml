@@ -1,0 +1,44 @@
+﻿@using Dr_Hesabi.DataLayers.Entity
+@model IEnumerable<Dr_Hesabi.DataLayers.Entity.Bests>
+@{
+    Bests best = ViewBag.Best;
+    ViewData["Title"] = best.Title;
+    ViewData["Description"] = best.Description;
+}
+<div class="Panel_TitleMain">
+    <div class="row">
+        <div class="Panel_Line"></div>
+        <div class="Panel_Title">
+            <h4>@best.Title</h4>
+        </div>
+    </div>
+</div>
+<div id="Panel">
+    <div class="container">
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                    <div class="Box">
+                        <div class="Box_Img">
+                            <img src="~/Images/Bests/Best_Items/@item.ImageName" alt="@item.Title" title="@item.Title" loading="lazy">
+                        </div>
+                        <div class="Box_Title">
+                            <a>@item.Title</a>
+                        </div>
+                        <div class="Box_Fooder">
+                            <span>
+                                @item.Description
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+
+
+
+

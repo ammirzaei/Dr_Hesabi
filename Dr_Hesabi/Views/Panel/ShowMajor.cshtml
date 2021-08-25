@@ -1,0 +1,45 @@
+﻿@model Dr_Hesabi.DataLayers.Entity.Majors
+@{
+    ViewData["Title"] = Model.Title;
+    ViewData["Description"] = Model.ShortDescription;
+}
+<div class="container">
+    <div class="View">
+        <div class="View-Title">
+            <h3>@Model.Title</h3>
+            <div class="Navigation">
+                <ul>
+                    <li>
+                        <a href="/">هنرستان دکتر حسابی</a> /
+                    </li>
+                    <li>
+                        <a href="@Url.Action("Major","Panel")">رشته های تحصیلی</a> /
+                    </li>
+                    <li>
+                        <a href="#">@Model.Title</a> /
+                    </li>
+                    <li>
+                        <a href="@Url.Action("ShowListContentsMajor", "Contents", new {majorTitle = Model.Title})">محتوا های رشته</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="View-Des">
+                <span><i class="mdi mdi-account"></i> @Model.Count هنرجو</span>
+            </div>
+        </div>
+        <div class="View-Body">
+            <div class="ViewBody-Top">
+                <img src="~/Images/Majors/@Model.ImageName" alt="@Model.Title" title="@Model.Title" loading="lazy">
+            </div>
+            <div class="ViewBody-Main">
+                <div class="alert alert-success text-center">
+                    <span>محتوا های این رشته را میتوانید در <a href="@Url.Action("ShowListContentsMajor", "Contents", new {majorTitle = Model.Title})">این</a> صفحه ببینید.</span>
+                </div>
+                <p>
+                    @Html.Raw(Model.Text)
+                </p>
+
+            </div>
+        </div>
+    </div>
+</div>

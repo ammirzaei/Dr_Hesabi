@@ -1,0 +1,87 @@
+﻿@model Dr_Hesabi.DataLayers.Entity.TestsUltimate
+@{
+    ViewData["Title"] = "نتیجه آزمون";
+    Layout = "_TestsLayout";
+}
+<div class="row">
+    <div class="col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3 col-sm-12 col-xs-12">
+        <div class="TestBox">
+            <div class="TestQuestionScore2">
+                نتیجه آزمون(نمره از @Model.TestScore)
+            </div>
+            <div class="TestUltimate">
+                <h4>@ViewData["TestTitle"]</h4>
+                @if (bool.Parse(ViewData["IsUltimate"].ToString()) == true)
+                {
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <div class="UltimateBox">
+                                <span>@Model.Score نمره</span>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <div class="UltimateBox">
+                                <span>@Model.CountTrue پاسخ صحیح</span>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <div class="UltimateBox">
+                                <span>@Model.CountFalse پاسخ غلط</span>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <div class="UltimateBox">
+                                <span>@Model.ReplyNull سوال بی پاسخ</span>
+                            </div>
+                        </div>
+                        @if (Model.CountNull > 0)
+                        {
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                <div class="UltimateBox">
+                                    <span>@Model.CountNull سوال در انتظار تصحیح</span>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                    <div class="row" id="Row2">
+                        @if (Model.CountNull > 0)
+                        {
+                            <div class="col-lg-12 col-xs-12">
+                                <div class="UltimateBox">
+                                    <span>نمره نهایی شما در انتظار تصحیح سوالات تشریحی است</span>
+                                </div>
+                            </div>
+                        }
+                        <div class="col-lg-12 col-xs-12">
+                            <div class="UltimateBox">
+                                <span>نتیجه آزمون شما در بخش داشبورد/آزمون های من موجود است</span>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 col-xs-12">
+                            <div class="UltimateBox">
+                                <a class="btn btn-primary" href="/">صفحه اصلی</a>
+                                <a class="btn btn-warning" href="@Url.Action("Index","Dashboard")">داشبورد</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="UltimateBox">
+                                <span>نتیجه آزمون شما پس از پایان زمان برگزاری آزمون در بخش آزمون های من موجود خواهد بود</span>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 col-xs-12">
+                            <div class="UltimateBox">
+                                <a class="btn btn-primary" href="/">صفحه اصلی</a>
+                                <a class="btn btn-info" href="@Url.Action("Index","Dashboard")">داشبورد</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

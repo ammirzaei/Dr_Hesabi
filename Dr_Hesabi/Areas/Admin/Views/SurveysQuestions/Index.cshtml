@@ -1,0 +1,19 @@
+﻿
+@{
+    ViewData["Title"] = "سوال های نظرسنجی";
+}
+
+<h2>سوال های نظرسنجی @ViewData["SurveysTitle"] </h2>
+
+<p>
+    <a onclick="CreateQuestions('@ViewData["SurveysID"]')" class="btn btn-success">افزودن سوال</a> |
+    <a asp-action="Index" asp-controller="Surveys" class="btn btn-info">برگشت</a>
+</p>
+<div>
+    @await Component.InvokeAsync("ListSurveysQuestionsViewComponent", new { id = ViewData["SurveysID"] })
+</div>
+<partial name="PartialViews/Modal" />
+@section Scripts
+{
+    <script src="~/Scripts/SurveysQuestionIndex.js"></script>
+}

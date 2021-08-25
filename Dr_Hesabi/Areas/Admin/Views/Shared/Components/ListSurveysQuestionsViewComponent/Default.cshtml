@@ -1,0 +1,46 @@
+﻿@model IEnumerable<Dr_Hesabi.DataLayers.Entity.SurveysQuestions>
+
+<table class="table table-bordered table-hover">
+    <thead>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ImageName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SumVote)
+        </th>
+        <th>
+            تعداد رأی دهندگان
+        </th>
+        <th>
+            دستورات
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <img src="~/Images/Surveys/Surveys_Items/@item.ImageName" width="100" height="100" class="img-thumbnail img-responsive"/>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SumVote)
+                </td>
+                <td>
+                    @item.SurveysVotes.Count() نفر
+                </td>
+                <td>
+                    <a onclick="EditQuestions('@item.QuestionID')" class="btn btn-primary">ویرایش</a> |
+                    <a onclick="DeleteQuestions('@item.QuestionID')" class="btn btn-danger">حذف</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

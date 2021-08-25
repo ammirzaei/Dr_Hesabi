@@ -1,0 +1,31 @@
+﻿
+@{
+    ViewData["Title"] = "پروفایل";
+}
+
+<div id="Profile">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 col-md-3 col-sm-4">
+                <partial name="PartialViews/Dashboard" />
+            </div>
+            <div class="col-lg-8 col-md-9 col-sm-8">
+                <div class="Account">
+                    <h4>پروفایل من</h4>
+                    @if (Boolean.Parse(ViewData["IsUserStaff"].ToString()))
+                    {
+                        <text>
+                            @await Component.InvokeAsync("ProfileStaff")
+                        </text>
+                    }
+                    else
+                    {
+                        <text>
+                            @await Component.InvokeAsync("ProfileStudent")
+                        </text>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,40 @@
+﻿@using Dr_Hesabi.Classes.Class
+@model Dr_Hesabi.DataLayers.Entity.Attachments
+
+
+<h3>آیا از این حذف مطمئن هستید؟</h3>
+<div>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.FileName)
+        </dt>
+        <dd class="col-sm-10">
+            @if (CheckFormat.CheckFormatImage(Model.FileName))
+            {
+                <img src="~/Images/Attachments/@Model.FileName" class="img-thumbnail img-responsive" width="200" height="150" />
+            }
+            else if (CheckFormat.CheckFormatVideo(Model.FileName))
+            {
+                <video width="200" height="150" controls>
+                    <source src="~/Images/Attachments/@Model.FileName" />
+                </video>
+            }
+            else if (CheckFormat.CheckFormatAudio(Model.FileName))
+            {
+                <audio controls>
+                    <source src="~/Images/Attachments/@Model.FileName" />
+                </audio>
+            }
+            else
+            {
+                <span class="text-danger">فرمت ناشناخته</span>
+            }
+        </dd>
+    </dl>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="AttachmentID" />
+        <input type="submit" value="حذف" class="btn btn-danger" /> 
+    </form>
+</div>

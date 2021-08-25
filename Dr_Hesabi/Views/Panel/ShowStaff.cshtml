@@ -1,0 +1,37 @@
+﻿@model Dr_Hesabi.Classes.ViewModel.GetStaffViewModel
+@{
+    ViewData["Title"] = Model.Title;
+}
+<div class="container">
+    <div class="View View-Thumb">
+        <div class="View-Title">
+            <h3>@Model.Title</h3>
+            <div class="Navigation">
+                <ul>
+                    <li>
+                        <a href="/">هنرستان دکتر حسابی</a> /
+                    </li>
+                    <li>
+                        <a href="@Url.Action("Staffs","Panel")">پرسنل هنرستان</a> /
+                    </li>
+                    <li>
+                        <a href="">@Model.ParentTitle</a> /
+                    </li>
+                    <li>
+                        <a href="">@Model.Title</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="View-Body View-BodyThumb">
+            <div class="ViewBody-Top">
+                <img src="~/Images/Staffs/@Model.ImageName" alt="@Model.Title" title="@Model.Title" loading="lazy">
+            </div>
+            <div class="ViewBody-Main">
+                <p>
+                    @Html.Raw(Model.Description)
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

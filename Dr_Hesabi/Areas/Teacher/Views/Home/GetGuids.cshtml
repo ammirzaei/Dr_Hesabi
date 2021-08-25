@@ -1,0 +1,26 @@
+﻿@model IEnumerable<string>
+@{
+    ViewData["title"] = "راهنما ها و نکات";
+    Layout = "_TeacherLayout";
+}
+<h2>راهنما ها و نکات</h2>
+@if (Model.Any())
+{
+    <div class="row">
+        <div class="Account">
+            <h4>راهنما ها و نکات</h4>
+            <div class="Guide">
+                @foreach (var item in Model)
+                {
+                    <p>@item</p>
+                }
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <div class="alert alert-warning text-center">
+        <span>راهنما و نکاتی وجود ندارد.</span>
+    </div>
+}

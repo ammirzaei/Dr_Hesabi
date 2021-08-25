@@ -1,0 +1,60 @@
+﻿@using Dr_Hesabi.Classes.Class
+@using Microsoft.AspNetCore.Hosting
+@using Microsoft.Extensions.Configuration
+@model IEnumerable<Dr_Hesabi.DataLayers.Entity.Attachments>
+@inject IConfiguration _Configuration
+@inject IWebHostEnvironment _IHostEnvironment
+@{
+    ViewData["Title"] = "فایل های ضمیمه";
+}
+
+<h2>فایل های ضمیمه</h2>
+<input type="hidden" value="@_Configuration["MyDomain"]" id="MyDomain" />
+<p>
+    <a onclick="Create()" class="btn btn-success">افزودن فایل</a>
+</p>
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FileName)
+            </th>
+            <th>
+                فرمت فایل
+            </th>
+            <th>
+                حجم فایل
+            </th>
+            <th>
+                دستورات
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <a onclick="ShowFile('@item.AttachmentID')">نمایش فایل</a>
+                    <input type="text" class="Link" id="@item.AttachmentID" value="" />
+                </td>
+                <td>
+                    <span dir="ltr">@System.IO.Path.GetExtension(item.FileName).ToUpper()</span>
+                </td>
+                <td>
+                    @GetFileInfo.GetSize(_IHostEnvironment.WebRootPath + "/Images/Attachments/" + item.FileName)
+                </td>
+                <td>
+                    <a class="btn btn-info" onclick="CopyLink('@item.AttachmentID','@item.FileName')">کپی لینک</a> |
+                    <a class="btn btn-danger" onclick="Delete('@item.AttachmentID')">حذف</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<partial name="PartialViews/Modal" />
+@section Scripts
+{
+    <script src="~/Scripts/AttachmentsAdmin.js"></script>
+}
+

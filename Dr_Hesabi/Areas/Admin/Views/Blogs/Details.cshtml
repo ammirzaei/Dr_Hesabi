@@ -1,0 +1,65 @@
+﻿@using Dr_Hesabi.Classes.Class
+@model Dr_Hesabi.DataLayers.Entity.Blogs
+
+@{
+    ViewData["Title"] = "جزئیات مقاله";
+}
+<h2>جزئیات مقاله</h2>
+<div>
+    <hr />
+    <div class="row">
+        <div class="col-md-12">
+            <div class="Delete">
+                <div>
+                    <span>@Html.LabelFor(s => s.ImageName) : </span>
+                    <span>
+                        <img src="~/Images/Blogs/@Model.ImageName" width="200" height="200" class="img-thumbnail img-responsive" />
+                    </span>
+                </div>
+                <div>
+                    <span>@Html.LabelFor(s => s.NameWriter) : </span>
+                    <span>@Model.NameWriter</span>
+                </div>
+                <div>
+                    <span>@Html.LabelFor(s => s.Title) : </span>
+                    <span>@Model.Title</span>
+                </div>
+                <div>
+                    <span>@Html.LabelFor(s => s.ShortDescription) : </span>
+                    <span>@Model.ShortDescription</span>
+                </div>
+                <div>
+                    <span>@Html.LabelFor(s => s.Description) : </span>
+                    <span>@Html.Raw(Model.Description)</span>
+                </div>
+                <div>
+                    <span>@Html.LabelFor(s => s.Visit) : </span>
+                    <span>@Model.Visit</span>
+                </div>
+                <div>
+                    <span>@Html.LabelFor(s => s.DateTime) : </span>
+                    <span>@Model.DateTime.ToDate()</span>
+                </div>
+                <div>
+                    <span>@Html.LabelFor(s => s.IsActive) : </span>
+                    @if (Model.IsActive)
+                    {
+                        <text>
+                            <span id="success">فعال</span>
+                        </text>
+                    }
+                    else
+                    {
+                        <text>
+                            <span id="danger">غیرفعال</span>
+                        </text>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.BlogID" class="btn btn-primary">ویرایش</a> |
+    <a asp-action="Index" class="btn btn-info">برگشت</a>
+</div>

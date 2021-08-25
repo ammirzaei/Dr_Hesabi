@@ -1,0 +1,32 @@
+﻿@model IEnumerable<Dr_Hesabi.DataLayers.Entity.Staffs>
+
+@if (Model.Any())
+{
+    <section class="border-radius category-side">
+        <header>
+            <h3>  عوامل هنرستان </h3>
+        </header>
+        <article>
+            <ul class="category-menu">
+                @foreach (var item in Model.Where(g => g.ParentID == null))
+                {
+                    <li>
+                        <h2><a> <i class="fa fa-folder"></i>  @item.Title </a></h2>
+                        @if (Model.Any(s => s.ParentID == item.StaffID))
+                        {
+                            <ul class="child-category-menu">
+                                @foreach (var sub in Model.Where(s => s.ParentID == item.StaffID))
+                                {
+                                    <li>
+                                        <h2><a href="@Url.Action("ShowStaff","Home",new{id=sub.StaffID,title=sub.Title})"> <i class="fa fa-caret-left"></i> @sub.Title </a></h2>
+                                    </li>
+                                }
+                            </ul>
+                        }
+
+                    </li>
+                }
+            </ul>
+        </article>
+    </section>
+}

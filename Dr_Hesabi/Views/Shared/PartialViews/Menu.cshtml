@@ -1,0 +1,40 @@
+﻿@if (User.Identity.IsAuthenticated)
+{
+    <a id="Account-title">
+        <span>@User.Identity.Name خوش آمدید <i class="mdi mdi-chevron-down"></i></span>
+    </a>
+    <ul id="Account-item">
+        <li>
+            <a href="@Url.Action("Index", "Dashboard")">
+                داشبورد
+            </a>
+        </li>
+        @if (Context.User.Claims.FirstOrDefault(s => s.Type.Contains("Role")).Value.Contains("Admin"))
+        {
+            <li>
+                <a href="/Admin" target="_blank">
+                    پنل مدیریت سایت
+                </a>
+            </li>
+        }
+        @if (Context.User.Claims.FirstOrDefault(s => s.Type.Contains("Role")).Value.Contains("Teacher") || Context.User.Claims.FirstOrDefault(s => s.Type.Contains("Role")).Value.Contains("Admin"))
+        {
+            <li>
+                <a href="/Teacher" target="_blank">
+                    پنل معلمین سایت
+                </a>
+            </li>
+        }
+        <li id="LogOut">
+            <a href="@Url.Action("LogOut", "Account")">
+                خروج
+            </a>
+        </li>
+    </ul>
+}
+else
+{
+    <a href="@Url.Action("Login","Account")" id="Account-title">
+        <span>حساب کاربری <i class="mdi mdi-account"></i></span>
+    </a>
+}

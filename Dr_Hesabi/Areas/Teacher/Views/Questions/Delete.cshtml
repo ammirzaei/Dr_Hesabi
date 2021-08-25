@@ -1,0 +1,45 @@
+﻿@model Dr_Hesabi.DataLayers.Entity.Questions
+
+<h3>آیا از این حذف مطمئن هستید؟</h3>
+<div>
+    <hr />
+    <div class="row">
+        <div class="col-md-12">
+            <div class="Delete">
+                @if (Model.ImageName != null)
+                {
+                    <div>
+                        <span>@Html.LabelFor(s => s.ImageName) : </span>
+                        <span>
+                            <img src="~/Images/Questions/@Model.ImageName" class="img-responsive img-thumbnail" width="100" height="100" />
+                        </span>
+                    </div>
+                }
+                <div>
+                    <span>@Html.LabelFor(s => s.Method) : </span>
+                    <span>@Model.Method</span>
+                </div>
+                @if (Model.MethodInput != null)
+                {
+                    <div>
+                        <span>@Html.LabelFor(s => s.MethodInput) : </span>
+                        <span>@Model.MethodInput</span>
+                    </div>
+                }
+                <div>
+                    <span>@Html.LabelFor(s => s.Title) : </span>
+                    <span>@Model.Title</span>
+                </div>
+                <div>
+                    <span>@Html.LabelFor(s => s.Score) : </span>
+                    <span>@Model.Score</span>
+                </div>
+               
+            </div>
+        </div>
+    </div>
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="QuestionID" />
+        <input type="submit" value="حذف" class="btn btn-danger" />
+    </form>
+</div>

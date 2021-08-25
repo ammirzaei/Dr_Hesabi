@@ -1,0 +1,29 @@
+﻿@model IEnumerable<Dr_Hesabi.DataLayers.Entity.Users>
+
+@{
+    ViewData["Title"] = "کاربران";
+}
+
+<h2>کاربران</h2>
+
+<p>
+    <a asp-action="Create" class="btn btn-success">افزودن کاربر</a>
+</p>
+<div style="margin-bottom: 1rem">
+    <form method="post" asp-action="ListUserViewComponent" data-ajax="true" data-ajax-update="#ListUser">
+        <div class="input-group">
+            <input type="text" class="form-control" placeholder="جستجوی کاربر" id="TxtSearch" name="q">
+            <span class="input-group-btn" id="btnSearch">
+                <button class="btn btn-info" type="submit">جستجو</button>
+            </span>
+        </div>
+    </form>
+</div>
+<div id="ListUser">
+    @await Component.InvokeAsync("ListUserViewComponent")
+</div>
+<partial name="PartialViews/Modal" />
+@section Scripts
+{
+    <script src="~/Scripts/ListUser.js"></script>
+}

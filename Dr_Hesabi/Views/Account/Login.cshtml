@@ -1,0 +1,95 @@
+﻿@model Dr_Hesabi.Classes.ViewModel.LoginViewModel
+
+@{
+    ViewData["Title"] = "ورود به سایت";
+}
+@section Styles{
+    <link href="~/Public/CheckBox/css/all.css" rel="stylesheet" />
+}
+<form asp-action="Login">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-xs-12">
+                <div class="Account">
+                    <h4>ورود به سایت</h4>
+                    <div class="Account_Box">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        @Html.HiddenFor(s => s.ReturnUrl)
+                        @if (ViewBag.Error != null)
+                        {
+                            <div class="alert alert-danger text-center">
+                                @ViewBag.Error
+                            </div>
+                        }
+                        @if (Context.Request.Query["NotAuthorize"] == "")
+                        {
+                            <div class="alert alert-danger text-center">
+                                دسترسی لازم برای شما وجود ندارد.
+                            </div>
+                        }
+                        @if (Context.Request.Query["ReturnUrl"].Any())
+                        {
+                            <div class="alert alert-danger text-center">
+                                لطفا برای دسترسی با اکانت خود وارد شوید.
+                            </div>
+                        }
+                        @if (ViewBag.IsActiveCode == true)
+                        {
+                            <div class="alert alert-success text-center">
+                                اکانت کاربری شما با موفقیت فعال شد.
+                            </div>
+                        }
+                        else if (ViewBag.IsActiveCode == false)
+                        {
+                            <div class="alert alert-danger text-center">
+                                کد فعالسازی نامعتبر است.
+                            </div>
+                        }
+                        <div class="form-group">
+                            <div class="input-group">
+                                <i class="mdi mdi-account input-group-addon" id="basic-addon1"></i>
+                                <input asp-for="EmailandUserName" class="form-control" placeholder="ایمیل یا نام کاربری" />
+                            </div>
+                            <span asp-validation-for="EmailandUserName" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <i class="mdi mdi-lock input-group-addon" id="basic-addon1"></i>
+                                <input asp-for="Password" class="form-control" placeholder="رمز عبور" />
+                            </div>
+                            <span asp-validation-for="Password" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <div class="checkbox">
+                                <label>
+                                    <input asp-for="ReMemeberMe" /> @Html.DisplayNameFor(model => model.ReMemeberMe)
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="g-recaptcha" data-sitekey="6LcUrMoZAAAAAGTfU1jMlJ5QZIBp2RXD-15Y8_fI"></div>
+                            <span>
+                                <span class="text-danger">@ViewBag.MessageError</span>
+                            </span>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="submit" value="ورود به سایت" class="btn btn-primary" />
+                        </div>
+                        <div class="Account_Link">
+                            <div class="form-group">
+                                <a href="@Url.Action("Register","Account")"><i class="mdi mdi-account"></i> ثبت نام نکرده ام</a>
+                                <a href="@Url.Action("ForgetPassword", "Account")"><i class="mdi mdi-lock"></i> رمز عبور خود را فراموش کرده ام</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+@section Scripts
+{
+    <script src="~/Public/CheckBox/js/icheck.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js?hl=fa"></script>
+}

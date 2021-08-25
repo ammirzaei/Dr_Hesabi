@@ -1,0 +1,80 @@
+﻿@using Dr_Hesabi.Classes.Class
+@model Dr_Hesabi.DataLayers.Entity.Connections
+
+@{
+    ViewData["Title"] = "نمایش پیام";
+}
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12 col-xs-12">
+            <div class="Account">
+                @if (ViewBag.IsDelete == true)
+                {
+                    <h4>حذف پیام</h4>
+                }
+                else
+                {
+                    <h4>نمایش پیام</h4>
+                }
+                <div class="col-md-12">
+                    <div class="Delete">
+                        @if (Model.UserID == null)
+                        {
+                            <div>
+                                <span>@Html.LabelFor(s => s.FullName) : </span>
+                                <span>@Model.FullName</span>
+                            </div>
+                            <div>
+                                <span>@Html.LabelFor(s => s.EmailorPhone) : </span>
+                                <span>@Model.EmailorPhone</span>
+                            </div>
+                        }
+                        else
+                        {
+                            <div>
+                                <span>کاربر : </span>
+                                <span class="text-primary">
+                                    <a class="text-primary" onclick="ShowProfile('@Model.UserID')">@Model.Users.UserName</a>
+                                </span>
+                            </div>
+                        }
+                        <div>
+                            <span>@Html.LabelFor(s => s.CommentTitle) : </span>
+                            <span>@Model.CommentTitle</span>
+                        </div>
+                        <div>
+                            <span>@Html.LabelFor(s => s.Comment) : </span>
+                            <span>@Model.Comment</span>
+                        </div>
+                        <div>
+                            <span>@Html.LabelFor(s => s.CreateDate) : </span>
+                            <span>@Model.CreateDate.ToDateTime()</span>
+                        </div>
+                    </div>
+                </div>
+                <p>
+                    <a class="btn btn-info" asp-action="Index">برگشت</a>
+                    @if (ViewBag.IsDelete == true)
+                    {
+                        <text>
+                            | <a class="btn btn-danger" asp-action="Delete" asp-route-id="@Model.ConnectionID">حذف</a>
+                        </text>
+                    }
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+<partial name="PartialViews/Modal" />
+@section Scripts {
+    <script>
+        function ShowProfile(id) {
+            $.get("/Admin/Users/Profile/" + id,
+                function (res) {
+                    $("#MyModal").modal();
+                    $("#myModalLabel").text("پروفایل");
+                    $("#Modal-body").html(res);
+                });
+        }
+    </script>
+}

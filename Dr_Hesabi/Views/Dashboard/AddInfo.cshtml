@@ -1,0 +1,60 @@
+﻿@model Dr_Hesabi.DataLayers.Entity.ProfileStudents
+
+@{
+    ViewData["Title"] = "ثبت پروفایل";
+}
+<div id="Profile">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 col-md-3 col-sm-4">
+                <partial name="PartialViews/Dashboard" />
+            </div>
+            <div class="col-lg-8 col-md-9 col-sm-8">
+                <form asp-action="AddInfo">
+                    <div class="Account">
+                        <h4>ثبت پروفایل</h4>
+                        <div class="Account_Box">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <input type="hidden" asp-for="UserID"/>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <i class="mdi mdi-account input-group-addon"></i>
+                                    <input asp-for="FullName" class="form-control" placeholder="نام و نام خانوادگی" />
+                                </div>
+                                <span asp-validation-for="FullName" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <i class="mdi mdi-account-key input-group-addon"></i>
+                                    <input asp-for="CodeMeli" class="form-control" placeholder="کد ملی" />
+                                </div>
+                                <span asp-validation-for="CodeMeli" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <i class="mdi mdi-numeric input-group-addon"></i>
+                                    <select class="form-control" asp-for="CodeClass">
+                                        <option></option>
+                                        <option>102</option>
+                                        <option>103</option>
+                                        <option>104</option>
+                                        <option>112</option>
+                                        <option>113</option>
+                                        <option>114</option>
+                                        <option>122</option>
+                                        <option>123</option>
+                                        <option>124</option>
+                                    </select>
+                                </div>
+                                <span asp-validation-for="CodeClass" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" value="ثبت پروفایل" class="btn btn-success" />
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

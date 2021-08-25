@@ -1,0 +1,26 @@
+﻿@model Dr_Hesabi.DataLayers.Entity.Comments
+
+<form asp-action="CommandComment" asp-controller="Panel" data-ajax="@((User.Identity.IsAuthenticated)?"true":"false")" data-ajax-update="#ListComments" data-ajax-success="OnSuccessComment" data-ajax-failure="OnFaildComment">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="PanelID" />
+    <input type="hidden" asp-for="CommentID" />
+    <input type="hidden" asp-for="Method" />
+    <div class="Account_Box">
+        <div class="form-group">
+            <textarea placeholder="متن نظر" asp-for="Text" class="form-control"></textarea>
+            <span asp-validation-for="Text" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <div class="g-recaptcha" data-sitekey="6LcUrMoZAAAAAGTfU1jMlJ5QZIBp2RXD-15Y8_fI"></div>
+            <span>
+                <span class="text-danger">@ViewBag.MessageError</span>
+            </span>
+            <span class="text-success" id="CommentSuccess"></span>
+            <span class="text-danger" id="CommentDanger"></span>
+        </div>
+        <div class="form-group">
+            <input type="submit" class="btn btn-success" value="ثبت نظر" />
+        </div>
+    </div>
+</form>
+<script src="https://www.google.com/recaptcha/api.js?hl=fa"></script>

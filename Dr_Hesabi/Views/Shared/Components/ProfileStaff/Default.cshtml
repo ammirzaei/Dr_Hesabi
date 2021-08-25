@@ -1,0 +1,29 @@
+﻿@model Dr_Hesabi.DataLayers.Entity.ProfileStaffs
+
+<div class="Account_Box">
+    @if (Model != null)
+    {
+        <div class="row">
+            <div class="col-md-12">
+                <div class="profile-staff">
+                    <div class="profile-staff-title">
+                        <h5>
+                            <a href="/Teacher/Home/EditProfile">ویرایش پروفایل</a>
+                        </h5>
+                        <h3>@Model.Title</h3>
+                        <img src="~/Images/Staffs/@Model.ImageName" width="150" height="150" class="img-responsive" />
+                    </div>
+                    <div class="profile-staff-description">
+                        <p>@Html.Raw(Model.Description)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-warning text-center">
+            <p>لطفا پروفایل خود را برای تکمیل پرسنل هنرستان ثبت نمایید.  <a class="text-info profile-text-info" href="/Teacher/Home/AddProfile">ثبت پروفایل</a></p>
+        </div>
+    }
+</div>

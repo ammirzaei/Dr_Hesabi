@@ -1,0 +1,19 @@
+﻿@model Dr_Hesabi.DataLayers.Entity.Staffs
+
+<div class="row">
+    <div class="col-md-12">
+        <form asp-action="Create" data-ajax="true" data-ajax-method="post" data-ajax-success="onSuccess" data-ajax-update="#ListStaffs">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="ParentID" />
+            <div class="form-group">
+                <label class="control-label">عنوان</label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="افزودن" class="btn btn-success" />
+            </div>
+        </form>
+    </div>
+</div>
+@{ await Html.RenderPartialAsync("_ValidationScriptsPartial");}

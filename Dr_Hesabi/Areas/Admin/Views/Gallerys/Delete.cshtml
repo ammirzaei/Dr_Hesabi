@@ -1,0 +1,38 @@
+﻿@using Dr_Hesabi.Classes.Class
+@model Dr_Hesabi.DataLayers.Entity.Gallerys
+
+<h2>آیا از این حذف مطمئن هستید؟</h2>
+<div>
+    <hr />
+    <div class="row">
+        <div class="col-md-12">
+            <div class="Delete">
+                <div>
+                    <span>تصویر : </span>
+                    <span>
+                        @if (Model.ParentID == null)
+                        {
+                            <img src="~/Images/Gallerys/Gallery_Lists/@Model.ImageName" class="img-responsive img-thumbnail" width="150" height="150" />
+                        }
+                        else
+                        {
+                            <img src="~/Images/Gallerys/Gallery_Items/@Model.ImageName" class="img-responsive img-thumbnail" width="150" height="150" />
+                        }
+                    </span>
+                </div>
+                <div>
+                    <span>عنوان : </span>
+                    <span>@Model.Title</span>
+                </div>
+                <div>
+                    <span>تاریخ ثبت : </span>
+                    <span>@Model.DateTime.ToDate()</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="GalleryID" />
+        <input type="submit" value="حذف" class="btn btn-danger" />
+    </form>
+</div>

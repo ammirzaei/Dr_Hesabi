@@ -1,0 +1,63 @@
+﻿@model IEnumerable<Dr_Hesabi.DataLayers.Entity.Contents>
+
+@{
+    ViewData["Title"] = "محتوا های " + ViewData["MajorTitle"];
+}
+<div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-xs-12">
+        <div class="Account">
+            <h4>جستجوی محتوا</h4>
+            <div class="Account_Box">
+                <form asp-action="Search" method="get">
+                    <input type="hidden" name="majorTitle" value="@ViewData["MajorTitle"]" />
+                    <div class="input-group">
+                        <span class="input-group-btn">
+                            <button class="btn btn-info btn-search" type="submit" title="جستجو">
+                                <i class="mdi mdi-magnify"></i>
+                            </button>
+                        </span>
+                        <input required type="text" value="@ViewBag.Search" name="q" class="form-control input-search" placeholder="عنوان مورد نظر را وارد نمایید ...">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="Panel_TitleMain">
+    <div class="row">
+        <div class="Panel_Line"></div>
+        <div class="Panel_Title">
+            <h4>محتوا های @ViewData["MajorTitle"]</h4>
+        </div>
+    </div>
+</div>
+<div id="Panel">
+    <div class="container">
+        <div class="row">
+            @if (Model.Any())
+            {
+                @foreach (var item in Model)
+                {
+                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                        <div class="Box">
+                            <div class="Box_Img">
+                                <a href="@Url.Action("ShowListContents","Contents",new{majorTitle=item.Majors.Title + "Dr",contentID=item.ContentID})">
+                                    <img src="~/Images/Contents/@item.ImageName" alt="@item.Title" title="@item.Title" loading="lazy">
+                                </a>
+                            </div>
+                            <div class="Box_Title">
+                                <a href="@Url.Action("ShowListContents","Contents",new{majorTitle=item.Majors.Title + "Dr",contentID=item.ContentID})">@item.Title</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+            else
+            {
+                <div class="alert alert-warning text-center">
+                    <span>محتوایی وجود ندارد.</span>
+                </div>
+            }
+        </div>
+    </div>
+</div>

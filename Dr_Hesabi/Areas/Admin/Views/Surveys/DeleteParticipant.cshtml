@@ -1,0 +1,25 @@
+﻿@model Dr_Hesabi.DataLayers.Entity.SurveysVotes
+
+<h3>آیا از این حذف مطمئن هستید؟</h3>
+<div>
+    <hr />
+    <div class="row">
+        <div class="col-md-12">
+            <div class="Delete">
+                <div>
+                    <span>کاربر : </span>
+                    <span>@Model.Users.UserName</span>
+                </div>
+                <div>
+                    <span>رأی : </span>
+                    <span>@Model.Vote</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <form asp-action="DeleteParticipant">
+        <input type="hidden" asp-for="VoteID" />
+        <input type="submit" value="حذف" class="btn btn-danger" />
+    </form>
+</div>

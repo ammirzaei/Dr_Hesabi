@@ -1,0 +1,72 @@
+﻿@using Dr_Hesabi.Classes.Class
+@using Dr_Hesabi.Controllers
+@model Dr_Hesabi.DataLayers.Entity.ProfileStudents
+
+<div class="Account_Box">
+    @if (Model.IsCondition == null)
+    {
+        <div class="alert alert-warning text-center">
+            <p>پروفایل شما جهت تأیید در حال بررسی می باشد.</p>
+        </div>
+    }
+    else if (Model.IsCondition == true)
+    {
+        <div class="alert alert-success text-center">
+            <p>پروفایل شما تأیید شده است.</p>
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-danger text-center">
+            <p>پروفایل شما تأیید نشده است، لطفا پروفایل خود را ویرایش کنید.</p>
+        </div>
+    }
+    @if (ViewBag.ProfileRequest == DashboardController.ConditionProfileRequest.True)
+    {
+        <div class="alert alert-info text-center">
+            <p>درخواست شما جهت ویرایش اطلاعات خود تأیید شد.</p>
+        </div>
+    }
+    else if (ViewBag.ProfileRequest == DashboardController.ConditionProfileRequest.False)
+    {
+        <div class="alert alert-danger text-center">
+            <p>درخواست شما جهت ویرایش اطلاعات خود تأیید نشد.</p>
+        </div>
+    }
+    else if (ViewBag.ProfileRequest == DashboardController.ConditionProfileRequest.Awit)
+    {
+        <div class="alert alert-warning text-center">
+            <p>درخواست ویرایش اطلاعات شما در حال بررسی است.</p>
+        </div>
+    }
+    <div class="Profile-Info">
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <span>نام کاربری : @User.Identity.Name</span>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <span>نام و نام خانوادگی : @Model.FullName</span>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <span>کد ملی : @Model.CodeMeli</span>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <span>کد کلاس : @Model.CodeClass</span>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <span> تاریخ ثبت نام : @Model.Users.Date.ToDate()</span>
+            </div>
+        </div>
+        <div class="row">
+            @if (Model.IsCondition == null || Model.IsCondition == false || ViewBag.ProfileRequest == DashboardController.ConditionProfileRequest.True)
+            {
+                <a class="btn btn-info" asp-action="EditInfo">ویرایش اطلاعات</a>
+            }
+            else if (Model.IsCondition == true && ViewBag.ProfileRequest != DashboardController.ConditionProfileRequest.True)
+            {
+                bool disabled = ViewBag.ProfileRequest == DashboardController.ConditionProfileRequest.Awit;
+                <a class="btn btn-info" asp-action="RequestProfile" disabled="@disabled">درخواست ویرایش اطلاعات</a>
+            }
+        </div>
+    </div>
+</div>

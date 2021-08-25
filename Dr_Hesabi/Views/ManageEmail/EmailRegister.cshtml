@@ -1,0 +1,105 @@
+﻿@using Dr_Hesabi.Classes.Class
+@using Microsoft.Extensions.Configuration
+@inject IConfiguration configuration
+@model string
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        #Main {
+            background-color: #f3fefb;
+            width: 100%;
+            border: 1px solid silver;
+            border-radius: 10px;
+            font-family: 'Calibri', Times, serif;
+            direction: rtl;
+        }
+
+
+        .Body {
+            border: 1px solid silver;
+            border-radius: 10px;
+            margin: 10px;
+            text-align: center;
+            padding: 0 10px;
+            font-family: "Calibri";
+        }
+
+            .Body .Text {
+                position: relative;
+                bottom: 0.5rem;
+            }
+
+        .Text button {
+            width: 100%;
+            background-color: cadetblue;
+            box-shadow: 1px 1px 10px cadetblue;
+            padding: 11px 0;
+        }
+
+        .Title {
+            color: #607d8b;
+        }
+
+        .Footer {
+            margin: 10px;
+            border: 1px solid silver;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        a:link,
+        a:active,
+        a:visited {
+            color: #607d8b;
+            text-decoration: none;
+        }
+
+        button {
+            background-color: #3abaf4;
+            box-shadow: 1px 1px 5px #3abaf4;
+            color: white;
+            padding: 7px 10px;
+            border-radius: 7px;
+            border: none;
+            transition: all 300ms;
+            margin: 10px 5px;
+            cursor: pointer;
+            font-family: "Calibri";
+            font-size: 15px
+        }
+
+            button:hover {
+                background-color: #ffab00;
+            }
+    </style>
+</head>
+
+<body>
+    <div id="Main">
+        <div class="Body">
+            <div class="Title">
+                <h4> فعالسازی اکانت (@DateTime.Now.ToDateTime())</h4>
+            </div>
+            <div class="Text">
+                <h3>کاربر عزیز جهت فعالسازی اکانت کاربری خود بروی دکمه زیر کلیک کنید</h3>
+                <a href="@configuration["MyDomain"]/Account/Login?ActiveCode=@Model">
+                    <button type="button">فعالسازی اکانت</button>
+                </a>
+            </div>
+        </div>
+        <div class="Footer">
+            <a href="@configuration["MyDomain"]">
+                <button type="button">صفحه اصلی سایت</button>
+            </a>
+            <a href="@configuration["MyDomain"]/Account/Login">
+                <button type="button">ورود به سایت</button>
+            </a>
+            <a href="@configuration["MyDomain"]/Account/Register">
+                <button type="button">ثبت نام در سایت</button>
+            </a>
+        </div>
+    </div>
+</body>
+</html>

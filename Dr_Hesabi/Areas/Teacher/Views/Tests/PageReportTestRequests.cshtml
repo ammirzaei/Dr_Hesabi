@@ -1,0 +1,13 @@
+﻿@using Stimulsoft.Report.Mvc
+
+@{
+    ViewData["Title"] = "گزارش از درخواست دهندگان آزمون";
+}
+@Html.StiNetCoreViewer(new StiNetCoreViewerOptions()
+{
+    Actions =
+    {
+        GetReport = "PrintReportTestRequests",
+        ViewerEvent = "Event"
+    }
+})

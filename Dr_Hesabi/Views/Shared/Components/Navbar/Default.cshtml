@@ -1,0 +1,54 @@
+﻿@using Dr_Hesabi.Classes.Class
+<div id="navbar-menu">
+    <a>
+        <span><i class="mdi mdi-36px mdi-menu"></i></span>
+    </a>
+</div>
+<ul>
+    <div id="navbar-title">
+        <a>
+            <span><i class="mdi mdi-36px mdi-close"></i></span>
+        </a>
+        <img src="~/Images/Setting/@ViewBag.LogoSite" alt="@ViewBag.NameSite" title="@ViewBag.NameSite" />
+        <p>@ViewBag.NameSite</p>
+    </div>
+    <li>
+        <a href="/">خانه</a>
+    </li>
+    <li>
+        <a href="@Url.Action("News", "Panel")">اخبار</a>
+    </li>
+    <li>
+        <a href="@Url.Action("Index", "Contents")">محتوا ها</a>
+    </li>
+    <li>
+        <a href="@Url.Action("Articles", "Panel")">مقالات</a>
+    </li>
+    <li>
+        <a href="@Url.Action("Index", "Surveys", new {area = ""})">نظرسنجی</a>
+    </li>
+    @if (bool.Parse(ViewData["IsBests"].ToString()) == true)
+    {
+        <li>
+            <a href="@Url.Action("Bests", "Panel")">برترین ها</a>
+        </li>
+    }
+    <li>
+        <a href="@Url.Action("Gallerys", "Panel")">گالری تصاویر</a>
+    </li>
+    <li>
+        <a class="menu">درباره <i class="mdi mdi-chevron-down"></i></a>
+        <ul class="MenuItem">
+            <li>
+                <a href="@Url.Action("Staffs", "Panel")">پرسنل هنرستان</a>
+            </li>
+            <li>
+                <a href="@Url.Action("History", "Panel")">تاریخچه هنرستان</a>
+            </li>
+            <li>
+                <a href="@Url.Action("Major", "Panel")">معرفی رشته ها</a>
+            </li>
+        </ul>
+    </li>
+</ul>
+<div id="Navbar-closing"></div>

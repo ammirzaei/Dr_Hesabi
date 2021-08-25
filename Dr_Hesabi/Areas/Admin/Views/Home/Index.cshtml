@@ -1,0 +1,32 @@
+﻿
+@{
+    ViewData["Title"] = "پنل مدیریت سایت";
+    Layout = "_AdminLayout";
+}
+
+<h2> داشبورد</h2>
+<script src="~/Public/vendor/js/Chart.min.js"></script>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="pishkhon">
+                <div class="pishkhon-header">
+                    <h3>کاربران سایت</h3>
+                </div>
+                <div class="pishkhon-body">
+                    @await Component.InvokeAsync("UsersInfo")
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="pishkhon">
+                <div class="pishkhon-header">
+                    <h3>نقش کاربران سایت</h3>
+                </div>
+                <div class="pishkhon-body">
+                    @await Component.InvokeAsync("RolesInfo")
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

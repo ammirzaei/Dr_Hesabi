@@ -1,0 +1,21 @@
+﻿@model Dr_Hesabi.DataLayers.Entity.Staffs
+
+<h3>آیا از این حذف مطمئن هستید؟</h3>
+<div>
+   <hr />
+    <div class="row">
+        <div class="col-md-12">
+            <div class="Delete">
+                <div>
+                    <span>عنوان : </span>
+                    <span>@Model.Title</span>
+                </div>
+               </div>
+        </div>
+    </div>
+    
+    <form asp-action="Delete" data-ajax="true" data-ajax-method="Post" data-ajax-update="#ListStaffs" data-ajax-success="onSuccess">
+        <input type="hidden" asp-for="StaffID" />
+        <input type="submit" value="حذف" class="btn btn-danger" />
+    </form>
+</div>

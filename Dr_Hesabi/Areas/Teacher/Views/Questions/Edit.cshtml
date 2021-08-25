@@ -1,0 +1,78 @@
+﻿@model Dr_Hesabi.DataLayers.Entity.Questions
+
+<div class="row">
+    <div class="col-md-12">
+        <form asp-action="Edit" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="QuestionID" />
+            <input type="hidden" asp-for="TestID" />
+            <input type="hidden" asp-for="ImageName" />
+
+            <div class="form-group">
+                <label asp-for="Method" class="control-label"></label>
+                <select class="form-control" name="Method">
+                    <!option name="Method" @((Model.Method.Contains("تشریحی")) ? "selected" : "")>تشریحی</!option>
+                    <!option value="گزینه ای" name="Method" @((Model.Method.Contains("گزینه ای")) ? "selected" : "")>گزینه ای</!option>
+                </select>
+                <span asp-validation-for="Method" class="text-danger"></span>
+            </div>
+            <div id="Descritive">
+                <div class="form-group">
+                    <label class="control-label">نوع دریافت پاسخ</label>
+                    <div class="checkbox">
+                        @if (Model.MethodInput != null)
+                        {
+                            <label>
+                                <input name="MethodInput" type="radio" value="وارد کردن متن" @((Model.MethodInput.Contains("وارد کردن متن")) ? "checked" : "")/> <span>وارد کردن متن</span>
+                            </label>
+                            <label>
+                                <input type="radio" name="MethodInput" value="آپلود تصویر" @((Model.MethodInput.Contains("آپلود تصویر")) ? "checked" : "")/> <span>آپلود تصویر</span>
+                            </label>
+                        }
+                        else
+                        {
+                            <label>
+                                <input name="MethodInput" type="radio" value="وارد کردن متن"/> <span>وارد کردن متن</span>
+                            </label>
+                            <label>
+                                <input type="radio" name="MethodInput" value="آپلود تصویر"/> <span>آپلود تصویر</span>
+                            </label>
+                        }
+                       
+                    </div>
+                    <span id="ErrorMethodInput" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="Title" class="control-label"></label>
+                <textarea asp-for="Title" class="form-control"></textarea>
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Score" class="control-label"></label>
+                <input name="Score" class="form-control" type="text" value="@Model.Score" id="Score" />
+                <span asp-validation-for="Score" id="ErrorScore" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ImageName" class="control-label"></label>
+                <input type="file" name="ImgUp" id="ImgUp" class="form-control" />
+                <span asp-validation-for="ImageName" class="text-danger"></span>
+                @if (Model.ImageName != null)
+                {
+                    <img src="~/Images/Questions/@Model.ImageName" class="img-responsive img-thumbnail" id="ShowImg" style="max-width: 250px;max-height: 200px" />
+                }
+                else
+                {
+                    <img class="img-responsive img-thumbnail" id="ShowImg" style="max-width: 250px;max-height: 200px" />
+                }
+            </div>
+            <div class="form-group">
+                <input type="submit" value="ذخیره" class="btn btn-success" />
+            </div>
+        </form>
+    </div>
+</div>
+@{ await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+<script src="~/Scripts/EditSiders.js"></script>
+<script src="~/Public/CheckBox/js/icheck.js"></script>
+<script src="~/Scripts/CreateQuestion.js"></script>

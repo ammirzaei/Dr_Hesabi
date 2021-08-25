@@ -1,0 +1,85 @@
+﻿@using Dr_Hesabi.Classes.Class
+@model IEnumerable<Dr_Hesabi.DataLayers.Entity.Connections>
+
+@{
+    ViewData["Title"] = "پیام ها";
+}
+
+<h2>پیام ها</h2>
+
+<div class="sum-detail">
+    <span>تعداد : @Model.Count()</span>
+</div>
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FullName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CommentTitle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreateDate)
+            </th>
+            <th>
+                دیده شده
+            </th>
+            <th>دستورات</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.OrderByDescending(s => s.IsSeen == false))
+        {
+            <tr>
+                <td>
+                    @if (item.UserID == null)
+                    {
+                        @Html.DisplayFor(modelItem => item.FullName)
+                    }
+                    else
+                    {
+                        <a onclick="ShowProfile('@item.UserID')">@item.Users.UserName</a>
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CommentTitle)
+                </td>
+                <td>
+                    @item.CreateDate.ToDateTime()
+                </td>
+                <td>
+                    @if (item.IsSeen)
+                    {
+                        <span class="text-success">
+                            <i class="mdi mdi-24px mdi-check"></i>
+                        </span>
+                    }
+                    else
+                    {
+                        <span class="text-danger">
+                            <i class="mdi mdi-24px mdi-close"></i>
+                        </span>
+                    }
+                </td>
+                <td>
+                    <a class="btn btn-danger" asp-action="ShowComment" asp-route-id="@item.ConnectionID" asp-route-isDelete="true">حذف</a>
+                    <a class="btn btn-info" asp-action="ShowComment" asp-route-id="@item.ConnectionID">نمایش</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<partial name="PartialViews/Modal" />
+@section Scripts {
+    <script>
+        function ShowProfile(id) {
+            $.get("/Admin/Users/Profile/" + id,
+                function (res) {
+                    $("#MyModal").modal();
+                    $("#myModalLabel").text("پروفایل");
+                    $("#Modal-body").html(res);
+                });
+        }
+    </script>
+}

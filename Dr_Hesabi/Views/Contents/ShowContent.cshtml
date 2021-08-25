@@ -1,0 +1,43 @@
+﻿@using Dr_Hesabi.Classes.Class
+@model Dr_Hesabi.DataLayers.Entity.Contents
+
+@{
+    ViewData["Title"] = Model.Title;
+}
+
+<div class="container">
+    <div class="View">
+        <div class="View-Title">
+            <h3>@Model.Title</h3>
+            <div class="Navigation">
+                <ul>
+                    <li>
+                        <a href="/">هنرستان دکتر حسابی</a> /
+                    </li>
+                    <li>
+                        <a href="@Url.Action("Index", "Contents")">محتوا ها</a> /
+                    </li>
+                    <li>
+                        <a href="@Url.Action("ShowListContentsMajor", "Contents", new {majorTitle = ViewData["MajorTitle"]})">@ViewData["MajorTitle"]</a> /
+                    </li>
+                    <li>
+                        <a href="#">@Model.Title</a>
+                    </li>
+                </ul>
+                </div>
+            <div class="View-Des">
+                <span title="تاریخ ثبت"><i class="mdi mdi-clock"></i> @Model.CreateDate.ToDate()</span>
+            </div>
+        </div>
+        <div class="View-Body">
+            <div class="ViewBody-Top">
+                <img src="~/Images/Contents/@Model.ImageName" alt="@Model.Title" title="@Model.Title" loading="lazy">
+            </div>
+            <div class="ViewBody-Main">
+                <p>
+                    @Html.Raw(Model.Description)
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,38 @@
+﻿@model Dr_Hesabi.DataLayers.Entity.ReplyDescriptives
+
+<form asp-action="ChangeCondition" data-ajax="true" data-ajax-update="#ListReplyDescriptive" data-ajax-success="OnSuccess" data-ajax-failure="OnFaild">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="Delete">
+                <div>
+                    <span>@Html.LabelFor(s => s.Text) : </span>
+                    <span>
+                        @if (Model.ImageName != null)
+                        {
+                            <img src="~/Images/Replys/Thumb/@Model.ImageName" width="400" height="200" class="img-thumbnail img-responsive" />
+                        }
+                        else
+                        {
+                            @Model.Text
+                        }
+                    </span>
+                </div>
+                <div>
+                    <span>@Html.LabelFor(s => s.IsCondition) : </span>
+                    <span>
+                        <div class="Delete-Select">
+                            <select class="form-control" asp-for="IsCondition">
+                                <!option name="IsCondition" value="True" @((Model.IsCondition == true) ? "selected" : "")>صحیح</!option>
+                                <!option name="IsCondition" value="False" @((Model.IsCondition == false) ? "selected" : "")>غلط</!option>
+                                <!option name="IsCondition" value="" @((Model.IsCondition == null) ? "selected" : "")>در انتظار</!option>
+                            </select>
+                            <span id="Error" class="text-danger"></span>
+                        </div>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+    <input type="submit" value="تغییر" class="btn btn-success" />
+</form>

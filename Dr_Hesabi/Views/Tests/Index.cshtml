@@ -1,0 +1,75 @@
+﻿@using Dr_Hesabi.Classes.Class
+@using Microsoft.EntityFrameworkCore.Internal
+@using MoreLinq
+@model Dr_Hesabi.DataLayers.Entity.Tests
+
+@{
+    ViewData["Title"] = Model.Title;
+    Layout = "_TestsLayout";
+}
+<input type="hidden" value="@Model.EndDateTime.GetSocond()" id="EndDateTimeS" />
+<input type="hidden" value="@Model.StartDateTime.GetSocond()" id="StartDateTimeS" />
+<div class="container">
+    <div class="row">
+        <div class="Tests-title">
+            <span id="overTime"></span>
+        </div>
+    </div>
+    <div class="error">
+        @if (!User.Identity.IsAuthenticated)
+        {
+            <div class="alert alert-danger text-center">
+                <span>شما باید برای شرکت در آزمون در سایت <a asp-controller="Account" asp-action="Login" asp-route-ReturnUrl="/Tests/@Model.TestID/@Model.Title" style="color: #2979ff">وارد</a> شده باشید.</span>
+            </div>
+        }
+        else
+        {
+            if (ViewBag.ErrorAuthTest == true || ViewBag.Error == "Auth")
+            {
+                <div class="alert alert-danger text-center">
+                    <span>شما مجوز شرکت در این آزمون را دریافت نکرده اید.</span>
+                </div>
+            }
+            if (ViewBag.Error == "Ultimate")
+            {
+                <div class="alert alert-danger text-center">
+                    <span>شما قبلا در این آزمون شرکت کرده اید.</span>
+                </div>
+            }
+        }
+    </div>
+    <div class="row">
+        <div class="col-lg-12 col-xs-12">
+            <div class="Tests">
+                <div class="Test-Title">
+                    <h4>@Model.Title</h4>
+                </div>
+                <div class="Test-Des">
+                    <span>@Model.Description</span>
+                </div>
+                <div class="Test-Info">
+                    @if (ViewData["TeacherFullName"].ToString() != "")
+                    {
+                        <span>نام معلم : @ViewData["TeacherFullName"]</span>
+                    }
+                    <span>تاریخ شروع : @Model.StartDateTime.ToDate()</span>
+                    <span>زمان شروع : @Model.StartDateTime.ToTime()</span>
+                    <span>زمان پایان : @Model.EndDateTime.ToTime()</span>
+                </div>
+                <div class="Test-Command">
+                    <a class="btn btn-info" disabled="@ViewBag.DisabledBtn" asp-action="ShowQuestions" asp-route-id="@Model.TestID" asp-route-title="@Model.Title" id="Participating">شرکت در آزمون</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="error">
+        <div class="alert alert-warning text-center">
+            <p>با توجه به محدودیت های سرور، امکان از بین رفتن ورود شما در سایت وجود دارد</p>
+            <p>اگر در هنگام آزمون به صفحه ورود هدایت شدید، فقط کافی است که دوباره اطلاعات خود را وارد کنید تا به ادامه آزمون برگردید.</p>
+        </div>
+    </div>
+</div>
+@section Scripts
+{
+    <script src="~/Scripts/Tests.js"></script>
+}

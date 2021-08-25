@@ -1,0 +1,40 @@
+﻿@model List<string>
+@{
+    ViewData["Title"] = "راهنما و نکات";
+}
+
+<div id="Profile">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 col-md-3 col-sm-4">
+                <partial name="PartialViews/Dashboard" />
+            </div>
+            <div class="col-lg-8 col-md-9 col-sm-8">
+                <div class="Account">
+                    <h4>راهنما و نکات</h4>
+                    <div class="Account_Box">
+                        <div class="Guide">
+                            <div class="row">
+                                @if (Model.Any())
+                                {
+                                    @foreach (var item in Model)
+                                    {
+                                        <p>@item</p>
+                                    }
+                                }
+                                else
+                                {
+                                    <div class="alert alert-warning text-center">
+                                        <span>راهنمایی موجود نیست</span>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

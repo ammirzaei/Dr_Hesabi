@@ -1,0 +1,111 @@
+﻿@using Dr_Hesabi.DataLayers.Entity
+@model IEnumerable<Dr_Hesabi.Classes.ViewModel.AdminViewModel.ListStaffsViewModel>
+@{
+    List<ProfileStaffs> ListProfileStaffs = ViewData["ListProfileStaffs"] as List<ProfileStaffs>;
+}
+@if (ListProfileStaffs.Any())
+{
+    <div class="alert alert-danger text-center">
+        <span>لطفا پروفایل های در انتظار تعیین سرگروه را تعیین کنید.</span>
+    </div>
+}
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>
+                    سرگروه
+                </th>
+                <th>
+                    زیرگروه
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Where(s => s.ParentID == null))
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
+                        <a asp-action="CreateParent" asp-route-id="@item.StaffID" class="btn btn-info btn-xs">افزودن</a> |
+                        <a onclick="EditStaff('@item.StaffID')" class="btn btn-primary btn-xs">ویرایش</a> |
+                        <a onclick="DeleteStaff('@item.StaffID')" class="btn btn-danger btn-xs">حذف</a>
+                    </td>
+                    <td>
+                        @if (Model.Any(s => s.ParentID == item.StaffID))
+                        {
+                            <ul>
+                                @foreach (var sub in Model.Where(s => s.ParentID == item.StaffID))
+                                {
+                                    if (sub.IsNative)
+                                    {
+                                        <text>
+                                            <li>
+                                                @sub.Title
+                                                <span>
+                                                    <a onclick="ChangeStaffParent('@sub.StaffID',true,true)" class="btn btn-success btn-xs">تغییر سرگروه</a> |
+                                                    <a onclick="SetUserToStaff('@sub.StaffID')" class="btn btn-info btn-xs">تعیین کاربر</a> |
+                                                    <a asp-action="EditParent" asp-route-id="@sub.StaffID" class="btn btn-primary btn-xs">ویرایش</a> |
+                                                    <a asp-action="Details" asp-route-id="@sub.StaffID" class="btn btn-warning btn-xs">جزئیات</a> |
+                                                    <a onclick="DeleteStaff('@sub.StaffID')" class="btn btn-danger btn-xs">حذف</a>
+                                                </span>
+                                            </li>
+                                        </text>
+                                    }
+                                    else
+                                    {
+                                        <text>
+                                            <li>
+                                                <span class="text-warning">@sub.Title</span>
+                                                <span>
+                                                    <a onclick="ChangeStaffParent('@sub.StaffID',false,true)" class="btn btn-success btn-xs">تغییر سرگروه</a> |
+                                                    <a asp-action="DetailProfileStaff" asp-route-id="@sub.StaffID" class="btn btn-warning btn-xs">جزئیات</a>
+                                                </span>
+                                            </li>
+                                        </text>
+                                    }
+                                }
+                            </ul>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+@if (ListProfileStaffs.Any())
+{
+    <hr />
+    <div class="sum-detail">
+        <span> در انتظار تعیین سرگروه</span>
+    </div>
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>
+                    تصویر
+                </th>
+                <th>
+                    نام و نام خانوادگی
+                </th>
+                <th>دستورات</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in ListProfileStaffs)
+            {
+                <tr>
+                    <td>
+                        <img src="~/Images/Staffs/@item.ImageName" class="img-responsive img-thumbnail" width="110" height="110" />
+                    </td>
+                    <td>
+                        @item.Title
+                    </td>
+                    <td>
+                        <a asp-action="DetailProfileStaff" asp-route-id="@item.ProfileStaffID" class="btn btn-warning">جزئیات</a> |
+                        <a onclick="ChangeStaffParent('@item.ProfileStaffID',false,false)" class="btn btn-info">تعیین سرگروه</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

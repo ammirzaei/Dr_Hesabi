@@ -1,0 +1,129 @@
+﻿@using Dr_Hesabi.Classes.Class
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    @if (ViewData["Title"].ToString() != null && ViewData["Title"].ToString() != "")
+    {
+        <title>@ViewData["Title"] | هنرستان فنی پسرانه دولتی دکتر حسابی</title>
+    }
+    else
+    {
+        <title>هنرستان فنی پسرانه دولتی دکتر حسابی</title>
+    }
+    <meta name="description" content="@ViewData["Description"]" />
+    <meta name="keywords" content="وب سایت هنرستان فنی پسرانه دولتی دکتر حسابی تربت حیدریه" />
+    <meta name="author" content="امیرمحمد میرزائی" />
+    <meta name="robots" content="index,follow" />
+    <meta name="googlebot" content="index,follow" />
+    <meta name="theme-color" content="#f0a100"/>
+    <link href="https://www.dr-hesabit.ir" rel="canonical" />
+    <link rel="shortcut icon" type="image/x-icon" href="~/favicon.ico" />
+    <link href="~/Public/vendor/css/styles.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/Default/Css/main.css">
+    @await RenderSectionAsync("Styles", false)
+</head>
+<body>
+    <div class="loading">
+        <div class="load"></div>
+        <p>در حال بارگذاری ...</p>
+    </div>
+    <main>
+        <!-- Start Header -->
+        <header id="header">
+            <section id="Info">
+                <cache expires-after="@TimeSpan.FromDays(2)">
+                    @await Component.InvokeAsync("TopSite")
+                </cache>
+                <div id="Account">
+                    <partial name="PartialViews/Menu" />
+                </div>
+            </section>
+            <nav id="Navbar">
+                <cache expires-after="@TimeSpan.FromDays(2)">
+                    @await Component.InvokeAsync("Navbar")
+                </cache>
+                <div id="DateNow">
+                    <div class="Pulse">
+                        <p><span>@DateTime.Now.ToTime()</span> @DateTime.Now.ToDate() </p>
+                    </div>
+                </div>
+            </nav>
+        </header>
+        <!-- End Header -->
+        <!-- Start Slider -->
+        @await RenderSectionAsync("Slider", false)
+        <!-- End Slider -->
+        <!-- Start Majors -->
+        @await RenderSectionAsync("Majors", false)
+        <!-- End Majors -->
+        <!-- Start Target -->
+        @await RenderSectionAsync("Targets", false)
+        <!-- End Target -->
+        <!-- Start Main -->
+        @RenderBody()
+        <!-- End Main -->
+        <!-- Start News -->
+        @await RenderSectionAsync("News", false)
+        <!-- End News -->
+        <div id="scrollMap"></div>
+        <!-- Start Footer -->
+        <cache expires-after="@TimeSpan.FromDays(2)">
+            <footer>
+                <section class="Contact">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                            @await Component.InvokeAsync("ContactUs")
+                            <div class="Contact_Cyberspace">
+                                <h4>دسترسی سریع</h4>
+                                <ul>
+                                    <li>
+                                        <a href="/">صفحه اصلی</a>
+                                    </li>
+                                    <li>
+                                        <a href="@Url.Action("Login", "Account")">ورود به سایت</a>
+                                    </li>
+                                    <li>
+                                        <a href="@Url.Action("Register", "Account")">ثبت نام در سایت</a>
+                                    </li>
+                                    <li>
+                                        <a href="@Url.Action("History", "Panel")">درباره</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-lg-9 col-md-8 col-sm-6 col-xs-12">
+                            <div class="Contact_Map" id="thisMap">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="scroll-top">
+                        <span>بازگشت به بالا</span>
+                        <i class="mdi mdi-arrow-up"></i>
+                    </div>
+                </section>
+                <section class="laws">
+                    <span>کلیه حقوق این سایت متعلق به هنرستان فنی پسرانه دولتی دکترحسابی می باشد.</span>
+                    <a href="https://www.instagram.com/amirmhm_83/" target="_blank">
+                        <span>امیرمحمد میرزائی</span>
+                        <img src="~/Default/Img/coding.svg" width="28" height="28" class="laws-Pulse" loading="lazy" />
+                    </a>
+                </section>
+            </footer>
+        </cache>
+        <!-- End Footer -->
+    </main>
+    <script src="~/Public/vendor/js/scripts.js"></script>
+    @await RenderSectionAsync("Scripts", false)
+    @if (Context.Request.Path.Value != "/")
+    {
+        <text>
+            @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+            <script src="~/Public/vendor/js/jquery.unobtrusive-ajax.min.js"></script>
+        </text>
+    }
+    <script src="~/Default/Js/main.js"></script>
+</body>
+</html>

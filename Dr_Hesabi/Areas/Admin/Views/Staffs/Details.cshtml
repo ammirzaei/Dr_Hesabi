@@ -1,0 +1,33 @@
+﻿@model Dr_Hesabi.DataLayers.Entity.Staffs
+
+@{
+    ViewData["Title"] = "جزئیات پرسنل";
+}
+<h2>جزئیات پرسنل</h2>
+<div>
+    <hr />
+    <div class="row">
+        <div class="col-md-12">
+            <div class="Delete">
+                <div>
+                    <span>@Html.LabelFor(s => s.ImageName) : </span>
+                    <span>
+                        <img src="~/Images/Staffs/@Model.ImageName" width="200" height="200" class="img-thumbnail img-responsive" />
+                    </span>
+                </div>
+                <div>
+                    <span>@Html.LabelFor(s => s.Title) : </span>
+                    <span>@Model.Title</span>
+                </div>
+                <div>
+                    <span>@Html.LabelFor(s => s.Text) : </span>
+                    <span> @Html.Raw(Model.Text)</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div>
+    <a asp-action="EditParent" asp-route-id="@Model.StaffID" class="btn btn-primary">ویرایش</a> |
+    <a asp-action="Index" class="btn btn-info">برگشت</a>
+</div>

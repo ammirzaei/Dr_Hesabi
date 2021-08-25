@@ -1,0 +1,37 @@
+﻿@model Dr_Hesabi.Classes.ViewModel.ManageSiteTeacherViewModel
+
+<div class="box-item text-right">
+    <ul>
+        <a href="/Teacher">
+            <li class="@((Context.Request.Path.Value=="Teacher"||Context.Request.Path.Value=="/Teacher")?"active-Menu":"")">
+                پروفایل
+            </li>
+        </a>
+        <a href="@Url.Action("Index","Tests",new {area="Teacher"})">
+            <li class="@((Context.Request.Path.Value.Contains("Tests")||Context.Request.Path.Value.Contains("Questions")||Context.Request.Path.Value.Contains("Choices"))?"active-Menu":"")">
+                آزمون ها
+                <span>@Model.CountTests</span>
+            </li>
+        </a>
+        @if (Model.IsMajor)
+        {
+            <a href="@Url.Action("Majors","Contents",new {area="Teacher"})">
+                <li class="@((Context.Request.Path.Value.Contains("Majors")||Context.Request.Path.Value.Contains("Contents"))?"active-Menu":"")">
+                    محتوا ها
+                </li>
+            </a>
+            <a href="@Url.Action("Index","Attachments")">
+                <li class="@((Context.Request.Path.Value.Contains("Attachments"))?"active-Menu":"")">
+                    فایل های ضمیمه
+                    <span>@Model.CountAttachments</span>
+                </li>
+            </a>
+        }
+        <a href="@Url.Action("GetGuids","Home",new {area="Teacher"})">
+            <li class="@((Context.Request.Path.Value.Contains("GetGuids"))?"active-Menu":"")">
+                راهنما ها و نکات
+                <span>@Model.CountGuides</span>
+            </li>
+        </a>
+    </ul>
+</div>

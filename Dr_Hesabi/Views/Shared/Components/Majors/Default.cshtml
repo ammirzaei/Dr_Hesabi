@@ -1,0 +1,28 @@
+﻿@model IEnumerable<Dr_Hesabi.Classes.ViewModel.GetAllMajorsViewModel>
+@{
+    if (ViewBag.IsView == true)
+    {
+        ViewData["Title"] = "معرفی رشته ها";
+        Layout = "_DefaultLayout";
+    }
+}
+<div id="Majors">
+    <div class="Majors_Title">
+        <h4>معرفی رشته های تحصیلی هنرستان</h4>
+    </div>
+    <div class="container">
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                    <div class="Major">
+                        <a href="@Url.Action("ShowMajor", "Panel", new {title = item.Title})">
+                            <img src="~/Images/Majors/@item.ImageName" alt="@item.Title" title="@item.Title" loading="lazy">
+                            <span>@item.Title</span>
+                        </a>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

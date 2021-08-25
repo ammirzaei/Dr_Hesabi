@@ -1,0 +1,87 @@
+﻿@model IEnumerable<Dr_Hesabi.DataLayers.Entity.TestsUltimate>
+@{
+    ViewData["Title"] = "آزمون های من";
+}
+
+<div id="Profile">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 col-md-3 col-sm-4">
+                <partial name="PartialViews/Dashboard" />
+            </div>
+            <div class="col-lg-8 col-md-9 col-sm-8">
+                <div class="Account">
+                    <h4>آزمون های من</h4>
+                    <div class="my-test">
+                        @if (Model.Any())
+                        {
+                            @foreach (var item in Model)
+                            {
+                                <div class="col-lg-12 col-sm-12 col-xs-12">
+                                    <div class="TestBox TestBox2">
+                                        <div class="TestQuestionScore3">
+                                            نتیجه آزمون
+                                        </div>
+                                        <div class="TestUltimate">
+                                            <h4>@item.Tests.Title</h4>
+                                            <div class="row">
+
+                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                    <div class="UltimateBox">
+                                                        <span>@item.Score نمره</span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                    <div class="UltimateBox">
+                                                        <span>@item.CountTrue پاسخ صحیح</span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                    <div class="UltimateBox">
+                                                        <span>@item.CountFalse پاسخ غلط</span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                    <div class="UltimateBox">
+                                                        <span>@item.ReplyNull سوال بی پاسخ</span>
+                                                    </div>
+                                                </div>
+                                                @if (item.CountNull > 0)
+                                                {
+                                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                                        <div class="UltimateBox">
+                                                            <span>@item.CountNull سوال در انتظار تصحیح</span>
+                                                        </div>
+                                                    </div>
+                                                }
+
+                                            </div>
+                                            <div class="row" id="Row2">
+                                                @if (item.CountNull > 0)
+                                                {
+                                                    <div class="col-lg-12 col-xs-12">
+                                                        <div class="UltimateBox">
+                                                            <span>نمره نهایی شما در انتظار تصحیح سوالات تشریحی است</span>
+                                                        </div>
+                                                    </div>
+                                                }
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        }
+                        else
+                        {
+                            <div class="alert alert-info text-center">
+                                <span>شما در هیچ آزمونی شرکت نکرده اید.</span>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

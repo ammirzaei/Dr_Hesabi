@@ -1,0 +1,61 @@
+﻿@model IEnumerable<Dr_Hesabi.DataLayers.Entity.Questions>
+
+<div class="sum-detail">
+    <span>جمع نمرات : @Model.Sum(s => s.Score)</span>
+</div>
+<table class="table table-bordered table-hover table-responsive">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Method)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Score)
+            </th>
+
+            <th>دستورات</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Method)
+                    @if (item.MethodInput != null)
+                    {
+                        <span>(@item.MethodInput)</span>
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Score)
+                </td>
+
+                <td>
+                    @if (item.Method == "گزینه ای")
+                    {
+                        <text>
+                            <a asp-action="ListReplyOptional" asp-controller="Questions" asp-route-id="@item.QuestionID" class="btn btn-success">پاسخ ها (@item.QuestionReplys.Count())</a> |
+                            <a asp-action="Index" asp-controller="Choices" asp-route-id="@item.QuestionID" class="btn btn-warning">گزینه ها (@item.Choices.Count())</a>
+                        </text>
+                    }
+                    else
+                    {
+                        <text>
+                            <a asp-action="ListReplyDescriptive" asp-controller="Questions" asp-route-id="@item.QuestionID" class="btn btn-success">پاسخ ها (@item.QuestionReplys.Count())</a> |
+                        </text>
+                    }
+
+                    <a onclick="EditQuestion('@item.QuestionID')" class="btn btn-primary">ویرایش</a> |
+                    <a onclick="DeleteQuestion('@item.QuestionID')" class="btn btn-danger">حذف</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

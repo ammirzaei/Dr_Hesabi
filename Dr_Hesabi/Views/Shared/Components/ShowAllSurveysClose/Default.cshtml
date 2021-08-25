@@ -1,0 +1,39 @@
+﻿@using Dr_Hesabi.Classes.Class
+@model IEnumerable<Dr_Hesabi.DataLayers.Entity.Surveys>
+
+@if (Model.Any())
+{
+    <div class="Panel_TitleMain">
+        <div class="row">
+            <div class="Panel_Line"></div>
+            <div class="Panel_Title">
+                <h4>نظرسنجی های به اتمام رسیده</h4>
+            </div>
+        </div>
+    </div>
+    <div id="Panel">
+        <div class="container">
+            <div class="row">
+                @foreach (var item in Model)
+                {
+                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                        <div class="Box">
+                            <div class="Box_Img">
+                                <a href="@Url.Action("ShowSurveys","Surveys",new{id=item.SurveyID,title=item.Title})">
+                                    <img src="~/Images/Surveys/Surveys_Lists/@item.ImageName" alt="@item.Title" title="@item.Title">
+                                </a>
+                            </div>
+                            <div class="Box_Title">
+                                <a href="@Url.Action("ShowSurveys","Surveys",new{id=item.SurveyID,title=item.Title})">@item.Title</a>
+                            </div>
+                            <div class="Box_Fooder">
+                                <span class="Box_Fooder_Right"><i class="mdi mdi-clock-outline"></i> @item.StartDate.ToDate()</span>
+                                <span class="Box_Fooder_Left"><i class="mdi mdi-account-question"></i> @item.SurveysQuestions.Count()</span>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+}

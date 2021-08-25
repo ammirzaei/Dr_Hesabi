@@ -1,0 +1,18 @@
+﻿@{
+    ViewData["Title"] = "گزینه ها";
+    Layout = "_TeacherLayout";
+}
+
+<h2>گزینه های @ViewData["QuesrionTitle"]</h2>
+<p>
+    <a onclick="CreateChoice('@ViewData["QuestionID"]')" class="btn btn-success">افزودن گزینه</a> |
+    <a asp-action="Index" asp-controller="Questions" asp-route-id="@ViewData["TestID"]" class="btn btn-info">برگشت</a>
+</p>
+<div id="ListChoices">
+    @await Component.InvokeAsync("ListChoices", new { id = ViewData["QuestionID"] })
+</div>
+<partial name="PartialViews/Modal" />
+@section Scripts
+{
+    <script src="~/Scripts/ChoiceIndex.js"></script>
+}

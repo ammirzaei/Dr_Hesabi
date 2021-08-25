@@ -1,0 +1,62 @@
+﻿@model Dr_Hesabi.DataLayers.Entity.News
+
+@{
+    ViewData["Title"] = "ویرایش خبر";
+}
+
+<h2>ویرایش خبر</h2>
+
+<hr />
+<div class="row">
+    <div class="col-md-10">
+        <form asp-action="Edit" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="NewsID" />
+            <input type="hidden" asp-for="ImageName" />
+            <input type="hidden" asp-for="DateTime" />
+            <input type="hidden" asp-for="Visit" />
+            <div class="form-group">
+                <label asp-for="Title" class="control-label"></label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ShortDescription" class="control-label"></label>
+                <textarea asp-for="ShortDescription" class="form-control"></textarea>
+                <span asp-validation-for="ShortDescription" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <script src="~/ckeditor/ckeditor.js"></script>
+                <label asp-for="Text" class="control-label"></label>
+                <textarea asp-for="Text" class="form-control"></textarea>
+                <span asp-validation-for="Text" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ImageName" class="control-label"></label>
+                <input type="file" name="ImgUp" id="ImgUp" class="form-control" />
+                <span asp-validation-for="ImageName" class="text-danger"></span>
+                <img class="img-responsive img-thumbnail" id="ShowImg" src="~/Images/News/@Model.ImageName" style="max-width: 300px;max-height: 200px" />
+            </div>
+
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="IsActive" /> @Html.DisplayNameFor(model => model.IsActive)
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="ذخیره" class="btn btn-success" /> |
+                <a asp-action="Index" class="btn btn-info">برگشت</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts
+{
+    <script src="~/Scripts/EditSiders.js"></script>
+    <script>
+        CKEDITOR.replace('Text');
+    </script>
+}

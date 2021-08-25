@@ -1,0 +1,101 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <Optimize>true</Optimize>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Templates\**" />
+    <Content Remove="Templates\**" />
+    <EmbeddedResource Remove="Templates\**" />
+    <None Remove="Templates\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="Areas\Teacher\Views\_ViewImports.cshtml" />
+    <Content Remove="Areas\Teacher\Views\_ViewStart.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.ViewFeatures" Version="2.2.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.9" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.1.9" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.9" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.9">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.5" />
+    <PackageReference Include="morelinq" Version="3.3.2" />
+    <PackageReference Include="MoreLinq.Source.MoreEnumerable.DistinctBy" Version="1.0.2">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Stimulsoft.Reports.Web.NetCore" Version="2020.2.1" />
+    <PackageReference Include="WebMarkupMin.AspNetCore3" Version="2.9.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Dr_Hesabi.Classes\Dr_Hesabi.Classes.csproj">
+      <Private>true</Private>
+      <CopyLocalSatelliteAssemblies>true</CopyLocalSatelliteAssemblies>
+    </ProjectReference>
+    <ProjectReference Include="..\Dr_Hesabi.DataLayers\Dr_Hesabi.DataLayers.csproj">
+      <Private>true</Private>
+      <CopyLocalSatelliteAssemblies>true</CopyLocalSatelliteAssemblies>
+    </ProjectReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Areas\Admin\Views\Home\Index.cshtml" />
+    <None Include="Areas\Admin\Views\Shared\_AdminLayout.cshtml" />
+    <None Include="Areas\Admin\Views\_ViewImports.cshtml" />
+    <None Include="Areas\Admin\Views\_ViewStart.cshtml" />
+    <None Include="Areas\Teacher\Views\_ViewImports.cshtml" />
+    <None Include="Areas\Teacher\Views\_ViewStart.cshtml" />
+    <None Include="wwwroot\Admin\Css\main.css" />
+    <None Include="wwwroot\Admin\Js\main.js" />
+    <None Include="wwwroot\ckeditor\plugins\html5video\dialogs\html5video.js" />
+    <None Include="wwwroot\ckeditor\plugins\html5video\lang\bg.js" />
+    <None Include="wwwroot\ckeditor\plugins\html5video\lang\ca.js" />
+    <None Include="wwwroot\ckeditor\plugins\html5video\lang\de.js" />
+    <None Include="wwwroot\ckeditor\plugins\html5video\lang\en.js" />
+    <None Include="wwwroot\ckeditor\plugins\html5video\lang\es.js" />
+    <None Include="wwwroot\ckeditor\plugins\html5video\lang\eu.js" />
+    <None Include="wwwroot\ckeditor\plugins\html5video\lang\fa.js" />
+    <None Include="wwwroot\ckeditor\plugins\html5video\lang\fr.js" />
+    <None Include="wwwroot\ckeditor\plugins\html5video\lang\he.js" />
+    <None Include="wwwroot\ckeditor\plugins\html5video\lang\ko.js" />
+    <None Include="wwwroot\ckeditor\plugins\html5video\lang\pl.js" />
+    <None Include="wwwroot\ckeditor\plugins\html5video\lang\pt-br.js" />
+    <None Include="wwwroot\ckeditor\plugins\html5video\lang\pt.js" />
+    <None Include="wwwroot\ckeditor\plugins\html5video\lang\ru.js" />
+    <None Include="wwwroot\ckeditor\plugins\html5video\lang\uk.js" />
+    <None Include="wwwroot\ckeditor\plugins\html5video\lang\uz.js" />
+    <None Include="wwwroot\ckeditor\plugins\html5video\lang\zh-cn.js" />
+    <None Include="wwwroot\ckeditor\plugins\html5video\plugin.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\Images\Bests\Best_Items\" />
+    <Folder Include="wwwroot\Images\Bests\Best_Lists\" />
+    <Folder Include="wwwroot\Images\Gallerys\Gallery_Lists\" />
+    <Folder Include="wwwroot\Images\Gallerys\Gallery_Items\" />
+    <Folder Include="wwwroot\Images\Majors\" />
+    <Folder Include="wwwroot\Images\Blogs\" />
+    <Folder Include="wwwroot\Images\Contents\" />
+    <Folder Include="wwwroot\Images\Questions\" />
+    <Folder Include="wwwroot\Images\Replys\Thumb\" />
+    <Folder Include="wwwroot\Images\Setting\" />
+    <Folder Include="wwwroot\Images\Staffs\" />
+    <Folder Include="wwwroot\Images\News\" />
+    <Folder Include="wwwroot\Images\Sliders\" />
+    <Folder Include="wwwroot\Images\Surveys\Surveys_Lists\" />
+    <Folder Include="wwwroot\Images\Surveys\Surveys_Items\" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,19 @@
+﻿@{
+    ViewData["Title"] = "پرسنل هنرستان";
+}
+
+<h2>پرسنل هنرستان</h2>
+
+<p>
+    <a onclick="CreateStaff('')" class="btn btn-success">افزودن سرگروه</a>
+</p>
+
+<div id="ListStaffs">
+    @await Component.InvokeAsync("ListStaffsViewComponent")
+</div>
+<partial name="PartialViews/Modal" />
+
+@section Scripts
+{
+    <script src="~/Scripts/StaffsIndex.js"></script>
+}

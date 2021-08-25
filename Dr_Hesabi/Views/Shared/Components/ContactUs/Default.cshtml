@@ -1,0 +1,21 @@
+﻿@model Dr_Hesabi.Classes.ViewModel.ContactUsViewModel
+
+<div class="Contact_Cyberspace">
+    <h4>ارتباط با ما</h4>
+    <h5>
+        تلفن تماس : <span>
+            @foreach (var item in Model.Telephone.Split(","))
+            {
+                <a class="contact-tel" href="tel:@item">@item</a>
+            }
+        </span>
+    </h5>
+    <h5>آدرس : <span>@Model.Address</span></h5>
+    <h5>
+        شبکه های اجتماعی : <span class="Telegram">
+            <a href="@Model.Telegram"><i class="mdi mdi-telegram"></i></a>
+        </span>
+    </h5>
+    <h5>ارتباط با مدیریت : <span id="Connection"><a href="@Url.Action("Index","Connections")">ارتباط</a></span></h5>
+    <img src="~/Images/Setting/@Model.ImgCodeQR" alt="کد کیوآر" title="کد کیوآر" loading="lazy">
+</div>

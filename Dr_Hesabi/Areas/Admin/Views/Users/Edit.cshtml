@@ -1,0 +1,91 @@
+﻿@using Dr_Hesabi.DataLayers.Entity
+@using Dr_Hesabi.Classes.ViewModel
+@model Dr_Hesabi.DataLayers.Entity.Users
+
+@{
+    ViewData["Title"] = "ویرایش کاربر";
+    List<Roles> ListRoles = ViewData["ListRole"] as List<Roles>;
+    List<AdminViewModel.MajorsTeachersViewModel> ListMajors = ViewData["ListMajors"] as List<AdminViewModel.MajorsTeachersViewModel>;
+    List<RoleSelects> ListRoleSelects = ViewData["ListRoleSelect"] as List<RoleSelects> ?? new List<RoleSelects>();
+    List<string> ListMajorSelect = ViewData["ListMajorSelect"] as List<string>;
+}
+
+<h2>ویرایش کاربر</h2>
+<hr />
+<div class="row">
+    <div class="col-md-10">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="UserID" />
+            <input type="hidden" asp-for="ActiveCode" />
+            <input type="hidden" asp-for="Date" />
+            <input type="hidden" value="@((ListRoleSelects.Any(s=>s.Roles.Name=="Teacher")?"true":"false"))" id="role-condition" />
+
+            <div class="form-group">
+                <label class="control-label">نقش ها</label>
+                <div class="Roles">
+                    <div class="checkbox">
+                        @foreach (var item in ListRoles)
+                        {
+                            <label>
+                                <input @((ListRoleSelects.Any(s => s.RoleID == item.RoleID)) ? "Checked" : "") asp-for="IsActive" type="checkbox" name="Roles" value="@item.RoleID" class="role" /><span class="role_@item.RoleID"> @item.Title </span>
+                            </label>
+                        }
+                    </div>
+                </div>
+                @if (ViewBag.Error == true)
+                {
+                    <span class="text-danger">لطفا نقشی را انتخاب کنید</span>
+                }
+            </div>
+            <div class="form-group" id="role-teacher">
+                <label class="control-label">رشته معلم</label>
+                <label class="description">
+                    <i class="mdi mdi-information-outline"></i>
+                    <span>میتوانید تعیین کنید که این معلم مجوز دسترسی به محتوای رشته ها را داشته باشد یا خیر</span>
+                </label>
+                <div class="Roles">
+                    <div class="checkbox">
+                        @foreach (var item in ListMajors)
+                        {
+                            <label>
+                                <input @((ListMajorSelect.Any(s => s == item.MajorID) ? "checked" : "")) asp-for="IsActive" type="checkbox" name="MajorsTeacher" value="@item.MajorID" /><span> @item.Title </span>
+                            </label>
+                        }
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="UserName" class="control-label"></label>
+                <input asp-for="UserName" class="form-control" />
+                <span asp-validation-for="UserName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Password" class="control-label"></label>
+                <input asp-for="Password" class="form-control" value="@Model.Password" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="IsActive" /> @Html.DisplayNameFor(model => model.IsActive)
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="ذخیره" class="btn btn-success" /> |
+                <a asp-action="Index" class="btn btn-info">برگشت</a>
+            </div>
+        </form>
+    </div>
+</div>
+@section Scripts
+{
+    <script src="~/Scripts/Users.js"></script>
+}

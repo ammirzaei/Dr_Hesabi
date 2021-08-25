@@ -1,0 +1,50 @@
+﻿@model IEnumerable<Dr_Hesabi.DataLayers.Entity.Majors>
+
+@{
+    ViewData["Title"] = "رشته های هنرستان";
+}
+
+<h2>رشته های هنرستان</h2>
+
+<p>
+    <a asp-action="Create" class="btn btn-success">افزودن رشته</a>
+</p>
+<div>
+    <table class="table table-bordered table-hover">
+        <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ImageName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Count)
+            </th>
+            <th>دستورات</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var item in Model) {
+            <tr>
+                <td>
+                    <img src="/Images/Majors/@item.ImageName" width="100" height="100" class="img-thumbnail img-responsive"/>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Count)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.MajorID" class="btn btn-primary">ویرایش</a> |
+                    <a asp-action="Details" asp-route-id="@item.MajorID" class="btn btn-warning">جزئیات</a> |
+                    <a asp-action="Delete" asp-route-id="@item.MajorID" class="btn btn-danger">حذف</a>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>

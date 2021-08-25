@@ -1,0 +1,39 @@
+﻿@using Dr_Hesabi.Classes.Class
+@model IEnumerable<Dr_Hesabi.DataLayers.Entity.Blogs>
+@{
+    ViewData["Title"] = "مقالات";
+}
+
+<div class="Panel_TitleMain">
+    <div class="row">
+        <div class="Panel_Line"></div>
+        <div class="Panel_Title">
+            <h4>جدیدترین مقالات</h4>
+        </div>
+    </div>
+</div>
+<div id="Panel">
+    <div class="container">
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                    <div class="Box">
+                        <div class="Box_Img">
+                            <a href="@Url.Action("ShowArticle","Panel",new{id=item.BlogID,title=item.Title})">
+                                <img src="~/Images/Blogs/@item.ImageName" alt="@item.Title" title="@item.Title" loading="lazy">
+                            </a>
+                        </div>
+                        <div class="Box_Title">
+                            <a href="@Url.Action("ShowArticle","Panel",new{id=item.BlogID,title=item.Title})">@item.Title</a>
+                        </div>
+                        <div class="Box_Fooder">
+                            <span class="Box_Fooder_Right"><i class="mdi mdi-clock-outline"></i> @item.DateTime.ToDate()</span>
+                            <span class="Box_Fooder_Left"><i class="mdi mdi-eye"></i> @item.Visit</span>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

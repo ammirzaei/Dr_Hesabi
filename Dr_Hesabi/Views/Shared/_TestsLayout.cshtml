@@ -1,0 +1,31 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewData["Title"] | هنرستان فنی پسرانه دولتی دکتر حسابی</title>
+    <meta name="description" content="@ViewData["Description"]" />
+    <meta name="author" content="امیرمحمد میرزائی" />
+    <link rel="shortcut icon" type="image/x-icon" href="~/favicon.ico" />
+    <link href="~/Public/vendor/css/styles.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/Default/Css/main.css">
+    @await RenderSectionAsync("Styles", false)
+</head>
+<body>
+    <div class="loading">
+        <div class="load"></div>
+        <p>در حال بارگذاری ...</p>
+    </div>
+    <main>
+        <section class="Account Account2">
+            <div class="container">
+                @RenderBody()
+            </div>
+        </section>
+    </main>
+    <script src="~/Public/vendor/js/scripts.js"></script>
+    @await RenderSectionAsync("Scripts", false)
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script src="~/Public/vendor/js/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="~/Default/Js/ScriptTests.js"></script>
+</body>
+</html>

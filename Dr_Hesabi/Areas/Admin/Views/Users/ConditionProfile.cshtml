@@ -1,0 +1,51 @@
+﻿@using Dr_Hesabi.Classes.Class
+@model Dr_Hesabi.DataLayers.Entity.ProfileStudents
+
+<div class="User">
+    <div class="row">
+        <div class="col-md-12 col-xs-12">
+            <span>نام کاربری : @Model.Users.UserName</span>
+        </div>
+        <div class="col-md-12 col-xs-12">
+            <span>نام و نام خانوادگی : @Model.FullName</span>
+        </div>
+        <div class="col-md-6 col-xs-12">
+            <span>کد ملی : @Model.CodeMeli</span>
+        </div>
+        <div class="col-md-6 col-xs-12">
+            <span>کد کلاس : @Model.CodeClass</span>
+        </div>
+        <div class="col-md-6 col-xs-12">
+            <span>تاریخ ثبت نام : @Model.Users.Date.ToDateTime()</span>
+        </div>
+        <div class="col-md-6 col-xs-12">
+            @if (Model.IsCondition == true)
+            {
+                <text>
+                    <span>وضعیت : تأیید شده</span>
+                </text>
+            }
+            else if (Model.IsCondition == false)
+            {
+                <text>
+                    <span>وضعیت : تأیید نشده</span>
+                </text>
+            }
+            else
+            {
+                <text>
+                    <span>وضعیت : در انتظار تأیید</span>
+                </text>
+            }
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <br />
+            <div class="form-group">
+                <a class="btn btn-success" onclick="ChangeCondition('@Model.UserID', true)">تأیید کردن</a> |
+                <a class="btn btn-danger" onclick="ChangeCondition('@Model.UserID', false)">تأیید نکردن</a>
+            </div>
+        </div>
+    </div>
+</div>

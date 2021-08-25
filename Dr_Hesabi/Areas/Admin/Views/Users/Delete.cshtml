@@ -1,0 +1,57 @@
+﻿@using Dr_Hesabi.Classes.Class
+@model Dr_Hesabi.DataLayers.Entity.Users
+
+@{
+    ViewData["Title"] = "حذف کاربر";
+}
+<h2>حذف کاربر</h2>
+<h3>آیا از حذف این کاربر مطمئن هستید؟</h3>
+<div>
+    <hr />
+    <div class="row">
+        <div class="col-md-12">
+            <div class="Delete">
+                <div>
+                    <span>نقش ها : </span>
+                    <span>@ViewData["Roles"]</span>
+                </div>
+                <div>
+                    <span>رشته معلم : </span>
+                    <span>@ViewData["MajorsTeacher"]</span>
+                </div>
+                <div>
+                    <span>@Html.LabelFor(s => s.UserName) : </span>
+                    <span>@Model.UserName</span>
+                </div>
+                <div>
+                    <span>@Html.LabelFor(s => s.Email) : </span>
+                    <span>@Model.Email</span>
+                </div>
+                <div>
+                    <span>@Html.LabelFor(s => s.Date) : </span>
+                    <span>@Model.Date.ToDateTime()</span>
+                </div>
+                <div>
+                    <span>@Html.LabelFor(s => s.IsActive) : </span>
+                    @if (Model.IsActive)
+                    {
+                        <text>
+                            <span id="success">فعال</span>
+                        </text>
+                    }
+                    else
+                    {
+                        <text>
+                            <span id="danger">غیرفعال</span>
+                        </text>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="UserID" />
+        <input type="submit" value="حذف" class="btn btn-danger" /> |
+        <a asp-action="Index" class="btn btn-info">برگشت</a>
+    </form>
+</div>

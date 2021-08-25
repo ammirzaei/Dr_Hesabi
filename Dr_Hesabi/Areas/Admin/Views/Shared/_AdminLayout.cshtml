@@ -1,0 +1,81 @@
+﻿@using Dr_Hesabi.Classes.Class
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"] | هنرستان فنی پسرانه دولتی دکتر حسابی</title>
+    <meta name="author" content="امیرمحمد میرزائی" />
+    <link rel="shortcut icon" type="image/x-icon" href="~/favicon.ico" />
+    <link href="~/Public/vendor/css/styles.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/Admin/Css/main.css">
+    <link href="~/Public/CheckBox/css/all.css" rel="stylesheet" />
+    @await RenderSectionAsync("Styles", false)
+</head>
+<body>
+    <div class="loading">
+        <div class="load"></div>
+        <p>در حال بارگذاری ...</p>
+    </div>
+    <main>
+        <div class="row">
+            <aside>
+                <div class="col-lg-3 col-md-4 col-sm-12 col-xs-12">
+                    <div class="box">
+                        @await Component.InvokeAsync("PanelProfileAdmin")
+                        <div class="row" id="Setting-Admin">
+                            <div class="col-md-6 col-xs-6 text-center">
+                                <span>
+                                    <a href="/">صفحه اصلی <i class="mdi mdi-solar-panel"></i></a>
+                                </span>
+                            </div>
+                            <div class="col-md-6 col-xs-6 text-center">
+                                <span>
+                                    <a href="/Account/LogOut">خروج <i class="mdi mdi-logout"></i></a>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box">
+                        <div class="text-center box-title">
+                            <span>مدیریت سایت</span>
+                        </div>
+                        @await Component.InvokeAsync("MangeSiteAdmin")
+                    </div>
+                </div>
+            </aside>
+            <section>
+                <div class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
+                    <div class="row">
+                        <div class="col-md-12 col-xs-12">
+                            <div class="box text-center back-Yellow">
+                                <div class="row">
+                                    <div class="col-lg-6 col-xs-12">
+                                        <div id="DateNow">
+                                            <h4>امروز : @DateTime.Now.ToDate()</h4>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-xs-12">
+                                        @await Component.InvokeAsync("Notifications")
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-xs-12">
+                            <div class="Dinamic">
+                                @RenderBody()
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+    <script src="~/Public/vendor/js/scripts.js"></script>
+    <script src="~/Public/CheckBox/js/icheck.js"></script>
+    @await RenderSectionAsync("Scripts", false)
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script src="~/Public/vendor/js/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="~/Admin/Js/main.js"></script>
+</body>
+</html>

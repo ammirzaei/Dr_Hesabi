@@ -1,0 +1,39 @@
+﻿@model Dr_Hesabi.DataLayers.Entity.SurveysVotes
+
+<link href="~/Default/Star/jquerysctipttop.css" rel="stylesheet" />
+
+<form asp-action="VoteQuestion" asp-controller="Surveys" data-ajax="@((User.Identity.IsAuthenticated)?"true":"false")" data-ajax-success="OnSuccessSaveVote" data-ajax-failurs="OnFaildSaveVote" data-ajax-update="#ListSurveysQuestions">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="QuestionID" />
+    <input type="hidden" asp-for="Vote" />
+    <div class="Star-s">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="alert alert-warning text-center">
+                    <span> رأی برای @ViewData["QuestionTitle"]</span>
+                </div>
+            </div>
+            <div class="col-lg-8 col-md-8 col-xs-12">
+                <ul id="starRating" data-stars="@ViewData["CountStar"]"></ul>
+                <div class="form-group">
+                    <span class="text-danger form-group" id="Error-Vote"></span>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-xs-12">
+                <div class="alert alert-info text-center">
+                    رأی شما :
+                    <span id="Pen-Star"></span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <input type="button" onclick="AddVote()" value="ثبت" class="btn btn-success" />
+            </div>
+        </div>
+    </div>
+</form>
+
+@{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+<script src="~/Default/Star/jquery.starrating.min.js"></script>
+<script src="~/Default/Star/Star.js"></script>

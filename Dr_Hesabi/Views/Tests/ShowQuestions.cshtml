@@ -1,0 +1,150 @@
+﻿@using Dr_Hesabi.DataLayers.Entity
+@model IEnumerable<Dr_Hesabi.DataLayers.Entity.Questions>
+
+@{
+    ViewData["Title"] = ViewData["TestTitle"];
+    ViewData["Description"] = ViewData["TestDes"];
+    Layout = "_TestsLayout";
+    List<ReplyDescriptives> ListReplyDescriptives = ViewData["ReplyDescriptives"] as List
+        <ReplyDescriptives> ?? new List<ReplyDescriptives>();
+    List<ReplyOptional> ListReplyOptional = ViewData["ReplyOptional"] as List<ReplyOptional> ?? new List<ReplyOptional>();
+}
+@section Styles{
+    <link href="~/Public/CheckBox/css/all.css" rel="stylesheet" />
+}
+<input type="hidden" value="@ViewData["TestTime"]" id="Time" />
+<input type="hidden" value="@ViewData["TestID"]" id="TestID" />
+<div class="row">
+    <div class="col-lg-6 col-lg-offset-3">
+        <div id="TestTitle">
+            <h4>@ViewData["TestTitle"]</h4>
+        </div>
+    </div>
+    @{
+        int num = 0;
+    }
+    @foreach (var item in Model)
+    {
+        num++;
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <div class="TestBox @((ListReplyDescriptives.Any(s=>s.QuestionReplys.QuestionID==item.QuestionID)||ListReplyOptional.Any(s=>s.QuestionReply.QuestionID==item.QuestionID))?"border-success":"border-danger")" id="Test_@item.QuestionID">
+                <div class="TestQuestionScore">
+                    @item.Score نمره
+                </div>
+                <div class="TestQuestionTitle">
+                    <span>@num</span>
+                    <span>@item.Title</span>
+                </div>
+                @if (item.ImageName != null)
+                {
+                    <div class="TestQuestionImg">
+                        <img src="~/Images/Questions/@item.ImageName" alt="@item.Title" title="@item.Title" loading="lazy"/>
+                    </div>
+                }
+                @if (item.Method.Contains("تشریحی"))
+                {
+                    @if (item.MethodInput.Contains("آپلود تصویر"))
+                    {
+                        <div class="TestQuestion">
+                            <div class="row">
+                                <form id="Form_@item.QuestionID" enctype="multipart/form-data" method="post" QuestionID="@item.QuestionID">
+                                    <div class="TestQuestion2">
+                                        <input type="file" name="file" class="form-control" QuestionID="@item.QuestionID" />
+                                        <span class="text-danger" id="ErrorText_@item.QuestionID"></span>
+                                        <span class="text-warning" id="WaitText_@item.QuestionID"></span>
+                                        @if (ListReplyDescriptives.Any(s => s.QuestionReplys.QuestionID == item.QuestionID && s.ImageName != null))
+                                        {
+                                            <img src="~/Images/Replys/Thumb/@ListReplyDescriptives.FirstOrDefault(s=>s.QuestionReplys.QuestionID==item.QuestionID).ImageName" width="300" height="100" class="img-thumbnail img-responsive" id="Img_@item.QuestionID" loading="lazy"/>
+                                        }
+                                        else
+                                        {
+                                            <img class="img-thumbnail img-responsive" id="Img_@item.QuestionID" loading="lazy"/>
+                                        }
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="TestQuestion">
+                            <div class="row">
+                                <div class="TestQuestion2">
+                                    <textarea class="form-control" QuestionID="@item.QuestionID" placeholder="پاسخ شما" id="Text_@item.QuestionID">@((ListReplyDescriptives.Any(s=>s.QuestionReplys.QuestionID==item.QuestionID))?ListReplyDescriptives.FirstOrDefault(s=>s.QuestionReplys.QuestionID==item.QuestionID).Text:"")</textarea>
+                                    <span class="text-danger" id="ErrorText_@item.QuestionID"></span>
+                                    <input type="button" id="btn_@item.QuestionID" class="btn btn-info" value="اتمام پاسخ" onclick="SaveReplyDescriptive('@item.QuestionID')" />
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <div class="TestQuestion">
+                        <div class="row">
+                            @{
+                                int choiceNum = 0;
+                                List<Choices> ListChoices = ViewData["Choices"] as List<Choices>;
+                            }
+                            @if (item.Tests.IsRandom)
+                            {
+                                @foreach (var choice in ListChoices.Where(s => s.QuestionID == item.QuestionID))
+                                {
+                                    choiceNum += 1;
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="radio" name="@item.QuestionID" QuestionID="@item.QuestionID" value="@choice.ChoiceID" @((ListReplyOptional.Any(s => s.ChoiceID == choice.ChoiceID)) ? "checked" : "") /> @choiceNum- @choice.Title
+                                            </label>
+                                            <span class="text-danger" id="ErrorText_@item.QuestionID"></span>
+                                        </div>
+                                    </div>
+                                }
+                            }
+                            else
+                            {
+                                @foreach (var choice in ListChoices.Where(s => s.QuestionID == item.QuestionID).OrderBy(s => s.Order))
+                                {
+                                    choiceNum += 1;
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="radio" name="@item.QuestionID" QuestionID="@item.QuestionID" value="@choice.ChoiceID" @((ListReplyOptional.Any(s => s.ChoiceID == choice.ChoiceID)) ? "checked" : "") /> @choiceNum- @choice.Title
+                                            </label>
+                                            <span class="text-danger" id="ErrorText_@item.QuestionID"></span>
+                                        </div>
+                                    </div>
+                                }
+                            }
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    }
+    <div id="TestInfo">
+        <span></span>
+    </div>
+</div>
+<div class="row">
+    <div class="TestEnd">
+        <a class="btn btn-success" data-toggle="modal" data-target="#MyModal" disabled="@ViewBag.Preview">پایان آزمون</a>
+    </div>
+</div>
+<div id="HtmlModal">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="alert alert-warning text-center">
+                <span>آیا از پایان این آزمون مطمئن هستید؟</span>
+            </div>
+            <a class="btn btn-success" onclick="Ultimate(false)">پایان آزمون</a> |
+            <a class="btn btn-info" onclick="CloseModal()">لغو</a>
+        </div>
+    </div>
+</div>
+<partial name="PartialViews/Modal" />
+@section Scripts
+{
+    <script src="~/Public/CheckBox/js/icheck.js"></script>
+    <script src="~/Scripts/ShowQuestions.js"></script>
+}

@@ -1,0 +1,53 @@
+﻿@model IEnumerable<Dr_Hesabi.DataLayers.Entity.Choices>
+<div class="sum-detail">
+    <span>تعداد گزینه ها : @Model.Count()</span>
+</div>
+<table class="table table-bordered table-hover table-responsive">
+    <thead>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Order)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsSuccess)
+        </th>
+        <th>دستورات</th>
+    </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.OrderBy(s => s.Order))
+        {
+            <tr class="@((item.IsSuccess)?"success":"danger")">
+                <td>
+                    @Html.DisplayFor(modelItem => item.Order)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                   @if (item.IsSuccess)
+                   {
+                       <text>
+                           <span class="text-success">صحیح</span>
+                       </text>
+                   }
+                   else
+                   {
+                       <text>
+                           <span class="text-danger">غلط</span>
+                       </text>
+                   }
+
+                </td>
+
+                <td>
+                    <a onclick="EditChoice('@item.ChoiceID')" class="btn btn-primary">ویرایش</a> |
+                    <a onclick="DeleteChoice('@item.ChoiceID')" class="btn btn-danger">حذف</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

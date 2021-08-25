@@ -1,0 +1,74 @@
+﻿@model IEnumerable<Dr_Hesabi.DataLayers.Entity.Bests>
+
+@{
+    ViewData["Title"] = "برترین ها";
+}
+
+<h2>برترین ها</h2>
+
+<p>
+    <a onclick="Create('')" class="btn btn-success">افزودن مجموعه</a>
+</p>
+<div>
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.ImageName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Title)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Description)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.IsActive)
+                </th>
+                <th>دستورات</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Where(s => s.ParentID == null))
+            {
+                <tr class="@((item.IsActive)?"success":"danger")">
+                    <td>
+                        <img src="~/Images/Bests/Best_Lists/@item.ImageName" width="100" height="100" class="img-responsive img-thumbnail" />
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+
+                    <td>
+                        @if (item.IsActive)
+                        {
+                            <text>
+                                <span class="text-success">فعال</span>
+                            </text>
+                        }
+                        else
+                        {
+                            <text>
+                                <span class="text-danger">غیرفعال</span>
+                            </text>
+                        }
+                    </td>
+
+                    <td>
+                        <a asp-action="IndexItem" asp-route-id="@item.BestID" class="btn btn-info">آیتم ها (@Model.Where(s => s.ParentID == item.BestID).Count())</a> |
+                        <a onclick="Edit('@item.BestID')" class="btn btn-primary">ویرایش</a> |
+                        <a onclick="Delete('@item.BestID')" class="btn btn-danger">حذف</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<partial name="PartialViews/Modal" />
+@section Scripts
+{
+    <script src="~/Scripts/Bests.js"></script>
+}

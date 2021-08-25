@@ -1,0 +1,47 @@
+﻿@model Dr_Hesabi.DataLayers.Entity.Contents
+
+@{
+    ViewData["Title"] = "افزودن عضو";
+    Layout = "_TeacherLayout";
+}
+
+<h2>افزودن عضو</h2>
+
+<hr />
+<div class="row">
+    <div class="col-md-10">
+        <form asp-action="CreateChild" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="ParentID" />
+            <input type="hidden" asp-for="MajorID" />
+            <div class="form-group">
+                <label asp-for="Title" class="control-label"></label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <script src="~/ckeditor/ckeditor.js"></script>
+                <label asp-for="Description" class="control-label"></label>
+                <textarea required="لطفا توضیحات عضو را وارد نمایید" asp-for="Description" class="form-control"></textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ImageName" class="control-label"></label>
+                <input required="لطفا تصویر عضو را انتخاب کنید" type="file" asp-for="ImageName" class="form-control" />
+                <span asp-validation-for="ImageName" class="text-danger"></span>
+                <img class="img-responsive img-thumbnail" id="ShowImg" style="max-width: 300px;max-height: 200px" />
+            </div>
+            <div class="form-group">
+                <input type="submit" value="افزودن" class="btn btn-success" /> |
+                <a asp-action="Lists" asp-route-id="@Model.ParentID" class="btn btn-info">برگشت</a>
+            </div>
+        </form>
+    </div>
+</div>
+@section Scripts
+{
+    <script src="~/Scripts/CreateSliders.js"></script>
+    <script>
+        CKEDITOR.replace('Description');
+    </script>
+}

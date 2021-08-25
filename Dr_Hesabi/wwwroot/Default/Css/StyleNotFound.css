@@ -1,0 +1,106 @@
+@font-face {
+    font-family: iranyekanwebbold;
+    src: url("../../Public/Fonts/iranyekanwebbold.eot") format("eot"), url("../../Public/Fonts/iranyekanwebbold.ttf") format("ttf"), url("../../Public/Fonts/iranyekanwebbold.woff") format("woff"), url("../../Public/Fonts/iranyekanwebbold.woff2") format("woff2");
+    font-weight: normal;
+}
+
+body {
+    font-family: "iranyekanwebbold" !important;
+    color: #4a5f73;
+    overflow-x: hidden;
+}
+
+.bg-yellow {
+    background-color: #ffab00;
+}
+
+.bg-red {
+    background-color: #a52a2a;
+}
+
+#Main {
+    background-color: rgba(255, 255, 255, 0.6);
+    border-radius: 25px;
+    margin: 30px auto;
+    box-shadow: 1px 1px 5px #ffab01;
+}
+
+#PageRight {
+    margin: 20px auto;
+}
+
+.NotFoundTitle {
+    background-color: #f15a24;
+    padding: 12px 40px;
+    color: #ffffff;
+    text-align: center;
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+    border: 2px solid #ffffff;
+}
+
+#NotFoundImg {
+    padding: 0 70px;
+    margin: 0 70px;
+}
+
+    #NotFoundImg img {
+        width: 100%;
+        padding: 0 60px;
+        max-height: 500px;
+        margin: 0 60px;
+    }
+#ErrorImg {
+    padding: 10px 70px;
+    margin: 15px 70px;
+}
+    #ErrorImg img {
+        width: 100%;
+        padding: 10px 70px;
+        max-height: 500px;
+        margin: 10px 60px;
+    }
+    #NotfoundLink {
+        float: left;
+        position: relative;
+        bottom: 1rem;
+        left: 2rem;
+    }
+
+    #NotfoundLink a {
+        background-color: #2979ff;
+        color: #ffffff;
+        border-radius: 10px;
+        box-shadow: 1px 1px 5px #2979ff;
+    }
+
+@media (max-width:768px) {
+    #NotFoundImg {
+        padding: 0 10px;
+        margin: 0 10px;
+    }
+
+        #NotFoundImg img {
+            padding: 0 10px;
+            max-height: 500px;
+            margin: 0 10px;
+        }
+    #ErrorImg {
+        padding: 10px 10px;
+        margin: 10px 10px;
+    }
+
+        #ErrorImg img {
+            padding: 0 10px;
+            max-height: 500px;
+            margin: 0 10px;
+        }
+    #NotfoundLink a {
+        padding: 4px 7px;
+        font-size: 13px;
+    }
+
+    .NotFoundTitle {
+        padding: 10px 40px;
+    }
+}

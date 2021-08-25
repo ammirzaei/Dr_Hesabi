@@ -1,0 +1,61 @@
+﻿@using Dr_Hesabi.Classes.Class
+@using Dr_Hesabi.DataLayers.Entity
+@model Dr_Hesabi.DataLayers.Entity.Blogs
+
+@{
+    ViewData["Title"] = Model.Title;
+    ViewData["Description"] = Model.ShortDescription;
+    string Method = "مقاله";
+}
+<input type="hidden" id="ID" value="@Model.BlogID" />
+<input type="hidden" id="Method" value="@Method" />
+<div class="container">
+    <div class="View">
+        <div class="View-Title">
+            <h3>@Model.Title</h3>
+            <div class="Navigation">
+                <ul>
+                    <li>
+                        <a href="/">هنرستان دکتر حسابی</a> /
+                    </li>
+                    <li>
+                        <a href="@Url.Action("Articles", "Panel")">مقالات</a> /
+                    </li>
+                    <li>
+                        <a href="">@Model.Title</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="View-Des">
+                <span title="بازدید"><i class="mdi mdi-eye"></i> @Model.Visit بازدید</span>
+                <span title="تاریخ ثبت"><i class="mdi mdi-clock"></i> @Model.DateTime.ToDate()</span>
+                <span title="نویسنده یا منبع"><i class="mdi mdi-account"></i> @Model.NameWriter</span>
+            </div>
+        </div>
+        <div class="View-Body">
+            <div class="ViewBody-Top">
+                <img src="~/Images/Blogs/@Model.ImageName" alt="@Model.Title" title="@Model.Title" loading="lazy">
+            </div>
+            <div class="ViewBody-Main">
+                <p>
+                    @Html.Raw(Model.Description)
+                </p>
+            </div>
+            <div class="View-BodyComment">
+                <div class="ViewBody-Main" id="CreateComment">
+                    <partial name="CreateComment" model="new Comments(){PanelID = Model.BlogID,Method = Method}" />
+                </div>
+                <div class="ViewBody-Comment">
+                    <div class="Connection-Show" id="ListComments">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<partial name="PartialViews/Modal" />
+@section Scripts
+{
+    <script src="~/Scripts/Comments.js"></script>
+}

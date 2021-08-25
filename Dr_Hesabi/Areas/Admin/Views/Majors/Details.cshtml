@@ -1,0 +1,41 @@
+﻿@model Dr_Hesabi.DataLayers.Entity.Majors
+
+@{
+    ViewData["Title"] = "جزئیات رشته";
+}
+<h2>جزئیات رشته</h2>
+<div>
+    <hr />
+    <div class="row">
+        <div class="col-md-12">
+            <div class="Delete">
+                <div>
+                    <span>@Html.LabelFor(s => s.ImageName) : </span>
+                    <span>
+                        <img src="/Images/Majors/@Model.ImageName" width="200" height="200" class="img-responsive img-thumbnail" />
+                    </span>
+                </div>
+                <div>
+                    <span>@Html.LabelFor(s => s.Title) : </span>
+                    <span>@Model.Title</span>
+                </div>
+                <div>
+                    <span>@Html.LabelFor(s => s.ShortDescription) : </span>
+                    <span>@Model.ShortDescription</span>
+                </div>
+                <div>
+                    <span>@Html.LabelFor(s => s.Text) : </span>
+                    <span>@Html.Raw(Model.Text)</span>
+                </div>
+                <div>
+                    <span>@Html.LabelFor(s => s.Count) : </span>
+                    <span>@Model.Count</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.MajorID" class="btn btn-primary">ویرایش</a> |
+    <a asp-action="Index" class="btn btn-info">برگشت</a>
+</div>

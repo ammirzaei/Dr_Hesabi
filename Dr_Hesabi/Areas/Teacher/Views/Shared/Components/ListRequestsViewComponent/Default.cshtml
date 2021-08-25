@@ -1,0 +1,50 @@
+﻿@model IEnumerable<Dr_Hesabi.DataLayers.Entity.TestRequests>
+<div class="sum-detail">
+    <span>تعداد درخواست ها : @Model.Count()</span>
+</div>
+<table class="table table-bordered table-hover table-responsive">
+    <thead>
+        <tr>
+            <th>
+                کاربر
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsActive)
+            </th>
+            <th>تغییر وضعیت</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <a onclick="ShowUser('@item.UserID')">@item.Users.ProfileStudents.FullName</a>
+                </td>
+                <td>
+                    @if (item.IsActive == true)
+                    {
+                        <text>
+                            <span class="text-success">تأیید شده</span>
+                        </text>
+                    }
+                    else if (item.IsActive == false)
+                    {
+                        <text>
+                            <span class="text-danger">تأیید نشده</span>
+                        </text>
+                    }
+                    else
+                    {
+                        <text>
+                            <span class="text-warning">در انتظار تأیید</span>
+                        </text>
+                    }
+                </td>
+                <td>
+                    <a onclick="ChangeCondition('@item.TestRequestID')" class="btn btn-primary">تغییر وضعیت</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

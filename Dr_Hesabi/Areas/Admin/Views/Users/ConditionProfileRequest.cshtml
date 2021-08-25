@@ -1,0 +1,45 @@
+﻿@using Dr_Hesabi.Classes.Class
+@model Dr_Hesabi.DataLayers.Entity.ProfileRequests
+<div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="Delete">
+                <div>
+                    <span>@Html.LabelFor(s => s.Description) : </span>
+                    <span>
+                        @Model.Description
+                    </span>
+                </div>
+                <div>
+                    <span>@Html.LabelFor(s => s.CreateDate) : </span>
+                    <span>@Model.CreateDate.ToDateTime()</span>
+                </div>
+                <div>
+                    <span>@Html.LabelFor(s => s.IsCondition) : </span>
+                    @if (Model.IsCondition == true)
+                    {
+                        <text>
+                            <span class="text-success">تأیید شده</span>
+                        </text>
+                    }
+                    else if (Model.IsCondition == false)
+                    {
+                        <text>
+                            <span class="text-danger">تأیید نشده</span>
+                        </text>
+                    }
+                    else
+                    {
+                        <text>
+                            <span class="text-warning">در انتظار تأیید</span>
+                        </text>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <input type="button" value="تأیید کردن" class="btn btn-success" onclick="ChangeConditionProfileRequest('@Model.UserID',true)" /> |
+        <input type="button" value="تأیید نکردن" class="btn btn-danger" onclick="ChangeConditionProfileRequest('@Model.UserID',false)" />
+    </div>
+</div>

@@ -1,0 +1,77 @@
+﻿@model Dr_Hesabi.DataLayers.Entity.Surveys
+
+@{
+    ViewData["Title"] = "افزودن نظرسنجی";
+}
+<h2>افزودن نظرسنجی</h2>
+@section Styles
+{
+    <link href="~/Admin/Css/kendo.common.min.css" rel="stylesheet" />
+    <link href="~/Admin/Css/kendo.default.min.css" rel="stylesheet" />
+    <script src="~/Publish/Js/jquery-1.10.2.min.js"></script>
+}
+<hr />
+<div class="row">
+    <div class="col-md-10">
+        <form asp-action="Create" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Title" class="control-label"></label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <textarea asp-for="Description" class="form-control"></textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CountStar" class="control-label"></label>
+                <input asp-for="CountStar" class="form-control" />
+                <span asp-validation-for="CountStar" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ImageName" class="control-label"></label>
+                <input type="file" asp-for="ImageName" class="form-control" />
+                <span asp-validation-for="ImageName" class="text-danger"></span>
+                <img class="img-responsive img-thumbnail" id="ShowImg" style="max-width: 300px;max-height: 200px" />
+            </div>
+            <div class="form-group">
+                <label asp-for="StartDate" class="control-label"></label>
+                <input asp-for="StartDate" />
+                <span asp-validation-for="StartDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EndDate" class="control-label"></label>
+                <input asp-for="EndDate" />
+                <span asp-validation-for="EndDate" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="IsActive" /> @Html.DisplayNameFor(model => model.IsActive)
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="IsPermission" /> @Html.DisplayNameFor(model => model.IsPermission)
+                </label>
+                <label class="description">
+                    <i class="mdi mdi-information-outline"></i>
+                    <span>به کاربران اجازه میدهید که به تمام سوال های نظرسنجی بتوانند رأی دهند و یا فقط به یک سوال.</span>
+                </label>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="افزودن" class="btn btn-success" /> |
+                <a class="btn btn-info" asp-action="Index">برگشت</a>
+            </div>
+        </form>
+    </div>
+</div>
+@section Scripts
+{
+    <script src="~/Scripts/CreateSliders.js"></script>
+    <script src="~/Admin/Js/JalaliDate.js"></script>
+    <script src="~/Admin/Js/kendo.web.js"></script>
+    <script src="~/Admin/Js/fa-IR.js"></script>
+    <script src="~/Admin/Js/DatePicker.js"></script>
+}

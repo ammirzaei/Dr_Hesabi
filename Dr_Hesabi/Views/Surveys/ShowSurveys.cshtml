@@ -1,0 +1,51 @@
+﻿@using Dr_Hesabi.Classes.Class
+@model Dr_Hesabi.DataLayers.Entity.Surveys
+@{
+    ViewData["Title"] = Model.Title;
+    ViewData["Description"] = Model.Description;
+}
+
+<div class="Panel_TitleMain">
+    <div class="row">
+        <div class="Panel_Line"></div>
+        <div class="Panel_Title">
+            <h4>سوال های نظرسنجی @Model.Title</h4>
+        </div>
+    </div>
+</div>
+<div id="Panel">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-xs-12">
+                <div class="Account ShowSurveyDes">
+                    <div class="ShowSurveyDes-date">
+                        <span>از @Model.StartDate.ToDate()</span>
+                        <span>تا @Model.EndDate.ToDate()</span>
+                    </div>
+                    <h4>توضیحات نظرسنجی</h4>
+                    @if (Model.IsPermission)
+                    {
+                        <div class="alert alert-info text-center">
+                            <span>شما میتوانید به تمام سوال ها رأی بدهید.</span>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="alert alert-info text-center">
+                            <span>شما فقط میتوانید به یک سوال رأی بدهید.</span>
+                        </div>
+                    }
+                    <span>@Model.Description</span>
+                    <img src="~/Images/Surveys/Surveys_Lists/@Model.ImageName" alt="@Model.Title" title="@Model.Title" loading="lazy"/>
+                </div>
+            </div>
+        </div>
+        <div id="ListSurveysQuestions">
+            @await Component.InvokeAsync("ShowSurveysQuestionViewComponent", new { id = Model.SurveyID, title = Model.Title })
+        </div>
+    </div>
+</div>
+<partial name="PartialViews/Modal" />
+@section Scripts{
+    <script src="~/Scripts/ShowSurveys.js"></script>
+}

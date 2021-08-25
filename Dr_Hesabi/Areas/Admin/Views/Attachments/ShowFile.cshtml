@@ -1,0 +1,25 @@
+﻿@using Dr_Hesabi.Classes.Class
+@model Dr_Hesabi.DataLayers.Entity.Attachments
+
+<div class="text-center">
+    @if (CheckFormat.CheckFormatImage(Model.FileName))
+    {
+        <img src="~/Images/Attachments/@Model.FileName" class="img-thumbnail img-responsive" width="100%" height="150" />
+    }
+    else if (CheckFormat.CheckFormatVideo(Model.FileName))
+    {
+        <video width="100%" height="150" controls>
+            <source src="~/Images/Attachments/@Model.FileName" />
+        </video>
+    }
+    else if (CheckFormat.CheckFormatAudio(Model.FileName))
+    {
+        <audio controls>
+            <source src="~/Images/Attachments/@Model.FileName" />
+        </audio>
+    }
+    else
+    {
+        <span class="text-danger">فایل ناشناخته</span>
+    }
+</div>

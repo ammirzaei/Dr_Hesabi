@@ -1,0 +1,21 @@
+﻿
+@{
+    ViewData["Title"] = "درخواست های " + ViewData["TestTitle"];
+    Layout = "_TeacherLayout";
+}
+
+<h2>درخواست های @ViewData["TestTitle"]</h2>
+<input type="text" id="AddressRequest" value="@ViewData["AddressRequest"]" class="Link" />
+<p>
+    <a class="btn btn-warning" asp-action="PageReportTestRequests" asp-route-id="@ViewData["TestID"]">گزارش</a> |
+    <a class="btn btn-success" onclick="CopyLink('@ViewData["TestID"]')">کپی لینک ثبت درخواست</a> |
+    <a class="btn btn-info" asp-action="Index">برگشت</a>
+</p>
+<div id="ListRequests">
+    @await Component.InvokeAsync("ListRequestsViewComponent", new { testID = ViewData["TestID"] })
+</div>
+<partial name="PartialViews/Modal" />
+@section Scripts
+{
+    <script src="~/Scripts/TestRequests.js"></script>
+}

@@ -1,0 +1,39 @@
+﻿@model Dr_Hesabi.DataLayers.Entity.Choices
+
+<h3>آیا از این حذف مطمئن هستید؟</h3>
+<div>
+    <hr />
+    <div class="row">
+        <div class="col-md-12">
+            <div class="Delete">
+                <div>
+                    <span>@Html.LabelFor(s => s.Title) : </span>
+                    <span>@Model.Title</span>
+                </div>
+                <div>
+                    <span>@Html.LabelFor(s => s.Order) : </span>
+                    <span>@Model.Order</span>
+                </div>
+                <div>
+                    <span>@Html.LabelFor(s => s.IsSuccess) : </span>
+                    @if (Model.IsSuccess)
+                    {
+                        <text>
+                            <span id="success">صحیح</span>
+                        </text>
+                    }
+                    else
+                    {
+                        <text>
+                            <span id="danger">غلط</span>
+                        </text>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    <form asp-action="Delete" data-ajax="true" data-ajax-update="#ListChoices" data-ajax-success="OnSuccess">
+        <input type="hidden" asp-for="ChoiceID" />
+        <input type="submit" value="حذف" class="btn btn-danger" />
+    </form>
+</div>

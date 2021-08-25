@@ -1,0 +1,29 @@
+﻿@model Dr_Hesabi.DataLayers.Entity.TestRequests
+
+<form asp-action="ChangeRequest" data-ajax="true" data-ajax-update="#ListRequests" data-ajax-success="OnSuccess" data-ajax-failure="OnFaild">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="Delete">
+                <div>
+                    <span>کاربر : </span>
+                    <span>
+                        @Model.Users.ProfileStudents.FullName
+                    </span>
+                </div>
+                <div>
+                    <span>@Html.LabelFor(s => s.IsActive) : </span>
+                    <span>
+                        <div class="Delete-Select">
+                            <select class="form-control" asp-for="IsActive">
+                                <!option name="IsActive" value="True" @((Model.IsActive == true) ? "selected" : "")>تأیید شده</!option>
+                                <!option name="IsActive" value="False" @((Model.IsActive == false) ? "selected" : "")>تأیید نشده</!option>
+                                <!option name="IsActive" value="" @((Model.IsActive == null) ? "selected" : "")>در انتظار تأیید</!option>
+                            </select>
+                        </div>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <input type="submit" value="تغییر" class="btn btn-success" />
+</form>

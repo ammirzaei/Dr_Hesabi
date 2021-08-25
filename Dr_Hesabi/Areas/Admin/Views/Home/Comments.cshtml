@@ -1,0 +1,23 @@
+﻿@{
+    ViewData["Title"] = "نظر ها";
+}
+
+<h2>نظر ها</h2>
+<p>
+    @if (ViewData["Method"].ToString().Contains("مقاله"))
+    {
+        <a class="btn btn-info" asp-action="Index" asp-controller="Blogs" asp-area="Admin">برگشت</a>
+    }
+    @if (ViewData["Method"].ToString().Contains("خبر"))
+    {
+        <a class="btn btn-info" asp-action="Index" asp-controller="News" asp-area="Admin">برگشت</a>
+    }
+</p>
+<div id="ListComments">
+    @await Component.InvokeAsync("ListCommentsViewComponent", new { id = ViewData["ID"], method = ViewData["Method"] })
+</div>
+<partial name="PartialViews/Modal" />
+@section Scripts
+{
+    <script src="~/Scripts/CommentHome.js"></script>
+}

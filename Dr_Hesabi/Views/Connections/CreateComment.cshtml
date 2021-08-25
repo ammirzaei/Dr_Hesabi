@@ -1,0 +1,26 @@
+﻿@model Dr_Hesabi.DataLayers.Entity.Connections
+
+<form asp-action="CommandComment" asp-controller="Connections">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="CreateDate" />
+    <input type="hidden" asp-for="UserID" />
+    <input type="hidden" asp-for="ConnectionID" />
+    <div class="Account_Box">
+        <div class="form-group">
+            <textarea asp-for="Comment" placeholder="متن پیام" class="form-control"></textarea>
+            <span asp-validation-for="Comment" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <div class="g-recaptcha" data-sitekey="6LcUrMoZAAAAAGTfU1jMlJ5QZIBp2RXD-15Y8_fI"></div>
+            <span>
+                <span class="text-danger">@ViewBag.MessageError</span>
+            </span>
+            <span class="text-success" id="ConnectionsSuccess"></span>
+            <span class="text-danger" id="ConnectionsDanger"></span>
+        </div>
+        <div class="form-group">
+            <input type="submit" class="btn btn-success" value="ارسال پیام" />
+        </div>
+    </div>
+</form>
+<script src="https://www.google.com/recaptcha/api.js?hl=fa"></script>

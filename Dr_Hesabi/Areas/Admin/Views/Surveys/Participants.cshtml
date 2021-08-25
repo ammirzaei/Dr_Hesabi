@@ -1,0 +1,62 @@
+﻿@using Dr_Hesabi.Classes.Class
+@model IEnumerable<Dr_Hesabi.DataLayers.Entity.SurveysVotes>
+
+@{
+    ViewData["Title"] = "شرکت کنندگان";
+}
+
+<h2>شرکت کنندگان در @ViewData["SurveyTitle"]</h2>
+<p>
+    <a asp-action="Index" class="btn btn-info">برگشت</a>
+</p>
+<div>
+    <div class="sum-detail">
+        <span>تعداد شرکت کنندگان : @Model.Count()</span>
+    </div>
+    <table class="table table-bordered table-hover table-responsive">
+        <thead>
+            <tr>
+                <th>
+                    نام کاربری
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Vote)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DateTime)
+                </th>
+                <th>
+                    سوال
+                </th>
+                <th>حذف رأی</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        <a onclick="ShowProfile('@item.UserID')">@item.Users.UserName</a>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Vote)
+                    </td>
+                    <td>
+                        @item.DateTime.ToDateTime()
+                    </td>
+                    <td>
+                        <a asp-action="Index" asp-route-id="@item.SurveysQuestions.SurveyID" asp-controller="SurveysQuestions" asp-area="Admin">@item.SurveysQuestions.Title</a>
+                    </td>
+                    <td>
+                        <a onclick="DeleteParticipant('@item.VoteID')" class="btn btn-danger">حذف</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<partial name="PartialViews/Modal" />
+@section Scripts
+{
+    <script src="~/Scripts/ParticipantsSurveyAdmin.js"></script>
+}

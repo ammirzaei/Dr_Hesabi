@@ -1,0 +1,29 @@
+﻿@using Dr_Hesabi.Classes.Class
+@model Dr_Hesabi.DataLayers.Entity.Comments
+
+<h3>آیا از این حذف مطمئن هستید؟</h3>
+<div>
+    <hr />
+    <div class="row">
+        <div class="col-md-12">
+            <div class="Delete">
+                <div>
+                    <span>کاربر : </span>
+                    <span>@Model.Users.UserName</span>
+                </div>
+                <div>
+                    <span>نظر : </span>
+                    <span>@Model.Text</span>
+                </div>
+                <div>
+                    <span>تاریخ ثبت : </span>
+                    <span>@Model.DateTime.ToDateTime()</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <form asp-action="DeleteComment" data-ajax="true" data-ajax-update="#ListComments" data-ajax-success="OnSuccess">
+        <input type="hidden" asp-for="CommentID" />
+        <input type="submit" value="حذف" class="btn btn-danger" />
+    </form>
+</div>

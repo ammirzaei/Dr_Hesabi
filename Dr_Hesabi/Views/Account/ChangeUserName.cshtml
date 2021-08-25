@@ -1,0 +1,54 @@
+﻿@model Dr_Hesabi.Classes.ViewModel.ChangeUserNameViewModel
+
+@{
+    ViewData["Title"] = "تغییر نام کاربری";
+}
+<div id="Profile">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 col-md-3 col-sm-4">
+                <partial name="PartialViews/Dashboard" />
+            </div>
+            <div class="col-lg-8 col-md-9 col-sm-8">
+                <form asp-action="ChangeUserName">
+                    <div class="Account">
+                        <h4>تغییر نام کاربری</h4>
+                        <div class="Account_Box">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            @*@if (ViewBag.ChangeUserName == true)
+                            {
+                                <div class="alert alert-success text-center">
+                                    نام کاربری شما با موفقیت تغییر کرد
+                                </div>
+                            }*@
+                            <div class="alert alert-info text-center">
+                                <span>پس از تغییر نام کاربری، باید دوباره به سایت وارد شوید.</span>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <i class="mdi mdi-account input-group-addon"></i>
+                                    <input asp-for="UserName" class="form-control" placeholder="نام کاربری جدید" />
+                                </div>
+                                <span asp-validation-for="UserName" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <div class="g-recaptcha" data-sitekey="6LcUrMoZAAAAAGTfU1jMlJ5QZIBp2RXD-15Y8_fI"></div>
+                                <span>
+                                    <span class="text-danger">@ViewBag.MessageError</span>
+                                </span>
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" value="تغییر نام کاربری" class="btn btn-info" />
+                            </div>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts
+{
+    <script src="https://www.google.com/recaptcha/api.js?hl=fa"></script>
+}

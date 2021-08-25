@@ -1,0 +1,31 @@
+﻿@using Dr_Hesabi.Classes.Class
+@using System.Security.Claims
+@model IEnumerable<Dr_Hesabi.DataLayers.Entity.Comments>
+@if (Model.Any())
+{
+    @foreach (var item in Model)
+    {
+        <div class="Connection-box">
+            <div class="Connection-Info">
+                <span>ارسال شده توسط @item.Users.UserName</span>
+                <span class="C-Date">در تاریخ @item.DateTime.ToDate()</span>
+            </div>
+            <div class="Connection-Comment">
+                <p>@item.Text</p>
+                <div class="Connection-Command">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        string UserID = Context.User.Claims.FirstOrDefault(s => s.Type == ClaimTypes.NameIdentifier).Value.ToString();
+                        @if (item.Users.UserID == UserID)
+                        {
+                            <text>
+                                <a onclick="DeleteComment('@item.CommentID')" class="btn btn-danger btn-sm">حذف</a> |
+                                <a onclick="EditComment('@item.CommentID', '@item.Text')" class="btn btn-primary btn-sm">ویرایش</a>
+                            </text>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+    }
+}

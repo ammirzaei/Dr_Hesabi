@@ -1,0 +1,62 @@
+﻿@using Dr_Hesabi.Classes.Class
+@model Dr_Hesabi.DataLayers.Entity.Tests
+@{
+    ViewData["Title"] = "درخواست شرکت در آزمون";
+}
+
+<form asp-action="Request" asp-route-id="@Model.TestID" method="post">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-10 col-lg-offset-1 col-xs-12">
+                <div class="Account">
+                    <div class="Tests">
+                        <div class="Test-Title">
+                            <h4> درخواست شرکت در @Model.Title</h4>
+                        </div>
+                        <div class="Test-Des">
+                            <span>@Model.Description</span>
+                        </div>
+                        <a>
+                            <div class="Test-Info">
+                                @if (ViewData["TeacherFullName"].ToString() != "")
+                                {
+                                    <span>نام معلم : @ViewData["TeacherFullName"]</span>
+                                }
+                                <span>تاریخ شروع : @Model.StartDateTime.ToDate()</span>
+                                <span>زمان شروع : @Model.StartDateTime.ToTime()</span>
+                                <span>زمان پایان : @Model.EndDateTime.ToTime()</span>
+                            </div>
+                        </a>
+                        <div class="Test-Command">
+                            <input type="submit" value="ثبت درخواست" class="btn btn-primary" />
+                        </div>
+                        @if (ViewBag.SetRequestCondition == true)
+                        {
+                            <div class="alert alert-success text-center">
+                                <p>درخواست شما با موفقیت ثبت شد.</p>
+                            </div>
+                        }
+                        else if (ViewBag.SetRequestCondition == false)
+                        {
+                            <div class="alert alert-warning text-center">
+                                <p>درخواست شما در حال بررسی می باشد.</p>
+                            </div>
+                        }
+                        @if (ViewBag.SetRequestProfile == true)
+                        {
+                            <div class="alert alert-danger text-center">
+                                <span>شما اول باید <a target="_blank" href="@Url.Action("AddInfo", "Dashboard")" style="color: #2979ff">پروفایل</a> خود را تکمیل کنید.</span>
+                            </div>
+                        }
+                        @if (ViewBag.SetRequestClass == true)
+                        {
+                            <div class="alert alert-danger text-center">
+                                <p>شما فقط امکان شرکت در آزمون های کلاس خود هستید.</p>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,40 @@
+﻿@using Dr_Hesabi.Classes.Class
+@model IEnumerable<Dr_Hesabi.DataLayers.Entity.Comments>
+
+<table class="table table-bordered table-hover table-responsive">
+    <thead>
+        <tr>
+            <th>
+                کاربر
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Text)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateTime)
+            </th>
+            <th>دستورات</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <a onclick="ShowProfile('@item.UserID')">@item.Users.UserName</a>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Text)
+                </td>
+                <td>
+                    @item.DateTime.ToDateTime()
+                </td>
+
+                <td>
+                    <a onclick="EditComment('@item.CommentID')" class="btn btn-primary">ویرایش</a> |
+                    <a onclick="DeleteComment('@item.CommentID')" class="btn btn-danger">حذف</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

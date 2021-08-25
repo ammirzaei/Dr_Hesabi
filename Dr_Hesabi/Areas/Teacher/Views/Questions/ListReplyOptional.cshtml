@@ -1,0 +1,80 @@
+﻿@using Dr_Hesabi.Classes.Class
+@model IEnumerable<Dr_Hesabi.DataLayers.Entity.ReplyOptional>
+
+@{
+    ViewData["Title"] = "لیست پاسخ های گزینه ای";
+    Layout = "_TeacherLayout";
+}
+
+<h2>لیست پاسخ های @ViewData["QuestionTitle"]</h2>
+
+<p>
+    <a asp-action="Index" asp-route-id="@ViewData["TestID"]" class="btn btn-info">برگشت</a>
+</p>
+<div>
+    <table class="table table-bordered table-hover table-responsive">
+        <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.QuestionReply.Users.ProfileStudents.FullName)
+            </th>
+            <th>
+                پاسخ
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.QuestionReply.DateTime)
+            </th>
+            <th>
+                وضعیت پاسخ
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var item in Model)
+        {
+            <tr class="@((item.IsCondition==true)?"success":"danger")">
+                <td>
+                    @if (item.QuestionReply.Users.ProfileStudents != null)
+                    {
+                        <a onclick="ShowUser('@item.QuestionReply.UserID')">@item.QuestionReply.Users.ProfileStudents.FullName</a>
+                    }
+                    else
+                    {
+                        <span>-</span>
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Choices.Title)
+                </td>
+                <td>
+                    @item.QuestionReply.DateTime.ToDateTime()
+                </td>
+                <td>
+                    @if (item.IsCondition == true)
+                    {
+                        <span class="text-success">صحیح</span>
+                    }
+                    @if (item.IsCondition == false)
+                    {
+                        <span class="text-danger">غلط</span>
+                    }
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>
+<partial name="PartialViews/Modal" />
+@section Scripts
+{
+    <script>
+        function ShowUser(id) {
+            $.get("/Teacher/Questions/Users/" + id,
+                function(res) {
+                    $("#MyModal").modal();
+                    $("#myModalLabel").text("اطلاعات کاربر");
+                    $("#Modal-body").html(res);
+                });
+        }
+    </script>
+}

@@ -1,0 +1,71 @@
+﻿@model Dr_Hesabi.DataLayers.Entity.Connections
+
+@{
+    ViewData["Title"] = "ارتباط با مدیریت";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 col-xs-12">
+            <div class="Account">
+                <h4>ارتباط با مدیریت</h4>
+                <form method="post" asp-action="Index" asp-controller="Connections">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="CreateDate" />
+                    <input type="hidden" asp-for="UserID" />
+                    <input type="hidden" asp-for="ConnectionID" />
+                    <input type="hidden" asp-for="IsSeen" />
+                    @if (Context.User.Identity.IsAuthenticated)
+                    {
+                        <input type="hidden" asp-for="FullName" />
+                        <input type="hidden" asp-for="EmailorPhone" />
+                    }
+                    <div class="Account_Box">
+                        @if (ViewBag.Status == true)
+                        {
+                            <div class="alert alert-success text-center">
+                                <span>پیام شما با موفقیت ارسال شد.</span>
+                            </div>
+                        }
+                        @if (!Context.User.Identity.IsAuthenticated)
+                        {
+                            <div class="form-group">
+                                <input asp-for="FullName" placeholder="نام کامل" class="form-control" />
+                                <span asp-validation-for="FullName" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <input asp-for="EmailorPhone" placeholder="ایمیل یا تلفن" class="form-control" />
+                                <span asp-validation-for="EmailorPhone" class="text-danger"></span>
+                            </div>
+                        }
+                        <div class="form-group">
+                            <input asp-for="CommentTitle" placeholder="عنوان پیام" class="form-control" />
+                            <span asp-validation-for="CommentTitle" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <textarea asp-for="Comment" placeholder="متن پیام" class="form-control"></textarea>
+                            <span asp-validation-for="Comment" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <div class="g-recaptcha" data-sitekey="6LcUrMoZAAAAAGTfU1jMlJ5QZIBp2RXD-15Y8_fI"></div>
+                            <span>
+                                <span class="text-danger">@ViewBag.MessageError</span>
+                            </span>
+                            <span class="text-success" id="ConnectionsSuccess"></span>
+                            <span class="text-danger" id="ConnectionsDanger"></span>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" class="btn btn-success" value="ارسال پیام" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+@*<partial name="PartialViews/Modal" />*@
+@section Scripts
+{
+    <script src="https://www.google.com/recaptcha/api.js?hl=fa"></script>
+    @*<script src="~/Scripts/Connections.js"></script>*@
+}

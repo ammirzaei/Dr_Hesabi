@@ -1,0 +1,63 @@
+﻿@using Dr_Hesabi.Classes.Class
+@model Dr_Hesabi.DataLayers.Entity.Surveys
+
+@{
+    ViewData["Title"] = "جزئیات نظرسنجی";
+}
+
+<h2>جزئیات نظرسنجی</h2>
+
+<div>
+    <hr />
+    <div class="row">
+        <div class="col-md-12">
+            <div class="Delete">
+                <div>
+                    <span>@Html.LabelFor(s => s.ImageName) : </span>
+                    <span>
+                        <img src="~/Images/Surveys/Surveys_Lists/@Model.ImageName" class="img-thumbnail img-responsive" width="200" height="200" />
+                    </span>
+                </div>
+                <div>
+                    <span>@Html.LabelFor(s => s.Title) : </span>
+                    <span>@Model.Title</span>
+                </div>
+                <div>
+                    <span>@Html.LabelFor(s => s.Description) : </span>
+                    <span>@Model.Description</span>
+                </div>
+                <div>
+                    <span>@Html.LabelFor(s => s.StartDate) : </span>
+                    <span>@Model.StartDate.ToDate()</span>
+                </div>
+                <div>
+                    <span>@Html.LabelFor(s => s.EndDate) : </span>
+                    <span>@Model.EndDate.ToDate()</span>
+                </div>
+                <div>
+                    <span>@Html.LabelFor(s => s.CountStar) : </span>
+                    <span>@Model.CountStar</span>
+                </div>
+                <div>
+                    <span>@Html.LabelFor(s => s.IsActive) : </span>
+                    @if (Model.IsActive)
+                    {
+                        <text>
+                            <span id="success">فعال</span>
+                        </text>
+                    }
+                    else
+                    {
+                        <text>
+                            <span id="danger">غیرفعال</span>
+                        </text>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.SurveyID" class="btn btn-primary">ویرایش</a> |
+    <a asp-action="Index" class="btn btn-info">برگشت</a>
+</div>

@@ -1,0 +1,99 @@
+﻿@using Dr_Hesabi.Classes.Class
+@model IEnumerable<Dr_Hesabi.DataLayers.Entity.Surveys>
+
+@{
+    ViewData["Title"] = "نظرسنجی ها";
+}
+
+<h2>نظرسنجی ها</h2>
+
+<p>
+    <a asp-action="Create" class="btn btn-success">افزودن نظرسنجی</a>
+</p>
+<div>
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.ImageName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Title)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.StartDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.EndDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.IsActive)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.IsPermission)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CountStar)
+                </th>
+                <th>دستورات</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr class="@((item.IsActive&&item.StartDate<=DateTime.Now&&item.EndDate>=DateTime.Now)?"success":"danger")">
+                    <td>
+                        <img src="~/Images/Surveys/Surveys_Lists/@item.ImageName" class="img-thumbnail img-responsive" width="100" height="100" />
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </td>
+                    <td>
+                        @item.StartDate.ToDate()
+                    </td>
+                    <td>
+                        @item.EndDate.ToDate()
+                    </td>
+                    <td>
+                        @if (item.IsActive)
+                        {
+                            <text>
+                                <span class="text-success">فعال</span>
+                            </text>
+                        }
+                        else
+                        {
+                            <text>
+                                <span class="text-danger">غیرفعال</span>
+                            </text>
+                        }
+                    </td>
+                    <td>
+                        @if (item.IsPermission)
+                        {
+                            <text>
+                                <span class="text-success">دارد</span>
+                            </text>
+                        }
+                        else
+                        {
+                            <text>
+                                <span class="text-danger">ندارد</span>
+                            </text>
+                        }
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CountStar)
+                    </td>
+                    <td>
+                        <a asp-action="Index" asp-controller="SurveysQuestions" asp-route-id="@item.SurveyID" class="btn btn-info">سوال ها (@item.SurveysQuestions.Count())</a> |
+                        <a asp-action="Participants" asp-route-id="@item.SurveyID" class="btn btn-success">شرکت کنندگان</a> |
+                        <a asp-action="Edit" asp-route-id="@item.SurveyID" class="btn btn-primary">ویرایش</a> |
+                        <a asp-action="Details" asp-route-id="@item.SurveyID" class="btn btn-warning">جزئیات</a> |
+                        <a asp-action="Delete" asp-route-id="@item.SurveyID" class="btn btn-danger">حذف</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

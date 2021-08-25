@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewData["Title"] = "پروفایل";
+    Layout = "_TeacherLayout";
+}
+
+<h2>پروفایل</h2>
+@if (Boolean.Parse(ViewData["ShowAddProfile"].ToString()))
+{
+    <div class="alert alert-warning text-center">
+        <p>لطفا پروفایل خود را برای تکمیل پرسنل هنرستان ثبت نمایید.  <a class="text-info" asp-action="AddProfile">ثبت پروفایل</a></p>
+    </div>
+}
+else
+{
+    @await Component.InvokeAsync("ShowProfileStaff")
+}
+
+@section Scripts
+{
+    <script src="~/Scripts/HomeIndexTeacher.js"></script>
+}

@@ -1,0 +1,259 @@
+﻿@using Dr_Hesabi.Classes.Class
+@using Dr_Hesabi.DataLayers.Entity
+@model IEnumerable<Dr_Hesabi.DataLayers.Entity.Tests>
+
+@{
+    ViewData["Title"] = "آزمون ها";
+    Layout = "_TeacherLayout";
+}
+<h2>آزمون ها</h2>
+<p>
+    <a asp-action="Create" class="btn btn-success">افزودن آزمون</a>
+</p>
+<div>
+    <table class="table table-bordered table-hover table-responsive">
+        <thead>
+            <tr>
+                @if (bool.Parse(ViewData["IsAdmin"].ToString()) == true)
+                {
+                    <th>
+                        سازنده
+                    </th>
+                }
+                <th>
+                    @Html.DisplayNameFor(model => model.Title)
+                </th>
+                <th>
+                    کلاس های مجاز
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.StartDateTime)
+                </th>
+                <th>
+                    زمان شروع
+                </th>
+                <th>
+                    زمان پایان
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.IsActive)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.IsNegative)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.IsRandom)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.IsUltimate)
+                </th>
+                <th>دستورات</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                @if (item.IsDeleted)
+                {
+                    <tr class="Customdanger">
+                        @if (bool.Parse(ViewData["IsAdmin"].ToString()) == true)
+                        {
+                            <td>
+                                @item.Users.UserName
+                            </td>
+                        }
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Title)
+                        </td>
+                        <td>
+                        </td>
+                        <td>
+                            @item.StartDateTime.ToDate()
+                        </td>
+                        <td>
+                            @item.StartDateTime.ToTime()
+                        </td>
+                        <td>
+                            @item.EndDateTime.ToTime()
+                        </td>
+                        <td>
+                            <span>حذف شده</span>
+                        </td>
+                        <td>
+                            @if (item.IsNegative)
+                            {
+                                <text>
+                                    <span>دارد</span>
+                                </text>
+                            }
+                            else
+                            {
+                                <text>
+                                    <span>ندارد</span>
+                                </text>
+                            }
+                        </td>
+                        <td>
+                            @if (item.IsRandom)
+                            {
+                                <text>
+                                    <span>هست</span>
+                                </text>
+                            }
+                            else
+                            {
+                                <text>
+                                    <span>نیست</span>
+                                </text>
+                            }
+                        </td>
+                        <td>
+                            @if (item.IsUltimate)
+                            {
+                                <text>
+                                    <span>نشان بدهد</span>
+                                </text>
+                            }
+                            else
+                            {
+                                <text>
+                                    <span>نشان ندهد</span>
+                                </text>
+                            }
+                        </td>
+                        <td>
+                            @if (item.TestsUltimate.Any())
+                            {
+                                <text>
+                                    <a asp-action="ListParticipant" asp-route-id="@item.TestID" class="btn btn-info">شرکت کنندگان (@item.TestsUltimate.Count())</a>
+                                </text>
+                            }
+                            <a asp-action="Delete" asp-route-id="@item.TestID" class="btn btn-warning">حذف کامل</a>
+                        </td>
+
+                    </tr>
+                }
+                else
+                {
+                    <input type="hidden" value="@ViewData["Domain"]" id="MyDomain" />
+                    <tr class="@((item.IsActive&&item.StartDateTime<=DateTime.Now&&item.EndDateTime>=DateTime.Now)?"success":"danger")">
+                        @if (bool.Parse(ViewData["IsAdmin"].ToString()) == true)
+                        {
+                            <td>
+                                @item.Users.UserName
+                            </td>
+                        }
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Title)
+                        </td>
+                        <td>
+                            @string.Join(" , ", item.TestClasses.Select(s => s.Class.ToString()))
+                        </td>
+                        <td>
+                            @item.StartDateTime.ToDate()
+                        </td>
+                        <td>
+                            @item.StartDateTime.ToTime()
+                        </td>
+                        <td>
+                            @item.EndDateTime.ToTime()
+                        </td>
+                        <td>
+                            @if (item.IsActive)
+                            {
+                                <text>
+                                    <span class="text-success">فعال</span>
+                                </text>
+                            }
+                            else
+                            {
+                                <text>
+                                    <span class="text-danger">غیرفعال</span>
+                                </text>
+                            }
+                        </td>
+                        <td>
+                            @if (item.IsNegative)
+                            {
+                                <text>
+                                    <span class="text-success">
+                                        <i class="mdi mdi-24px mdi-check"></i>
+                                    </span>
+                                </text>
+                            }
+                            else
+                            {
+                                <text>
+                                    <span class="text-danger">
+                                        <i class="mdi mdi-24px mdi-close"></i>
+                                    </span>
+                                </text>
+                            }
+                        </td>
+                        <td>
+                            @if (item.IsRandom)
+                            {
+                                <text>
+                                    <span class="text-success">
+                                        <i class="mdi mdi-24px mdi-check"></i>
+                                    </span>
+                                </text>
+                            }
+                            else
+                            {
+                                <text>
+                                    <span class="text-danger">
+                                        <i class="mdi mdi-24px mdi-close"></i>
+                                    </span>
+                                </text>
+                            }
+                        </td>
+                        <td>
+                            @if (item.IsUltimate)
+                            {
+                                <text>
+                                    <span class="text-success">
+                                        <i class="mdi mdi-24px mdi-check"></i>
+                                    </span>
+                                </text>
+                            }
+                            else
+                            {
+                                <text>
+                                    <span class="text-danger">
+                                        <i class="mdi mdi-24px mdi-close"></i>
+                                    </span>
+                                </text>
+                            }
+                        </td>
+                        <td>
+                            <input type="text" class="Link" id="TestLink_@item.TestID" />
+                            @if (item.IsActive)
+                            {
+                                <text>
+                                    <a onclick="CopyLink('@item.TestID','@item.Title')" class="btn btn-default">کپی لینک شروع آزمون</a>
+                                </text>
+                            }
+                            <a asp-action="Requests" asp-controller="Tests" asp-route-id="@item.TestID" class="btn btn-success">درخواست ها (@item.TestRequests.Where(s => s.UserID != item.UserID).Count())</a> |
+                            <a asp-action="Index" asp-controller="Questions" asp-route-id="@item.TestID" class="btn btn-info">سوالات (@item.Questions.Count())</a> |
+                            @if (item.TestsUltimate.Any())
+                            {
+                                <text>
+                                    <a asp-action="ListParticipant" asp-route-id="@item.TestID" class="btn btn-success">شرکت کنندگان (@item.TestsUltimate.Where(s => s.UserID != item.UserID).Count())</a> |
+                                </text>
+                            }
+                            <a asp-action="Edit" asp-route-id="@item.TestID" class="btn btn-primary">ویرایش</a> |
+                            <a asp-action="Details" asp-route-id="@item.TestID" class="btn btn-warning">جزئیات</a> |
+                            <a asp-action="Delete" asp-route-id="@item.TestID" class="btn btn-danger">حذف</a>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>
+
+@section Scripts
+{
+    <script src="~/Scripts/TestIndexTeacher.js"></script>
+}

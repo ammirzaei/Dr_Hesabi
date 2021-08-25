@@ -1,0 +1,37 @@
+﻿@model IEnumerable<Dr_Hesabi.Classes.ViewModel.GetAllStaffsViewModel>
+@{
+    ViewData["Title"] = "پرسنل هنرستان";
+}
+
+@foreach (var item in Model.Where(s => s.ParentID == null))
+{
+    <div class="Panel_TitleMain">
+        <div class="row">
+            <div class="Panel_Line"></div>
+            <div class="Panel_Title">
+                <h4>@item.Title</h4>
+            </div>
+        </div>
+    </div>
+    <div id="Panel">
+        <div class="container">
+            <div class="row">
+                @foreach (var sub in Model.Where(s => s.ParentID == item.StaffID))
+                {
+                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                        <div class="Box">
+                            <div class="Box_Img">
+                                <a href="@Url.Action("ShowStaff","Panel",new{id=sub.StaffID,title=sub.Title})">
+                                    <img src="~/Images/Staffs/@sub.ImageName" alt="@sub.Title" title="@sub.Title" loading="lazy">
+                                </a>
+                            </div>
+                            <div class="Box_Title">
+                                <a href="@Url.Action("ShowStaff","Panel",new{id=sub.StaffID,title=sub.Title})">@sub.Title</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+}

@@ -1,0 +1,13 @@
+﻿@{
+    ViewData["Title"] = "لیست پاسخ های تشریحی";
+    Layout = "_TeacherLayout";
+}
+
+<div id="ListReplyDescriptive">
+    @await Component.InvokeAsync("ListReplyDescriptive", new { id = ViewData["ID"] })
+</div>
+<partial name="PartialViews/Modal" />
+@section Scripts
+{
+    <script src="~/Scripts/ListReplyDescriptives.js"></script>
+}

@@ -1,0 +1,13 @@
+﻿<div class="row">
+    <div class="border-bottom-box panel-profile">
+        @if (ViewData["Avatar"].ToString() != "")
+        {
+            <img src="~/Images/Staffs/@ViewData["Avatar"]" alt="@User.Identity.Name" id="Img-Profile" class="img-responsive">
+        }
+        else
+        {
+            <img src="~/Admin/Img/images.png" alt="@User.Identity.Name" id="Img-Profile" class="img-responsive">
+        }
+        <span id="Name-Profile">@User.Identity.Name خوش آمدید</span>
+    </div>
+</div>

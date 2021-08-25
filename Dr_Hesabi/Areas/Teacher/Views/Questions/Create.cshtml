@@ -1,0 +1,55 @@
+﻿@model Dr_Hesabi.DataLayers.Entity.Questions
+
+<div class="row">
+    <div class="col-md-12">
+        <form asp-action="Create" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="TestID" />
+            <div class="form-group">
+                <label asp-for="Method" class="control-label"></label>
+                <select class="form-control" name="Method">
+                    <option name="Method">گزینه ای</option>
+                    <option name="Method">تشریحی</option>
+                </select>
+                <span asp-validation-for="Method" class="text-danger"></span>
+            </div>
+            <div id="Descritive">
+                <div class="form-group">
+                    <label class="control-label">نوع دریافت پاسخ</label>
+                    <div class="checkbox">
+                        <label>
+                            <input name="MethodInput" type="radio" value="وارد کردن متن"/> <span>وارد کردن متن</span>
+                        </label>
+                        <label>
+                            <input type="radio" name="MethodInput" value="آپلود تصویر"/> <span>آپلود تصویر</span>
+                        </label>
+                    </div>
+                    <span id="ErrorMethodInput" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="Title" class="control-label"></label>
+                <textarea asp-for="Title" class="form-control"></textarea>
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Score" class="control-label"></label>
+                <input name="Score" class="form-control" type="text" id="Score"/>
+                <span asp-validation-for="Score" id="ErrorScore" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ImageName" class="control-label"></label>
+                <input type="file" asp-for="ImageName" id="ImageName" class="form-control" />
+                <span asp-validation-for="ImageName" class="text-danger"></span>
+                <img class="img-responsive img-thumbnail" id="ShowImg" style="max-width: 250px;max-height: 200px" />
+            </div>
+            <div class="form-group">
+                <input type="submit" value="افزودن" class="btn btn-success" />
+            </div>
+        </form>
+    </div>
+</div>
+@{ await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+<script src="~/Scripts/CreateSliders.js"></script>
+<script src="~/Public/CheckBox/js/icheck.js"></script>
+<script src="~/Scripts/CreateQuestion.js"></script>

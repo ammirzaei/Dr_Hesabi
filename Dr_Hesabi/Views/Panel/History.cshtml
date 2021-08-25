@@ -1,0 +1,30 @@
+﻿@{
+    ViewData["Title"] = "تاریخچه هنرستان";
+}
+<div class="container">
+    <div class="View">
+        <div class="View-Title">
+            <h3>تاریخچه هنرستان</h3>
+            <div class="Navigation">
+                <ul>
+                    <li>
+                        <a href="/">هنرستان دکتر حسابی</a> /
+                    </li>
+                    <li>
+                        <a href="">تاریخچه هنرستان</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="View-Body">
+            <div class="ViewBody-Top">
+                <img src="~/Images/Setting/@ViewData["ImgHistory"]" alt="تاریخچه هنرستان فنی پسرانه دولتی دکتر حسابی" title="تاریخچه هنرستان فنی پسرانه دولتی دکتر حسابی" loading="lazy">
+            </div>
+            <div class="ViewBody-Main">
+                <p>
+                    @ViewData["History"]
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

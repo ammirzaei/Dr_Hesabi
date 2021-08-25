@@ -1,0 +1,19 @@
+﻿@model Dr_Hesabi.DataLayers.Entity.ProfileStaffs
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="profile-staff">
+            <div class="profile-staff-title">
+                <h5>
+                    <a asp-action="EditProfile">ویرایش پروفایل</a>
+                </h5>
+                <h3>@Model.Title</h3>
+                <img src="~/Images/Staffs/@Model.ImageName" width="150" height="150" class="img-responsive" />
+                <span>@ViewData["Staff"]</span>
+            </div>
+            <div class="profile-staff-description">
+                <p>@Html.Raw(Model.Description)</p>
+            </div>
+        </div>
+    </div>
+</div>

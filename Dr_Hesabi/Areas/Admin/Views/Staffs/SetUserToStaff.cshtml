@@ -1,0 +1,42 @@
+﻿@model IEnumerable<Dr_Hesabi.Classes.ViewModel.AdminViewModel.SetUserToStaffViewModel>
+
+@if (Model.Any())
+{
+    <form asp-action="SetUserToStaff" method="post" data-ajax="true" data-ajax-update="#ListStaffs" data-ajax-success="onSuccess" data-ajax-filure="onSuccess">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="Delete">
+                    <div>
+                        <span>نام و نام خانوادگی : </span>
+                        <span>
+                            @ViewData["fullName"]
+                        </span>
+                    </div>
+                    <div>
+                        <span>کاربر : </span>
+                        <span>
+                            <div class="checkbox">
+                                @foreach (var item in Model)
+                                {
+                                    <label>
+                                        <input required type="radio" name="UserID" value="@item.UserID" /> <span> @item.UserName </span>
+                                    </label>
+                                }
+                            </div>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br />
+        <input type="submit" value="ذخیره" class="btn btn-success" />
+    </form>
+
+}
+else
+{
+    <div class="alert alert-warning text-center">
+        <span>کاربری وجود ندارد.</span>
+    </div>
+}
+<script src="~/Public/CheckBox/js/icheck.js"></script>

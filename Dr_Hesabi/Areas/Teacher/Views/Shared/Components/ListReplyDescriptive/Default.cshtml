@@ -1,0 +1,75 @@
+﻿@using Dr_Hesabi.Classes.Class
+@model IEnumerable<Dr_Hesabi.DataLayers.Entity.ReplyDescriptives>
+
+<h2 class="title-document">لیست پاسخ های تشریحی @ViewData["QuestionTitle"]</h2>
+<p>
+    <a class="btn btn-info" asp-action="Index" asp-controller="Questions" asp-route-id="@ViewData["TestID"]">برگشت</a>
+</p>
+<div>
+    <table class="table table-bordered table-hover table-responsive">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.QuestionReplys.Users.ProfileStudents.FullName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Text)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.QuestionReplys.DateTime)
+                </th>
+                <th>
+                    وضعیت پاسخ
+                </th>
+                <th>تغییر وضعیت</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr class="@((item.IsCondition==true)?"success":"") @((item.IsCondition==false)?"danger":"") @((item.IsCondition==null)?"warning":"")">
+                    <td>
+                        @if (item.QuestionReplys.Users.ProfileStudents != null)
+                        {
+                            <a onclick="ShowUser('@item.QuestionReplys.UserID')">@item.QuestionReplys.Users.ProfileStudents.FullName</a>
+                        }
+                        else
+                        {
+                            <span>-</span>
+                        }
+                    </td>
+                    <td>
+                        @if (item.QuestionReplys.Questions.MethodInput.Contains("آپلود تصویر"))
+                        {
+                            <img src="~/Images/Replys/Thumb/@item.ImageName" width="150" height="150" class="img-thumbnail img-responsive" />
+                        }
+                        else
+                        {
+                            @Html.DisplayFor(modelItem => item.Text)
+                        }
+                    </td>
+                    <td>
+                        @item.QuestionReplys.DateTime.ToDateTime()
+                    </td>
+                    <td>
+                        @if (item.IsCondition == true)
+                        {
+                            <span class="text-success">صحیح</span>
+                        }
+                        @if (item.IsCondition == false)
+                        {
+                            <span class="text-danger">غلط</span>
+                        }
+                        @if (item.IsCondition == null)
+                        {
+                            <span class="text-warning">در انتظار</span>
+                        }
+                    </td>
+                    <td>
+                        <a onclick="ChangeCondition('@item.DescriptiveID')" class="btn btn-primary">تغییر وضعیت</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

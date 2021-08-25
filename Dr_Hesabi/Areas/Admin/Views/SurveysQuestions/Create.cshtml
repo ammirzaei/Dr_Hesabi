@@ -1,0 +1,32 @@
+﻿@model Dr_Hesabi.DataLayers.Entity.SurveysQuestions
+
+
+<div class="row">
+    <div class="col-md-12">
+        <form asp-action="Create" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="SurveyID" />
+            <input type="hidden" asp-for="SumVote" />
+
+            <div class="form-group">
+                <label asp-for="Title" class="control-label"></label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ImageName" class="control-label"></label>
+                <input type="file" asp-for="ImageName" class="form-control" />
+                <span asp-validation-for="ImageName" class="text-danger"></span>
+                <img class="img-responsive img-thumbnail" id="ShowImg" style="max-width: 300px;max-height: 200px" />
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="افزودن" class="btn btn-success" />
+            </div>
+        </form>
+    </div>
+</div>
+@{ await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+<script src="~/Scripts/CreateSliders.js"></script>
+
+

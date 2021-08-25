@@ -1,0 +1,16 @@
+﻿<div class="Account">
+    <ul>
+        <a href="@Url.Action("Index","Dashboard")"><li class="@((Context.Request.Path.Value.Contains("AddInfo")||Context.Request.Path.Value.Contains("EditInfo")||Context.Request.Path.Value=="/Dashboard"||Context.Request.Path.Value.Contains("RequestProfile"))?"active":"")">پروفایل من</li></a>
+        <a href="@Url.Action("ChangePassword", "Account")"><li class="@((Context.Request.Path.Value.Contains("ChangePassword"))?"active":"")">تغییر رمز عبور</li></a>
+        <a href="@Url.Action("ChangeUserName", "Account")"><li class="@((Context.Request.Path.Value.Contains("ChangeUserName"))?"active":"")">تغییر نام کاربری</li></a>
+        <a href="@Url.Action("ShowTestUltimate", "Dashboard")"><li class="@((Context.Request.Path.Value.Contains("TestsUltimate"))?"active":"")">آزمون های من</li></a>
+        @if (Context.User.Claims.FirstOrDefault(s => s.Type.Contains("Role")).Value.Contains("Teacher"))
+        {
+            <a href="@Url.Action("Guide", "Dashboard")"><li class="@((Context.Request.Path.Value.Contains("Guide"))?"active":"")">راهنما و نکات</li></a>
+        }
+        else
+        {
+            <a href="@Url.Action("Guide", "Dashboard")"><li class="@((Context.Request.Path.Value.Contains("Guide"))?"active":"")">راهنما و نکات</li></a>
+        }
+    </ul>
+</div>

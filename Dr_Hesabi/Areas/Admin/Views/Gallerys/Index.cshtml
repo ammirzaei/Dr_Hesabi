@@ -1,0 +1,55 @@
+﻿@using Dr_Hesabi.Classes.Class
+@model IEnumerable<Dr_Hesabi.DataLayers.Entity.Gallerys>
+
+@{
+    ViewData["Title"] = "گالری تصاویر";
+}
+
+<h2> گالری تصاویر</h2>
+<p>
+    <a onclick="Create('')" class="btn btn-success">افزودن گالری</a>
+</p>
+<div>
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.ImageName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Title)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DateTime)
+                </th>
+                <th>دستورات</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Where(s => s.ParentID == null))
+            {
+                <tr>
+                    <td>
+                        <img src="~/Images/Gallerys/Gallery_Lists/@item.ImageName" width="100" height="100" class="img-responsive img-thumbnail" />
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </td>
+                    <td>
+                        @item.DateTime.ToDate()
+                    </td>
+                    <td>
+                        <a asp-action="IndexItem" asp-route-id="@item.GalleryID" class="btn btn-info">تصاویر (@item.Gallery1.Count())</a> |
+                        <a onclick="Edit('@item.GalleryID')" class="btn btn-primary">ویرایش</a> |
+                        <a onclick="Delete('@item.GalleryID')" class="btn btn-danger">حذف</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<partial name="PartialViews/Modal" />
+@section Scripts
+{
+    <script src="~/Scripts/Gallerys.js"></script>
+}

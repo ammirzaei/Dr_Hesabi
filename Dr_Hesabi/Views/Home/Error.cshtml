@@ -1,0 +1,39 @@
+﻿@model ErrorViewModel
+@{
+    ViewData["Title"] = "مشکلی پیش آمده است";
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مشکلی پیش آمده است</title>
+    <link href="~/Public/Css/bootstrap-rtl.css" rel="stylesheet" />
+    <link href="~/Default/Css/StyleNotFound.css" rel="stylesheet" />
+</head>
+
+<body class="bg-yellow">
+    <div class="container">
+        <div id="Main">
+            <div class="row">
+                <div class="col-md-12">
+                    <div id="ErrorImg">
+                        <img src="~/Default/Img/Untitled-3.png" alt="صفحه 500">
+                    </div>
+                    <div id="NotfoundLink">
+                        <a href="/" class="btn">صفحه اصلی</a>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="NotFoundTitle">
+                        <span>مشکلی پیش آمده است لطفا این مشکل را گزارش کنید</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

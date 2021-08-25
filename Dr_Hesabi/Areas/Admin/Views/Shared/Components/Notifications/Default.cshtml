@@ -1,0 +1,33 @@
+﻿@using Dr_Hesabi.Classes.Class
+@model Tuple<IEnumerable<Dr_Hesabi.DataLayers.Entity.Connections>,int>
+
+<div class="Notification">
+    <h4> @Model.Item1.Count() پیام جدید <i class="mdi mdi-chevron-down"></i> </h4>
+    <ul>
+        @if (Model.Item1.Any())
+        {
+            <li>
+                <a href="@Url.Action("Index","Connections")">نمایش همه پیام ها (@Model.Item2)</a>
+            </li>
+            @foreach (var item in Model.Item1)
+            {
+                <li>
+                    @if (item.UserID == null)
+                    {
+                        <a href="@Url.Action("ShowComment","Connections",new{id=item.ConnectionID})">ارسال شده توسط @item.FullName در تاریخ @item.CreateDate.ToDate()</a>
+                    }
+                    else
+                    {
+                        <a href="@Url.Action("ShowComment","Connections",new{id=item.ConnectionID})">ارسال شده توسط @item.Users.UserName در تاریخ @item.CreateDate.ToDate()</a>
+                    }
+                </li>
+            }
+        }
+        else
+        {
+            <li>
+                <a href="@Url.Action("Index","Connections")">نمایش همه پیام ها (@Model.Item2)</a>
+            </li>
+        }
+    </ul>
+</div>

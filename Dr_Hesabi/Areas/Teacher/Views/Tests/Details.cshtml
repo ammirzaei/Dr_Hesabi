@@ -1,0 +1,108 @@
+﻿@using Dr_Hesabi.Classes.Class
+@model Dr_Hesabi.DataLayers.Entity.Tests
+
+@{
+    ViewData["Title"] = "جزئیات آزمون";
+    Layout = "_TeacherLayout";
+}
+<h2>جزئیات آزمون</h2>
+<div>
+    <hr />
+    <div class="row">
+        <div class="col-md-12">
+            <div class="Delete">
+                <div>
+                    <span>@Html.LabelFor(s => s.Title) : </span>
+                    <span>@Model.Title</span>
+                </div>
+                <div>
+                    <span>@Html.LabelFor(s => s.Description) : </span>
+                    <span>@Model.Description</span>
+                </div>
+                <div>
+                    @{
+                        List<string> Classes = ViewData["Classes"] as List<string>;
+                    }
+                    <span>کلاس های مجاز : </span>
+                    <span>@string.Join(" , ", Classes)</span>
+                </div>
+                <div>
+                    <span>@Html.LabelFor(s => s.StartDateTime) : </span>
+                    <span>@Model.StartDateTime.ToDate()</span>
+                </div>
+                <div>
+                    <span>زمان شروع : </span>
+                    <span>@Model.StartDateTime.ToTime()</span>
+                </div>
+                <div>
+                    <span>زمان پایان : </span>
+                    <span>@Model.EndDateTime.ToTime()</span>
+                </div>
+                <div>
+                    <span>@Html.LabelFor(s => s.IsActive) : </span>
+                    @if (Model.IsActive)
+                    {
+                        <text>
+                            <span id="success">فعال</span>
+                        </text>
+                    }
+                    else
+                    {
+                        <text>
+                            <span id="danger">غیرفعال</span>
+                        </text>
+                    }
+                </div>
+                <div>
+                    <span>@Html.LabelFor(s => s.IsNegative) : </span>
+                    @if (Model.IsNegative)
+                    {
+                        <text>
+                            <span id="success">دارد</span>
+                        </text>
+                    }
+                    else
+                    {
+                        <text>
+                            <span id="danger">ندارد</span>
+                        </text>
+                    }
+                </div>
+                <div>
+                    <span>@Html.LabelFor(s => s.IsRandom) : </span>
+                    @if (Model.IsRandom)
+                    {
+                        <text>
+                            <span id="success">هست</span>
+                        </text>
+                    }
+                    else
+                    {
+                        <text>
+                            <span id="danger">نیست</span>
+                        </text>
+                    }
+                </div>
+                <div>
+                    <span>@Html.LabelFor(s => s.IsUltimate) : </span>
+                    @if (Model.IsUltimate)
+                    {
+                        <text>
+                            <span id="success">نشان بدهد</span>
+                        </text>
+                    }
+                    else
+                    {
+                        <text>
+                            <span id="danger">نشان ندهد</span>
+                        </text>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.TestID" class="btn btn-primary">ویرایش</a> |
+    <a asp-action="Index" class="btn btn-info">برگشت</a>
+</div>

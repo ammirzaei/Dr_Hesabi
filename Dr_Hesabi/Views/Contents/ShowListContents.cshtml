@@ -1,0 +1,43 @@
+﻿@model IEnumerable<Dr_Hesabi.DataLayers.Entity.Contents>
+
+@{
+    ViewData["Title"] = "زیر مجموعه های " + ViewData["ContentTitle"];
+}
+<div class="Panel_TitleMain">
+    <div class="row">
+        <div class="Panel_Line"></div>
+        <div class="Panel_Title">
+            <h4>زیر مجموعه های @ViewData["ContentTitle"]</h4>
+        </div>
+    </div>
+</div>
+<div id="Panel">
+    <div class="container">
+        <div class="row">
+            @if (Model.Any())
+            {
+                @foreach (var item in Model)
+                {
+                    <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                        <div class="Box">
+                            <div class="Box_Img">
+                                <a href="@Url.Action("ShowListContents","Contents",new{majorTitle=ViewData["MajorTitle"] + "Dr",contentID=item.ContentID})">
+                                    <img src="~/Images/Contents/@item.ImageName" alt="@item.Title" title="@item.Title" loading="lazy">
+                                </a>
+                            </div>
+                            <div class="Box_Title">
+                                <a href="@Url.Action("ShowListContents","Contents",new{majorTitle=ViewData["MajorTitle"] + "Dr",contentID=item.ContentID})">@item.Title</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+            else
+            {
+                <div class="alert alert-warning text-center">
+                    <span>زیر مجموعه ای وجود ندارد.</span>
+                </div>
+            }
+        </div>
+    </div>
+</div>

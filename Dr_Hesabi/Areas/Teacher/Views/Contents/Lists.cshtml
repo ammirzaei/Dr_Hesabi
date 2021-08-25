@@ -1,0 +1,73 @@
+﻿@using Dr_Hesabi.Classes.ViewModel
+@model IEnumerable<Dr_Hesabi.DataLayers.Entity.Contents>
+
+@{
+    ListsContentsViewModel ListsModel = ViewData["ListModel"] as ListsContentsViewModel;
+    ViewData["Title"] = "زیر مجموعه های " + ListsModel.ContentTitle;
+    Layout = "_TeacherLayout";
+}
+
+<h2>زیر مجموعه های @ListsModel.ContentTitle</h2>
+
+<p>
+    <a class="btn btn-success" onclick="CreareParent('@ListsModel.MajorID','@ListsModel.ContentID')">افزودن مجموعه</a> |
+    <a class="btn btn-success" asp-action="CreateChild" asp-route-id="@ListsModel.MajorID" asp-route-parentID="@ListsModel.ContentID">افزودن عضو</a> |
+    @if (ListsModel.ContentParentID == null)
+    {
+        <a class="btn btn-info" asp-action="Index" asp-route-id="@ListsModel.MajorID">برگشت</a>
+    }
+    else
+    {
+        <a class="btn btn-info" asp-action="Lists" asp-route-id="@ListsModel.ContentParentID">برگشت</a>
+    }
+
+</p>
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ImageName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>دستورات</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <img src="~/Images/Contents/@item.ImageName" width="120" height="120" class="img-thumbnail img-responsive" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @if (item.Description == null)
+                    {
+                        <text>
+                            <a asp-action="Lists" asp-route-id="@item.ContentID" class="btn btn-warning">زیرمجموعه ها (@item.Contents2.Count())</a> |
+                            <a onclick="EditParent('@item.ContentID')" class="btn btn-primary">ویرایش</a> |
+                            <a onclick="DeleteParent('@item.ContentID')" class="btn btn-danger">حذف</a>
+                        </text>
+                    }
+                    else
+                    {
+                        <text>
+                            <a asp-action="EditChild" asp-route-id="@item.ContentID" class="btn btn-primary">ویرایش</a> |
+                            <a asp-action="DetailsChild" asp-route-id="@item.ContentID" class="btn btn-warning">جزئیات</a> |
+                            <a asp-action="DeleteChild" asp-route-id="@item.ContentID" class="btn btn-danger">حذف</a>
+                        </text>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<partial name="PartialViews/Modal" />
+@section Scripts
+{
+    <script src="~/Scripts/ContentsIndex.js"></script>
+}

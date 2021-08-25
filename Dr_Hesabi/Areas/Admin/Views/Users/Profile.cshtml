@@ -1,0 +1,41 @@
+﻿@using Dr_Hesabi.Classes.Class
+@model Dr_Hesabi.DataLayers.Entity.Users
+
+@if (Model.ProfileStudents != null)
+{
+    <div class="User">
+        <div class="row">
+            <div class="col-md-12 col-xs-12">
+                <span>نام کاربری : @Model.UserName</span>
+            </div> 
+            <div class="col-md-12 col-xs-12">
+                <span>نام و نام خانوادگی : @Model.ProfileStudents.FullName</span>
+            </div>
+            <div class="col-md-6 col-xs-12">
+                <span>کد ملی : @Model.ProfileStudents.CodeMeli</span>
+            </div>
+            <div class="col-md-6 col-xs-12">
+                <span>کد کلاس : @Model.ProfileStudents.CodeClass</span>
+            </div>
+            <div class="col-md-6 col-xs-12">
+                <span>تاریخ ثبت نام : @Model.Date.ToDateTime()</span>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <div class="User">
+        <div class="row">
+            <div class="col-md-12 col-xs-12">
+                <span>نام کاربری : @Model.UserName</span>
+            </div> 
+            <div class="col-md-12 col-xs-12">
+                <span>ایمیل : @Model.Email</span>
+            </div>
+            <div class="col-md-6 col-xs-12">
+                <span>تاریخ ثبت نام : @Model.Date.ToDateTime()</span>
+            </div>
+        </div>
+    </div>
+}

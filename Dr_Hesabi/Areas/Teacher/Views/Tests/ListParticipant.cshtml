@@ -1,0 +1,62 @@
+﻿@model IEnumerable<Dr_Hesabi.Classes.ViewModel.GetAllParticipantTest>
+@{
+    ViewData["Title"] = " لیست شرکت کنندگان " + ViewData["TestTitle"];
+    Layout = "_TeacherLayout";
+}
+
+<h2>لیست شرکت کنندگان @ViewData["TestTitle"]</h2>
+<p>
+    <a asp-action="PageReportTest" asp-route-id="@ViewData["TestID"]" class="btn btn-warning">گزارش</a> |
+    <a class="btn btn-info" asp-action="Index">برگشت</a>
+</p>
+<div>
+    <div class="sum-detail">
+        <span>تعداد شرکت کنندگان : @Model.Count()</span>
+    </div>
+    <table class="table table-bordered table-hover table-responsive">
+        <thead>
+            <tr>
+                <th>
+                    نام و نام خانوادگی
+                </th>
+
+                <th>
+                    شماره کلاس
+                </th>
+                <th>
+                    نمره نهایی
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        <a onclick="ShowUser('@item.UserID')">@item.FullName</a>
+                    </td>
+                    <td>
+                        @item.CodeClass
+                    </td>
+                    <td>
+                        @item.Score
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<partial name="PartialViews/Modal" />
+@section Scripts
+{
+    <script>
+        function ShowUser(id) {
+            $.get("/Teacher/Tests/Users/" + id,
+                function (res) {
+                    $("#MyModal").modal();
+                    $("#myModalLabel").text("اطلاعات کاربر");
+                    $("#Modal-body").html(res);
+                });
+        }
+    </script>
+}

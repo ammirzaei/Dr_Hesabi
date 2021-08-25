@@ -1,0 +1,52 @@
+﻿@model Dr_Hesabi.DataLayers.Entity.Bests
+
+<h2>آیا از این حذف مطمئن هستید؟</h2>
+<div>
+   <hr />
+   <div class="row">
+       <div class="col-md-12">
+           <div class="Delete">
+               <div>
+                   <span>تصویر : </span>
+                   <span>
+                       @if (Model.ParentID==null)
+                       {
+                           <img src="~/Images/Bests/Best_Lists/@Model.ImageName" class="img-responsive img-thumbnail" width="150" height="150"/>  
+                       }
+                       else
+                       {
+                           <img src="~/Images/Bests/Best_Items/@Model.ImageName" class="img-responsive img-thumbnail" width="150" height="150"/>
+                       }
+                   </span>
+               </div>
+               <div>
+                   <span>عنوان : </span>
+                   <span>@Model.Title</span>
+               </div>
+               <div>
+                   <span>توضیحات : </span>
+                   <span>@Model.Description</span>
+               </div>
+               <div>
+                   <span>وضعیت : </span>
+                   @if (Model.IsActive)
+                   {
+                       <text>
+                           <span id="success">فعال</span>
+                       </text>
+                   }
+                   else
+                   {
+                       <text>
+                           <span id="danger">غیرفعال</span>
+                       </text>
+                   }
+               </div>
+           </div>
+       </div>
+   </div>
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="BestID" />
+        <input type="submit" value="حذف" class="btn btn-danger" /> 
+    </form>
+</div>

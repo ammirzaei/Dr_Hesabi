@@ -1,0 +1,44 @@
+﻿@model IEnumerable<Dr_Hesabi.DataLayers.Entity.Gallerys>
+@{
+    ViewData["Title"] = ViewData["GalleryTitle"];
+    ViewData["Description"] = ViewData["GalleryTitle"];
+}
+<link href="~/Default/Gallery/css/grid-gallery.min.css" rel="stylesheet" />
+
+<div class="Panel_TitleMain">
+    <div class="row">
+        <div class="Panel_Line"></div>
+        <div class="Panel_Title">
+            <h4>@ViewData["GalleryTitle"]</h4>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div id="Gallerys">
+        @if (Model.Any())
+        {
+            <div id="gg-screen"></div>
+            <div class="gg-box">
+                @foreach (var item in Model)
+                {
+                    <div class="gg-element">
+                        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+                            <img src="~/Images/Gallerys/Gallery_Items/@item.ImageName" title="@item.Title" alt="@item.Title" loading="lazy"/>
+                        </div>
+                    </div>
+                }
+            </div>
+        }
+        else
+        {
+            <div class="alert alert-warning text-center">
+                عکسی در این گالری موجود نیست
+            </div>
+        }
+    </div>
+</div>
+
+@section Scripts
+{
+    <script src="~/Default/Gallery/js/grid-gallery.min.js"></script>
+}

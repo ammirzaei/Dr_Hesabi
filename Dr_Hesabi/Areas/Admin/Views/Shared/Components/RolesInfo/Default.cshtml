@@ -1,0 +1,36 @@
+﻿<canvas id="CanvansRolesInfo" width="400" height="200"></canvas>
+<script>
+    var Labels=@Html.Raw(Json.Serialize(ViewData["Labels"]));
+    var Values=@Html.Raw(Json.Serialize(ViewData["Values"]));
+    var ctx = document.getElementById('CanvansRolesInfo').getContext('2d');
+    var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: Labels,
+            datasets: [{
+                label: 'تعداد',
+                data: Values,
+                backgroundColor: [
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(255, 206, 86, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(255, 206, 86, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+</script>

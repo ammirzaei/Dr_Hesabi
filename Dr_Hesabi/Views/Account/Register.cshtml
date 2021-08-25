@@ -1,0 +1,76 @@
+﻿@model Dr_Hesabi.Classes.ViewModel.RegisterViewModel
+
+@{
+    ViewData["Title"] = "ثبت نام در سایت";
+}
+
+<form asp-action="Register">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-xs-12">
+                <div class="Account">
+                    <h4>ثبت نام در سایت</h4>
+                    <div class="Account_Box">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        @if (ViewBag.SuccessRegister == true)
+                        {
+                            <div class="alert alert-success text-center">
+                                <p>ثبت نام شما با موفقیت انجام شد.</p>
+                                <p>جهت فعالسازی اکانت کاربری خود به ایمیل وارد شده مراجعه کنید.</p>
+                            </div>
+                        }
+                        <div class="form-group">
+                            <div class="input-group">
+                                <i class="mdi mdi-account input-group-addon" id="basic-addon1"></i>
+                                <input asp-for="UserName" class="form-control" placeholder="نام کاربری" aria-describedby="basic-addon1" />
+                            </div>
+                            <span asp-validation-for="UserName" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <i class="mdi mdi-email input-group-addon" id="basic-addon2"></i>
+                                <input asp-for="Email" class="form-control" placeholder="ایمیل" aria-describedby="basic-addon2" />
+                            </div>
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <i class="mdi mdi-lock input-group-addon" id="basic-addon3"></i>
+                                <input asp-for="Password" class="form-control" placeholder="رمز عبور" aria-describedby="basic-addon3" />
+                            </div>
+                            <span asp-validation-for="Password" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <i class="mdi mdi-lock input-group-addon" id="basic-addon4"></i>
+                                <input asp-for="RePassword" class="form-control" placeholder="تکرار رمز عبور" aria-describedby="basic-addon4" />
+                            </div>
+                            <span asp-validation-for="RePassword" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <div class="g-recaptcha" data-sitekey="6LcUrMoZAAAAAGTfU1jMlJ5QZIBp2RXD-15Y8_fI"></div>
+                            <span>
+                                <span class="text-danger">@ViewBag.MessageError</span>
+                            </span>
+                        </div>
+                        <div class="form-group">
+                            <div>
+                                <input type="submit" value="ثبت نام در سایت" class="btn btn-success" />
+                            </div>
+                        </div>
+                        <div class="Account_Link">
+                            <div class="form-group">
+                                <a href="@Url.Action("Login","Account")"><i class="mdi mdi-account"></i> قبلا ثبت نام کرده ام</a>
+                                <a href="@Url.Action("ForgetPassword", "Account")"><i class="mdi mdi-lock"></i> رمز عبور خود را فراموش کرده ام</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+@section Scripts
+{
+    <script src="https://www.google.com/recaptcha/api.js?hl=fa"></script>
+}

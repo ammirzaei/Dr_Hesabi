@@ -1,0 +1,49 @@
+﻿@model IEnumerable<Dr_Hesabi.DataLayers.Entity.Contents>
+
+@{
+    ViewData["Title"] = "محتوا های " + ViewData["MajorTitle"];
+    Layout = "_TeacherLayout";
+}
+
+<h2>محتوا های @ViewData["MajorTitle"]</h2>
+
+<p>
+    <a class="btn btn-success" onclick="CreareParent('@ViewData["MajorID"]','0')">افزودن مجموعه</a> |
+    <a class="btn btn-info" asp-action="Majors" asp-controller="Contents">برگشت</a>
+</p>
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ImageName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>دستورات</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <img src="~/Images/Contents/@item.ImageName" width="120" height="120" class="img-thumbnail img-responsive" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    <a asp-action="Lists" asp-route-id="@item.ContentID" class="btn btn-warning">زیرمجموعه ها (@item.Contents2.Count())</a> |
+                    <a onclick="EditParent('@item.ContentID')" class="btn btn-primary">ویرایش</a> |
+                    <a onclick="DeleteParent('@item.ContentID')" class="btn btn-danger">حذف</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<partial name="PartialViews/Modal" />
+@section Scripts
+{
+    <script src="~/Scripts/ContentsIndex.js"></script>
+}

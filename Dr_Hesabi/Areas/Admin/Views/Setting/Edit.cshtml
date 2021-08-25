@@ -1,0 +1,152 @@
+﻿@model Dr_Hesabi.DataLayers.Entity.Setting
+
+@{
+    ViewData["Title"] = "ویرایش تنظیمات";
+}
+
+<h2>ویرایش تنظیمات</h2>
+
+<hr />
+<div class="row">
+    <div class="col-md-10">
+        <form asp-action="Edit" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="SettingID" />
+            <input type="hidden" asp-for="ImgCodeQR" />
+            <input type="hidden" asp-for="ImgLogo" />
+            <input type="hidden" asp-for="ImgHistory" />
+
+            <div class="form-group">
+                <label asp-for="NameSite" class="control-label"></label>
+                <input asp-for="NameSite" class="form-control" />
+                <span asp-validation-for="NameSite" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NameSite2" class="control-label"></label>
+                <input asp-for="NameSite2" class="form-control" />
+                <span asp-validation-for="NameSite2" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ShortDescription" class="control-label"></label>
+                <textarea asp-for="ShortDescription" class="form-control"></textarea>
+                <span asp-validation-for="ShortDescription" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Targets" class="control-label"></label>
+                <textarea asp-for="Targets" class="form-control"></textarea>
+                <span asp-validation-for="Targets" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="History" class="control-label"></label>
+                <textarea asp-for="History" class="form-control"></textarea>
+                <span asp-validation-for="History" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="GuideTeacher" class="control-label"></label>
+                <textarea asp-for="GuideTeacher" class="form-control"></textarea>
+                <span asp-validation-for="GuideTeacher" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="GuideStudent" class="control-label"></label>
+                <textarea asp-for="GuideStudent" class="form-control"></textarea>
+                <span asp-validation-for="GuideStudent" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PasswordEmail" class="control-label"></label>
+                <input asp-for="PasswordEmail" class="form-control" />
+                <span asp-validation-for="PasswordEmail" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Telephone" class="control-label"></label>
+                <input asp-for="Telephone" class="form-control" />
+                <span asp-validation-for="Telephone" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Address" class="control-label"></label>
+                <input asp-for="Address" class="form-control" />
+                <span asp-validation-for="Address" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EmailSupport" class="control-label"></label>
+                <input asp-for="EmailSupport" class="form-control" />
+                <span asp-validation-for="EmailSupport" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Telegram" class="control-label"></label>
+                <input asp-for="Telegram" class="form-control" />
+                <span asp-validation-for="Telegram" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="ImgLogo" class="control-label"></label>
+                <input type="file" asp-for="ImgLogo" name="ImgLogoUp" id="ImgLogoUp" class="form-control" />
+                <span asp-validation-for="ImgLogo" class="text-danger"></span>
+                <img src="~/Images/Setting/@Model.ImgLogo" class="img-responsive img-thumbnail" id="ShowImgLogo" style="max-width: 300px;max-height: 200px" />
+            </div>
+            <div class="form-group">
+                <label asp-for="ImgCodeQR" class="control-label"></label>
+                <input type="file" asp-for="ImgCodeQR" name="ImgCodeQRUp" id="ImgCodeQRUp" class="form-control" />
+                <span asp-validation-for="ImgCodeQR" class="text-danger"></span>
+                <img src="~/Images/Setting/@Model.ImgCodeQR" class="img-responsive img-thumbnail" id="ShowImgCodeQR" style="max-width: 300px;max-height: 200px" />
+            </div>
+            <div class="form-group">
+                <label asp-for="ImgHistory" class="control-label"></label>
+                <input type="file" asp-for="ImgHistory" name="ImgHistoryUp" id="ImgHistoryUp" class="form-control" />
+                <span asp-validation-for="ImgHistory" class="text-danger"></span>
+                <img src="~/Images/Setting/@Model.ImgHistory" class="img-responsive img-thumbnail" id="ShowImgHistory" style="max-width: 300px;max-height: 200px" />
+            </div>
+            <div class="form-group">
+                <input type="submit" value="ذخیره" class="btn btn-success" /> |
+                <a asp-action="Index" class="btn btn-info">برگشت</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts
+{
+    <script>
+        function readURLLogo(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $('#ShowImgLogo').attr('src', e.target.result);
+                }
+                reader.readAsDataURL(input.files[0]); // convert to base64 string
+            }
+        }
+        $("#ImgLogoUp").change(function () {
+            readURLLogo(this);
+        });
+        function readURLQR(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $('#ShowImgCodeQR').attr('src', e.target.result);
+                }
+                reader.readAsDataURL(input.files[0]); // convert to base64 string
+            }
+        }
+        $("#ImgCodeQRUp").change(function () {
+            readURLQR(this);
+        });
+        function readURLHistory(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $('#ShowImgHistory').attr('src', e.target.result);
+                }
+                reader.readAsDataURL(input.files[0]); // convert to base64 string
+            }
+        }
+        $("#ImgHistoryUp").change(function () {
+            readURLHistory(this);
+        });
+    </script>
+}

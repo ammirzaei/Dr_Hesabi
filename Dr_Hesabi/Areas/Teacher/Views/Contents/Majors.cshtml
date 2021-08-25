@@ -1,0 +1,38 @@
+﻿@model IEnumerable<Dr_Hesabi.DataLayers.Entity.Majors>
+@{
+    ViewData["Title"] = "رشته تحصیلی";
+    Layout = "_TeacherLayout";
+}
+
+<h2>محتوای رشته ها</h2>
+<div>
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.ImageName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Title)
+                </th>
+                <th>محتوا</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        <img src="/Images/Majors/@item.ImageName" width="150" height="150" class="img-thumbnail img-responsive" />
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </td>
+                    <td>
+                        <a asp-action="Index" asp-controller="Contents" asp-area="Teacher" asp-route-id="@item.MajorID" class="btn btn-info">محتوا های رشته</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,28 @@
+﻿@{
+    ViewData["Title"] = "";
+}
+<div id="ExistTests"></div>
+@section Slider
+{
+    <cache expires-after="@TimeSpan.FromHours(8)">
+        @await Component.InvokeAsync("Sliders")
+    </cache>
+}
+@section Majors
+{
+    <cache expires-after="TimeSpan.FromDays(2)">
+        @await Component.InvokeAsync("Majors", new { IsView = false })
+    </cache>
+}
+@section News
+{
+    <cache expires-after="@TimeSpan.FromHours(2)">
+        @await Component.InvokeAsync("News")
+    </cache>
+}
+@section Targets
+{
+    <cache expires-after="@TimeSpan.FromDays(2)">
+        @await Component.InvokeAsync("Targets")
+    </cache>
+}

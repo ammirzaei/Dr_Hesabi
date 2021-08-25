@@ -1,0 +1,80 @@
+﻿@using Dr_Hesabi.Classes.Class
+@model IEnumerable<Dr_Hesabi.DataLayers.Entity.Blogs>
+
+@{
+    ViewData["Title"] = "مقاله ها";
+}
+
+<h2>مقاله ها</h2>
+<p>
+    <a asp-action="Create" class="btn btn-success">افزودن مقاله</a>
+</p>
+<div>
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.ImageName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.NameWriter)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Title)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Visit)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.IsActive)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DateTime)
+                </th>
+                <th>دستورات</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr class="@((item.IsActive)?"success":"danger")">
+                    <td>
+                        <img src="~/Images/Blogs/@item.ImageName" width="100" height="100" class="thumbnail img-responsive" />
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NameWriter)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Visit) نفر
+                    </td>
+                    <td>
+                        @if (item.IsActive)
+                        {
+                            <text>
+                                <span class="text-success">فعال</span>
+                            </text>
+                        }
+                        else
+                        {
+                            <text>
+                                <span class="text-danger">غیرفعال</span>
+                            </text>
+                        }
+                    </td>
+                    <td>
+                        @item.DateTime.ToDate()
+                    </td>
+                    <td>
+                        <a asp-action="Comments" asp-controller="Home" asp-area="Admin" asp-route-id="@item.BlogID" asp-route-method="مقاله" class="btn btn-success">نظر ها</a> |
+                        <a asp-action="Edit" asp-route-id="@item.BlogID" class="btn btn-primary">ویرایش</a> |
+                        <a asp-action="Details" asp-route-id="@item.BlogID" class="btn btn-warning">جزئیات</a> |
+                        <a asp-action="Delete" asp-route-id="@item.BlogID" class="btn btn-danger">حذف</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

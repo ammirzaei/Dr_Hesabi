@@ -1,0 +1,59 @@
+﻿@using Dr_Hesabi.Classes.Class
+@using Dr_Hesabi.DataLayers.Entity
+@model Dr_Hesabi.DataLayers.Entity.News
+@{
+    ViewData["Title"] = Model.Title;
+    ViewData["Description"] = Model.ShortDescription;
+    string Method = "خبر";
+}
+<input type="hidden" id="ID" value="@Model.NewsID" />
+<input type="hidden" id="Method" value="@Method" />
+<div class="container">
+    <div class="View">
+        <div class="View-Title">
+            <h3>@Model.Title</h3>
+            <div class="Navigation">
+                <ul>
+                    <li>
+                        <a href="/">هنرستان دکتر حسابی</a> /
+                    </li>
+                    <li>
+                        <a href="@Url.Action("News","Panel")">اخبار</a> /
+                    </li>
+                    <li>
+                        <a href="#">@Model.Title</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="View-Des">
+                <span><i class="mdi mdi-eye"></i> @Model.Visit بازدید</span>
+                <span><i class="mdi mdi-clock"></i> @Model.DateTime.ToDate()</span>
+            </div>
+        </div>
+        <div class="View-Body">
+            <div class="ViewBody-Top">
+                <img src="~/Images/News/@Model.ImageName" alt="@Model.Title" title="@Model.Title" loading="lazy">
+            </div>
+            <div class="ViewBody-Main">
+                <p>
+                    @Html.Raw(Model.Text)
+                </p>
+            </div>
+            <div class="View-BodyComment">
+                <div class="ViewBody-Main" id="CreateComment">
+                    <partial name="CreateComment" model="new Comments(){PanelID = Model.NewsID,Method = Method}" />
+                </div>
+                <div class="ViewBody-Comment">
+                    <div class="Connection-Show" id="ListComments">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<partial name="PartialViews/Modal" />
+@section Scripts
+{
+    <script src="~/Scripts/Comments.js"></script>
+}

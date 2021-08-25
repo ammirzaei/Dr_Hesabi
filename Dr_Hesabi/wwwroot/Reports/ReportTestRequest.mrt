@@ -1,0 +1,296 @@
+{
+  "ReportVersion": "2020.2.1.0",
+  "ReportGuid": "2d2175b4baf34bf692032fd82a3a8180",
+  "ReportName": "Report",
+  "ReportAlias": "Report",
+  "ReportCreated": "/Date(-32400000+0330)/",
+  "ReportChanged": "/Date(1615316873003+0330)/",
+  "EngineVersion": "EngineV2",
+  "CalculationMode": "Interpretation",
+  "PreviewSettings": 268435455,
+  "Script": "using System;\r\nusing System.Drawing;\r\nusing System.Windows.Forms;\r\nusing System.Data;\r\nusing Stimulsoft.Controls;\r\nusing Stimulsoft.Base.Drawing;\r\nusing Stimulsoft.Report;\r\nusing Stimulsoft.Report.Dialogs;\r\nusing Stimulsoft.Report.Components;\r\n\r\nnamespace Reports\r\n{\r\n    public class Report : Stimulsoft.Report.StiReport\r\n    {\r\n        public Report()        {\r\n            this.InitializeComponent();\r\n        }\r\n\r\n        #region StiReport Designer generated code - do not modify\r\n\t\t#endregion StiReport Designer generated code - do not modify\r\n    }\r\n}\r\n",
+  "ReferencedAssemblies": {
+    "0": "System.Dll",
+    "1": "System.Drawing.Dll",
+    "2": "System.Windows.Forms.Dll",
+    "3": "System.Data.Dll",
+    "4": "System.Xml.Dll",
+    "5": "Stimulsoft.Controls.Dll",
+    "6": "Stimulsoft.Base.Dll",
+    "7": "Stimulsoft.Report.Dll"
+  },
+  "Dictionary": {
+    "Variables": {
+      "0": {
+        "Name": "Title",
+        "Alias": "Title",
+        "Type": "System.String",
+        "InitBy": "Expression"
+      }
+    },
+    "DataSources": {
+      "0": {
+        "Ident": "StiDataTableSource",
+        "Name": "DB",
+        "Alias": "DB",
+        "Key": "6e5f89c560494967b5d259c86d084edd",
+        "Columns": {
+          "0": {
+            "Name": "Code",
+            "Index": -1,
+            "NameInSource": "Code",
+            "Alias": "Code",
+            "Type": "System.Int32"
+          },
+          "1": {
+            "Name": "FullName",
+            "Index": -1,
+            "NameInSource": "FullName",
+            "Alias": "FullName",
+            "Type": "System.String"
+          },
+          "2": {
+            "Name": "CodeClass",
+            "Index": -1,
+            "NameInSource": "CodeClass",
+            "Alias": "CodeClass",
+            "Type": "System.String"
+          }
+        },
+        "NameInSource": "DB"
+      }
+    }
+  },
+  "Pages": {
+    "0": {
+      "Ident": "StiPage",
+      "Name": "Page1",
+      "Guid": "bfbaf3167b614105ac18cba8ecbc8dae",
+      "Interaction": {
+        "Ident": "StiInteraction"
+      },
+      "Border": "All;;2;None;;;;solid:Black",
+      "Brush": "solid:",
+      "Components": {
+        "0": {
+          "Ident": "StiPageHeaderBand",
+          "Name": "PageHeaderBand1",
+          "ClientRectangle": "0,0.4,20,1.2",
+          "Interaction": {
+            "Ident": "StiInteraction"
+          },
+          "Border": ";;;;;;;solid:Black",
+          "Brush": "solid:",
+          "Components": {
+            "0": {
+              "Ident": "StiText",
+              "Name": "Text1",
+              "MinSize": "0,0",
+              "MaxSize": "0,0",
+              "ClientRectangle": "0,0,20,1",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "{Title}"
+              },
+              "HorAlignment": "Center",
+              "VertAlignment": "Center",
+              "Font": "Segoe UI Semibold;10;Bold;",
+              "Border": "All;;;;;;;solid:Black",
+              "Brush": "solid:250,192,143",
+              "TextBrush": "solid:Black",
+              "Type": "Expression"
+            }
+          }
+        },
+        "1": {
+          "Ident": "StiTableCell",
+          "Name": "TableCell1",
+          "MinSize": "0,0",
+          "MaxSize": "0,0",
+          "ClientRectangle": "3.2,-3.8,3.8,0.8",
+          "Restrictions": "AllowMove, AllowSelect, AllowChange",
+          "Interaction": {
+            "Ident": "StiInteraction"
+          },
+          "Text": {
+            "Value": "نام و نام خانوادگی"
+          },
+          "HorAlignment": "Center",
+          "VertAlignment": "Center",
+          "Font": "Segoe UI Semilight;9;Bold;",
+          "Border": "All;;;;;;;solid:Black",
+          "Brush": "solid:141,179,226",
+          "TextBrush": "solid:Black",
+          "Type": "Expression",
+          "ID": 1
+        },
+        "2": {
+          "Ident": "StiTable",
+          "Name": "TableDB2",
+          "ClientRectangle": "0,2.4,20,1.6",
+          "Interaction": {
+            "Ident": "StiBandInteraction"
+          },
+          "Border": ";;;;;;;solid:Black",
+          "Brush": "solid:",
+          "Components": {
+            "0": {
+              "Ident": "StiTableCell",
+              "Name": "TableDB2_Cell1",
+              "MinSize": "0,0",
+              "MaxSize": "0,0",
+              "ClientRectangle": "0,0,6.8,0.8",
+              "Restrictions": "AllowMove, AllowSelect, AllowChange",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "ردیف"
+              },
+              "HorAlignment": "Center",
+              "VertAlignment": "Center",
+              "Font": "Segoe UI Semibold;9;Bold;",
+              "Border": "All;;;;;;;solid:Black",
+              "Brush": "solid:141,179,226",
+              "TextBrush": "solid:Black",
+              "Type": "Expression",
+              "ID": 0
+            },
+            "1": {
+              "Ident": "StiTableCell",
+              "Name": "TableDB2_Cell2",
+              "MinSize": "0,0",
+              "MaxSize": "0,0",
+              "ClientRectangle": "6.8,0,6.6,0.8",
+              "Restrictions": "AllowMove, AllowSelect, AllowChange",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "نام و نام خانوادگی"
+              },
+              "HorAlignment": "Center",
+              "VertAlignment": "Center",
+              "Font": "Segoe UI Semibold;9;Bold;",
+              "Border": "All;;;;;;;solid:Black",
+              "Brush": "solid:141,179,226",
+              "TextBrush": "solid:Black",
+              "Type": "Expression",
+              "ID": 1
+            },
+            "2": {
+              "Ident": "StiTableCell",
+              "Name": "TableDB2_Cell3",
+              "MinSize": "0,0",
+              "MaxSize": "0,0",
+              "ClientRectangle": "13.4,0,6.6,0.8",
+              "Restrictions": "AllowMove, AllowSelect, AllowChange",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "شماره کلاس"
+              },
+              "HorAlignment": "Center",
+              "VertAlignment": "Center",
+              "Font": "Segoe UI Semibold;9;Bold;",
+              "Border": "All;;;;;;;solid:Black",
+              "Brush": "solid:141,179,226",
+              "TextBrush": "solid:Black",
+              "Type": "Expression",
+              "ID": 2
+            },
+            "3": {
+              "Ident": "StiTableCell",
+              "Name": "TableDB2_Cell4",
+              "MinSize": "0,0",
+              "MaxSize": "0,0",
+              "ClientRectangle": "0,0.8,6.8,0.8",
+              "Restrictions": "AllowMove, AllowSelect, AllowChange",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "{DB.Code}"
+              },
+              "HorAlignment": "Center",
+              "VertAlignment": "Center",
+              "Font": "Segoe UI Semibold;9;;",
+              "Border": "All;;;;;;;solid:Black",
+              "Brush": "solid:White",
+              "TextBrush": "solid:Black",
+              "ID": 3
+            },
+            "4": {
+              "Ident": "StiTableCell",
+              "Name": "TableDB2_Cell5",
+              "MinSize": "0,0",
+              "MaxSize": "0,0",
+              "ClientRectangle": "6.8,0.8,6.6,0.8",
+              "Restrictions": "AllowMove, AllowSelect, AllowChange",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "{DB.FullName}"
+              },
+              "HorAlignment": "Center",
+              "VertAlignment": "Center",
+              "Font": "Segoe UI Semibold;9;;",
+              "Border": "All;;;;;;;solid:Black",
+              "Brush": "solid:White",
+              "TextBrush": "solid:Black",
+              "ID": 4
+            },
+            "5": {
+              "Ident": "StiTableCell",
+              "Name": "TableDB2_Cell6",
+              "MinSize": "0,0",
+              "MaxSize": "0,0",
+              "ClientRectangle": "13.4,0.8,6.6,0.8",
+              "Restrictions": "AllowMove, AllowSelect, AllowChange",
+              "Interaction": {
+                "Ident": "StiInteraction"
+              },
+              "Text": {
+                "Value": "{DB.CodeClass}"
+              },
+              "HorAlignment": "Center",
+              "VertAlignment": "Center",
+              "Font": "Segoe UI Semibold;9;;",
+              "Border": "All;;;;;;;solid:Black",
+              "Brush": "solid:White",
+              "TextBrush": "solid:Black",
+              "ID": 5
+            }
+          },
+          "MinHeight": 0.4,
+          "DataSourceName": "DB",
+          "RightToLeft": true,
+          "RowCount": 2,
+          "ColumnCount": 3,
+          "HeaderRowsCount": 1,
+          "HeaderCanGrow": false,
+          "NumberID": 6
+        }
+      },
+      "RightToLeft": true,
+      "PageWidth": 21.0,
+      "PageHeight": 29.7,
+      "Watermark": {
+        "TextBrush": "solid:50,0,0,0"
+      },
+      "Margins": {
+        "Left": 0.5,
+        "Right": 0.5,
+        "Top": 0.5,
+        "Bottom": 0.5
+      },
+      "ReportUnit": {
+        "Ident": "StiCentimetersUnit"
+      }
+    }
+  }
+}

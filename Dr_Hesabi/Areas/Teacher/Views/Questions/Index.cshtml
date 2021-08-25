@@ -1,0 +1,19 @@
+﻿@{
+    ViewData["Title"] = "سوال ها";
+    Layout = "_TeacherLayout";
+}
+
+<h2>سوال های @ViewData["TestTitle"]</h2>
+
+<p>
+    <a onclick="CreateQuestion('@ViewData["TestID"]')" class="btn btn-success">افزودن سوال</a> |
+    <a class="btn btn-info" asp-action="Index" asp-controller="Tests">برگشت</a>
+</p>
+<div id="ListQuestions">
+    @await Component.InvokeAsync("ListQuestions", new { id = ViewData["TestID"] })
+</div>
+<partial name="PartialViews/Modal" />
+@section Scripts
+{
+    <script src="~/Scripts/ListQuestions.js"></script>
+}

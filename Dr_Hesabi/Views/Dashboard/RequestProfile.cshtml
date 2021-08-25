@@ -1,0 +1,47 @@
+﻿@model Dr_Hesabi.DataLayers.Entity.ProfileRequests
+@{
+    ViewData["Title"] = "درخواست ویرایش اطلاعات";
+}
+<div id="Profile">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 col-md-3 col-sm-4">
+                <partial name="PartialViews/Dashboard" />
+            </div>
+            <div class="col-lg-8 col-md-9 col-sm-8">
+                <form asp-action="RequestProfile">
+                    <div class="Account">
+                        <h4>درخواست ویرایش اطلاعات</h4>
+                        <div class="Account_Box">
+                            <div class="alert alert-info text-center">
+                                <p>پس از بررسی درخواست، شما اجازه ویرایش اطلاعات خود را پیدا خواهید کرد.</p>
+                            </div>
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <input type="hidden" asp-for="UserID" />
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <i class="mdi mdi-text input-group-addon"></i>
+                                    <textarea asp-for="Description" class="form-control" placeholder="توضیحات درخواست"></textarea>
+                                </div>
+                                <span asp-validation-for="Description" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <div class="g-recaptcha" data-sitekey="6LcUrMoZAAAAAGTfU1jMlJ5QZIBp2RXD-15Y8_fI"></div>
+                                <span>
+                                    <span class="text-danger">@ViewBag.MessageError</span>
+                                </span>
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" value="ثبت درخواست" class="btn btn-success" />
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts
+{
+    <script src="https://www.google.com/recaptcha/api.js?hl=fa"></script>
+}

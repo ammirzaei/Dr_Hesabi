@@ -1,0 +1,718 @@
+@font-face {
+    font-family: iranyekanwebbold;
+    src: url("../../Public/Fonts/iranyekanwebbold.eot") format("eot"), url("../../Public/Fonts/iranyekanwebbold.ttf") format("ttf"), url("../../Public/Fonts/iranyekanwebbold.woff") format("woff"), url("../../Public/Fonts/iranyekanwebbold.woff2") format("woff2");
+    font-weight: normal;
+}
+
+body {
+    font-family: "iranyekanwebbold" !important;
+    background-color: #f3fefb;
+    color: #4a5f73;
+    overflow-x: hidden;
+}
+
+
+* {
+    margin: 0px;
+    padding: 0px;
+    border: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: "iranyekanwebbold" !important;
+    color: #4a5f73;
+}
+
+ul,
+li {
+    list-style: none;
+}
+
+.split {
+    border: 1px solid silver;
+    background-color: #fffff0;
+    border-radius: 10px;
+    padding: 0 5px;
+    margin: 0 1px;
+    line-height: 28px;
+}
+
+#role-teacher {
+    margin: auto 20px;
+    display: none;
+}
+
+.description {
+    text-align: center;
+    cursor: pointer;
+    position: relative;
+}
+
+    .description > span {
+        display: none;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: white;
+        box-shadow: 0 0 5px silver;
+        border: 1px solid silver;
+        border-radius: 10px;
+        padding: 5px;
+        z-index: 9999;
+        min-width: 200px;
+        max-width: 400px;
+        font-size: 12px;
+    }
+
+    .description > i {
+        position: relative;
+        bottom: 3px;
+        font-size: 20px;
+    }
+
+    .description:hover > span, .description:active > span, .description:focus > span {
+        display: block;
+    }
+
+.guide-cammand {
+    padding: 10px;
+    background-color: #2979ff;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+
+.box {
+    background-color: #ffffff;
+    border-radius: 20px;
+    margin: 15px 10px;
+    padding: 15px 20px;
+    box-shadow: 1px 1px 8px silver;
+}
+
+.back-Yellow {
+    background-color: #ffab00;
+}
+
+.box .border-bottom-box {
+    border-bottom: 2px dotted silver;
+}
+
+a {
+    text-decoration: none;
+    color: #4a5f73;
+    transition: all 400ms;
+}
+
+    a:hover,
+    a:active,
+    a:link {
+        text-decoration: none;
+        color: #4a5f73;
+    }
+
+.box #Setting-Admin {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
+    .box #Setting-Admin a:hover {
+        color: #00bcd4;
+    }
+
+.box-item span {
+    float: left;
+    background-color: #cfd8e3;
+    color: #f7858d;
+    width: 20px;
+    text-align: center;
+    border-radius: 15px;
+    margin-top: 2px;
+}
+
+#DateNow h4 {
+    color: #4a5f73;
+    background-color: #ffffff;
+    padding: 10px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.box-item ul li {
+    padding: 10px;
+    border-radius: 10px;
+    margin: 5px 0;
+    transition: all 300ms;
+}
+
+    .box-item ul li:hover {
+        background-color: #ffab00;
+        color: white;
+        box-shadow: 1px 1px 6px silver;
+        cursor: default;
+    }
+
+        .box-item ul li:hover > a {
+            color: white;
+        }
+
+.Menu-item li:hover {
+    background-color: #f7858d !important;
+}
+
+.box-item ul li:hover .Menu-item {
+    background-color: #ffffff;
+}
+
+.box-item ul li a:hover {
+    color: white;
+}
+
+.Menu:hover {
+    color: white !important;
+}
+
+.Menu-item {
+    display: none;
+    padding: 2px 20px;
+    margin: 15px 10px 10px 10px;
+    border-radius: 10px;
+}
+
+.box .box-title {
+    text-align: center;
+    color: #4caf50;
+    border-radius: 20px;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+}
+
+.panel-profile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 10px;
+}
+.panel-profile img {
+    border-radius: 50%;
+    margin-left: 8px;
+    width: 70px;
+    height: 70px;
+    box-shadow: 0 0 5px silver;
+}
+.active-Menu {
+        display: block;
+        background-color: #ffab00;
+        color: white !important;
+        box-shadow: 1px 1px 6px silver;
+        cursor: default;
+    }
+
+    .active-Menu .Menu-item {
+        display: block;
+        background-color: #ffffff;
+    }
+
+.active-MenuItem {
+    background-color: #f7858d !important;
+    color: white;
+}
+
+
+
+.Dinamic {
+    margin: 15px 10px;
+    padding: 15px 20px;
+}
+
+    .Dinamic a:hover {
+        color: #00bcd4
+    }
+
+    .Dinamic .btn {
+        color: white;
+    }
+
+        .Dinamic .btn:hover {
+            opacity: 0.8;
+            color: white;
+        }
+
+
+input.form-control[type="text"] {
+    padding: 7px 18px;
+}
+
+textarea.form-control {
+    height: auto;
+    border-radius: 16px;
+    background-color: #ffffff;
+    padding: 8px 15px;
+    border: 1px solid #d3d2d2;
+    box-shadow: 1px 1px 8px silver;
+}
+
+select.form-control {
+    border-radius: 16px;
+    height: auto;
+    border: 1px solid #d3d2d2;
+    box-shadow: 1px 1px 8px silver;
+    background-color: #ffffff;
+}
+
+    select.form-control option {
+        font-family: "iranyekanwebbold" !important;
+    }
+
+    select.form-control > option:hover {
+        background-color: #4caf50
+    }
+
+.Model-More {
+    float: left;
+    margin: 10px 20px;
+}
+
+input.form-control {
+    border-radius: 16px;
+    height: auto;
+    background-color: #ffffff;
+    border: 1px solid #d3d2d2;
+    box-shadow: 1px 1px 8px silver;
+}
+
+.Notification {
+    position: relative;
+}
+
+    .Notification h4 {
+        background-color: #ffffff;
+        padding: 10px;
+        border-radius: 10px;
+        text-align: center;
+        cursor: pointer;
+    }
+
+    .Notification ul {
+        display: none;
+        position: absolute;
+        background-color: #ffffff;
+        border-radius: 10px;
+        padding: 10px;
+        line-height: 25px;
+        z-index: 1000000;
+        box-shadow: 1px 1px 5px silver;
+        margin: 0 auto;
+        top: 4.2rem;
+        left: 0;
+    }
+
+        .Notification ul li {
+            border: 1px dotted #d3d2d2;
+            border-radius: 10px;
+            padding: 10px;
+            margin: 10px;
+        }
+
+            .Notification ul li a {
+                color: #4caf50;
+            }
+
+            .Notification ul li:hover {
+                background-color: #f7858d;
+                border: 1px dotted #f7858d;
+                box-shadow: 1px 1px 5px silver;
+            }
+
+                .Notification ul li:hover a {
+                    color: #ffffff;
+                }
+
+.Account {
+    background-color: #ffffff;
+    padding: 20px;
+    box-shadow: 1px 1px 7px silver;
+    margin: 20px;
+    border-radius: 10px;
+}
+
+    .Account h4 {
+        text-align: center;
+        color: #2979ff;
+    }
+
+    .Account .Account_Box {
+        background-color: #ffffff;
+        padding: 20px;
+        box-shadow: 1px 1px 1px #d3d2d2;
+        margin: 20px;
+        border-radius: 10px;
+    }
+
+    .Account .checkbox span {
+        color: #9e9ea3;
+    }
+
+    .Account .Account_Link {
+        border-top: 1px dotted #ccf2ff;
+        margin: 20px;
+    }
+
+    .Account .form-group input[type="button"] {
+    }
+
+    .Account .form-group a {
+        display: block;
+        margin: 10px;
+        color: #9e9ea3;
+    }
+
+        .Account .form-group a:hover {
+            color: #2979ff;
+        }
+
+.Connection-Show {
+    padding: 30px;
+    margin: 0 20px;
+    position: relative;
+    bottom: 3rem;
+}
+
+    .Connection-Show .Connection-box {
+        border: 1px solid #d3d2d2;
+        border-radius: 10px;
+        padding: 10px;
+        margin: 10px;
+    }
+
+    .Connection-Show .Connection-Reply {
+        border: 1px solid #d3d2d2;
+        border-radius: 10px;
+        padding: 10px;
+        margin-right: 5rem;
+    }
+
+    .Connection-Show .Connection-box .Connection-Info {
+        border-bottom: 2px dotted #ccf2ff;
+        padding: 1px 10px;
+        padding-bottom: 8px;
+    }
+
+        .Connection-Show .Connection-box .Connection-Info span {
+            color: #4caf50;
+            font-size: 13px;
+        }
+
+        .Connection-Show .Connection-box .Connection-Info .C-Date {
+            float: left;
+        }
+
+    .Connection-Show .Connection-box .Connection-Comment {
+        padding: 10px;
+        color: #889296;
+        margin-bottom: 2.5rem;
+    }
+
+        .Connection-Show .Connection-box .Connection-Comment .Connection-Command {
+            float: left;
+            position: relative;
+            top: 5px;
+        }
+
+.table a {
+    color: #2979ff;
+    cursor: pointer;
+}
+
+.User span {
+    color: #ffffff;
+    background-color: #2979ff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    line-height: 40px;
+}
+
+.Roles {
+    background-color: #ffffff;
+    border: 1px solid #d3d2d2;
+    box-shadow: 1px 1px 8px silver;
+    border-radius: 16px;
+}
+
+    .Roles div {
+        display: inline-block;
+    }
+
+    .Roles label {
+        margin: 0 10px;
+    }
+
+.Delete {
+    padding: 10px;
+    position: relative;
+    bottom: 1rem;
+}
+
+    .Delete div {
+        box-shadow: 1px 1px 5px silver;
+        margin: 10px 0;
+        text-align: center;
+        padding: 10px;
+        border-radius: 10px;
+    }
+
+        .Delete div > span:nth-child(1) {
+            color: #4caf50;
+            margin: 10px;
+        }
+
+        .Delete div span:nth-child(2) * {
+         
+            font-family: "iranyekanwebbold" !important;
+        }
+
+        .Delete div span:nth-child(2) img {
+            max-width: 100%;
+        }
+
+        .Delete div span:nth-child(2) .Delete-Select {
+            padding: 0 60px;
+            box-shadow: none;
+            margin: 10px 60px;
+        }
+
+#danger {
+    background-color: #fc544b;
+    color: #ffffff;
+    padding: 2px 10px;
+    border-radius: 10px;
+}
+
+#success {
+    background-color: #63ed7a;
+    color: #ffffff;
+    padding: 2px 10px;
+    border-radius: 10px;
+}
+
+#Descritive .checkbox label {
+    margin: 0 10px;
+}
+
+#Descritive {
+    display: none;
+}
+
+.table > thead > tr > td.Customdanger,
+.table > tbody > tr > td.Customdanger,
+.table > tfoot > tr > td.Customdanger,
+.table > thead > tr > th.Customdanger,
+.table > tbody > tr > th.Customdanger,
+.table > tfoot > tr > th.Customdanger,
+.table > thead > tr.Customdanger > td,
+.table > tbody > tr.Customdanger > td,
+.table > tfoot > tr.Customdanger > td,
+.table > thead > tr.Customdanger > th,
+.table > tbody > tr.Customdanger > th,
+.table > tfoot > tr.Customdanger > th {
+    background-color: #f28482;
+    border-color: #d6e9c6;
+    color: #ffffff;
+}
+
+.table-hover > tbody > tr > td.Customdanger:hover,
+.table-hover > tbody > tr > th.Customdanger:hover,
+.table-hover > tbody > tr.Customdanger:hover > td {
+    background-color: #fc544b;
+    border-color: #d6e9c6;
+    color: #ffffff;
+}
+
+main {
+    width: 100%;
+    overflow-x: hidden;
+}
+
+#btnSearch button {
+    padding: 9px 10px;
+    position: relative;
+    bottom: 1px;
+}
+
+.Guide {
+    display: block;
+    position: relative;
+}
+
+    .Guide p::before {
+        content: '';
+        width: 6px;
+        height: 6px;
+        background-color: #ffab00;
+        border-radius: 50%;
+        position: absolute;
+        margin-top: 8px;
+        margin-right: -10px;
+        box-shadow: 1px 1px 5px silver;
+    }
+
+.Dinamic > h2, h2.title-document {
+    background-color: lightskyblue;
+    border-radius: 10px;
+    box-shadow: 1px 1px 8px lightskyblue;
+    padding: 8px 10px;
+    text-align: center;
+}
+
+.pishkhon {
+    border: 1px solid silver;
+    border-radius: 10px;
+    background-color: #ffffff;
+    margin: 20px 0;
+}
+
+    .pishkhon > .pishkhon-header {
+        border-bottom: 1px solid silver;
+        text-align: center;
+        position: relative;
+        bottom: 1rem;
+        padding: 0px 0;
+    }
+
+
+    .pishkhon > .pishkhon-body {
+        margin: 15px 5px;
+    }
+
+.Link {
+    overflow: hidden;
+    opacity: 0;
+    position: absolute;
+    width: 1px;
+    height: 1px;
+}
+
+@keyframes btn-error-animation {
+    from {
+    }
+
+    to {
+        background-color: #ef5662;
+        border-color: #ef5662;
+        box-shadow: 0 2px 6px #ef5662;
+    }
+}
+
+.btn-error {
+    animation: btn-error-animation 750ms infinite;
+}
+
+.sum-detail {
+    padding: 5px 10px;
+    text-align: center;
+    width: 100%;
+    border: 1px solid #dddddd;
+    border-bottom: none;
+}
+
+
+@media(max-width:780px) {
+   
+
+    .pishkhon > .pishkhon-header > h3 {
+        font-size: 15px;
+    }
+
+    .Dinamic > h2, h2.title-document {
+        padding: 6px 10px;
+        font-size: 17px;
+        border-radius: 5px;
+    }
+
+    .Delete div span:nth-child(2) .Delete-Select {
+        padding: 0 10px;
+        box-shadow: none;
+        margin: 10px 10px;
+    }
+
+    .Guide {
+        margin: 0 30px;
+    }
+
+    #btnSearch button {
+        padding: 10px 10px;
+        position: relative;
+        bottom: 0px;
+    }
+
+    .container {
+        padding: 0;
+        margin: 0;
+    }
+
+    .box {
+        margin: 15px 10px;
+        padding: 15px 20px;
+    }
+
+    .Dinamic {
+        margin: 10px 0px;
+        padding: 10px 5px;
+    }
+
+        .Dinamic > div {
+            overflow-x: scroll;
+        }
+
+    .table img {
+        min-height: 100px;
+        min-width: 100px;
+    }
+
+    .Account {
+        padding: 15px 0px;
+        box-shadow: 1px 1px 7px silver;
+        margin: 20px 0px;
+        border-radius: 10px;
+    }
+
+        .Account > h4 {
+            font-size: 16px;
+        }
+
+    .Connection-Show {
+        padding: 0px;
+        margin: 0 10px;
+        position: relative;
+        bottom: 0rem;
+    }
+
+        .Connection-Show .Connection-box .Connection-Info span {
+            color: #4caf50;
+            font-size: 13px;
+        }
+
+        .Connection-Show .Connection-box .Connection-Info .C-Date {
+            float: none;
+        }
+
+        .Connection-Show .Connection-box .Connection-Info {
+            padding: 1px 0px;
+            padding-bottom: 10px;
+            text-align: center;
+        }
+
+        .Connection-Show .Connection-box .Connection-Comment {
+            padding: 10px 5px;
+            margin-bottom: 2.5rem;
+        }
+
+        .Connection-Show .Connection-Reply {
+            margin-right: 3rem;
+        }
+}
