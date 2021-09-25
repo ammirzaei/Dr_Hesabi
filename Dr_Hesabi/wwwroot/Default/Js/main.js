@@ -141,7 +141,7 @@ function DateNow() {
 $(".scroll-top").click(function () {
     $("html,body").delay(0).animate({ scrollTop: $("body").offset().top }, 700);
 });
-$(document).ready(function () {
+$(window).load(function () {
     $("div.loading").css("display", "none");
     $("body").css("overflow", "auto");
     $("body").css("overflow-x", "hidden");
