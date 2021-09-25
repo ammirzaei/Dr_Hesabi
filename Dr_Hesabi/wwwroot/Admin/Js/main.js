@@ -19,7 +19,7 @@ $("input.form-control , textarea.form-control,select.form-control").focusout(fun
 $(".Notification").click(function () {
     $(this).find('ul').slideToggle(600);
 });
-$(document).ready(function () {
+$(window).load(function () {
     $("div.loading").css("display", "none");
     $("body").css("overflow", "auto");
     $("body").css("overflow-x", "hidden");
